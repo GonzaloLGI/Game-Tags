@@ -1,9 +1,10 @@
 package com.gametags.infrastructure.controller;
 
-import com.gametags.application.ClassificationService;
+import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
 import com.gametags.infrastructure.ClassificationDTO;
 import com.gametags.infrastructure.mappers.ClassificationMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController("/classification")
+@RequiredArgsConstructor
 public class ClassificationController {
 
     private ClassificationMapper mapper;
