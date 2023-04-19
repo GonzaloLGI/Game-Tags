@@ -2,6 +2,7 @@ package com.gametags.domain;
 
 import com.gametags.infrastructure.adapters.ClassificationAdapter;
 import com.gametags.infrastructure.ClassificationDAO;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.UUID;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Slf4j
 @Builder
 public class ClassificationService {

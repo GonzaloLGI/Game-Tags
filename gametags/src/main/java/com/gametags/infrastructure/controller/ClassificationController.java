@@ -1,5 +1,6 @@
 package com.gametags.infrastructure.controller;
 
+import com.gametags.application.classification.*;
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
 import com.gametags.infrastructure.ClassificationDTO;
@@ -18,36 +19,40 @@ import java.util.stream.Collectors;
 public class ClassificationController {
 
     private ClassificationMapper mapper;
-    private ClassificationService service;
+    private CreateClassificationUseCase createUseCase;
+    private DeleteClassificationUseCase deleteUseCase;
+    private FindAllClassificationsUseCase findAllUseCase;
+    private FindClassificationByIdUseCase findByIdUseCase;
+    private UpdateClassificationUseCase updateUseCase;
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ClassificationDTO> createClassification(@RequestBody ClassificationDTO dto){
-        return new ResponseEntity<>(mapper.toDto(service.createClassification(mapper.toDomain(dto))),HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toDto(createUseCase.createClassification(mapper.toDomain(dto))),HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<ClassificationDTO> getOneClassification(@PathVariable UUID id){
-        return new ResponseEntity<>(mapper.toDto(service.findOneClassification(id)),HttpStatus.FOUND);
+        return new ResponseEntity<>(mapper.toDto(findByIdUseCase.findOneClassification(id)),HttpStatus.FOUND);
     }
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<List<ClassificationDTO>> getAllClassification(){
-         List<ClassificationDAO> list = service.findAllClassifications();
+         List<ClassificationDAO> list = findAllUseCase.findAllClassifications();
          return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()),HttpStatus.FOUND);
     }
 
     @PutMapping("/")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ClassificationDTO> updateClassification(@RequestBody ClassificationDTO dto){
-        return new ResponseEntity<>(mapper.toDto(service.updateClassification(mapper.toDomain(dto))),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(mapper.toDto(updateUseCase.updateClassification(mapper.toDomain(dto))),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/[id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ClassificationDTO> deleteClassification(@PathVariable UUID id){
-        return new ResponseEntity<>(mapper.toDto(service.deleteClassification(id)),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(mapper.toDto(deleteUseCase.deleteClassification(id)),HttpStatus.ACCEPTED);
     }
 }
