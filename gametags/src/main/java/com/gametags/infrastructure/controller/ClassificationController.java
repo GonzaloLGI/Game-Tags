@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,12 @@ public class ClassificationController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<ClassificationDTO> getOneClassification(@PathVariable UUID id){
-        return new ResponseEntity<>(mapper.toDto(findByIdUseCase.findOneClassification(id)),HttpStatus.FOUND);
+        try{
+            return new ResponseEntity<>(mapper.toDto(findByIdUseCase.findOneClassification(id)),HttpStatus.FOUND);
+        }catch (NoSuchElementException e){
+            throw new NoSuchElementException("La clasificacion a buscar no se encuentra guardada en la base de datos. Prueba con otra");
+        }
+
     }
 
     @GetMapping("/")
@@ -53,6 +59,10 @@ public class ClassificationController {
     @DeleteMapping("/[id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ClassificationDTO> deleteClassification(@PathVariable UUID id){
-        return new ResponseEntity<>(mapper.toDto(deleteUseCase.deleteClassification(id)),HttpStatus.ACCEPTED);
+        try{
+            return new ResponseEntity<>(mapper.toDto(deleteUseCase.deleteClassification(id)),HttpStatus.ACCEPTED);
+        }catch (NoSuchElementException e){
+            throw new NoSuchElementException("La clasificación a borrar no existe. Prueba con otra");
+        }
     }
 }
