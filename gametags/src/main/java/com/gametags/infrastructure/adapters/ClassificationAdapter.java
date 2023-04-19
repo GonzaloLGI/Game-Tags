@@ -2,8 +2,10 @@ package com.gametags.infrastructure.adapters;
 
 import com.gametags.infrastructure.ClassificationDAO;
 import com.gametags.infrastructure.repositories.ClassificationRepository;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.UUID;
 @Data
 @Builder
 @Repository
+@AllArgsConstructor
+@Slf4j
 public class ClassificationAdapter {
 
     private ClassificationRepository repo;
