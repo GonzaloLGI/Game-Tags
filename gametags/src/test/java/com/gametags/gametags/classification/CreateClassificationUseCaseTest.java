@@ -1,9 +1,8 @@
 package com.gametags.gametags.classification;
 
-import com.gametags.application.classification.CreateClassificationUseCase;
+import com.gametags.application.classification.create_classification.CreateClassificationUseCase;
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
-import com.gametags.infrastructure.adapters.ClassificationAdapter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

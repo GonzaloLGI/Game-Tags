@@ -1,7 +1,8 @@
 package com.gametags.infrastructure.controller;
 
 import com.gametags.application.classification.*;
-import com.gametags.domain.ClassificationService;
+import com.gametags.application.classification.create_classification.CreateClassificationInput;
+import com.gametags.application.classification.create_classification.CreateClassificationUseCase;
 import com.gametags.infrastructure.ClassificationDAO;
 import com.gametags.infrastructure.ClassificationDTO;
 import com.gametags.infrastructure.mappers.ClassificationMapper;
@@ -28,8 +29,8 @@ public class ClassificationController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ClassificationDTO> createClassification(@RequestBody ClassificationDTO dto){
-        return new ResponseEntity<>(mapper.toDto(createUseCase.createClassification(mapper.toDomain(dto))),HttpStatus.CREATED);
+    public ResponseEntity<ClassificationDTO> createClassification(@RequestBody CreateClassificationInput input){
+        return new ResponseEntity<>(mapper.toDto(createUseCase.createClassification(mapper.toDomain(mapper.fromInputToDto(input)))),HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")

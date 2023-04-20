@@ -1,6 +1,5 @@
 package com.gametags.gametags.classification;
 
-import com.gametags.application.classification.CreateClassificationUseCase;
 import com.gametags.application.classification.UpdateClassificationUseCase;
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;

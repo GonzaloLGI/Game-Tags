@@ -1,4 +1,4 @@
-package com.gametags.infrastructure;
+package com.gametags.application.classification.create_classification;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class ClassificationDTO {
-    private UUID id;
+public class CreateClassificationInput {
     private String system;
     private String country;
     private String tag;

@@ -1,4 +1,4 @@
-package com.gametags.application.classification;
+package com.gametags.application.classification.create_classification;
 
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
