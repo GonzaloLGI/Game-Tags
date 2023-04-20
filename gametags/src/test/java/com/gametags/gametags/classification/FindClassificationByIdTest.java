@@ -1,6 +1,7 @@
 package com.gametags.gametags.classification;
 
 import com.gametags.application.classification.FindClassificationByIdUseCase;
+import com.gametags.domain.Classification;
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class FindClassificationByIdTest {
     @Test
     public void findById(){
         //GIVEN
-        ClassificationDAO classification = ClassificationDAO.builder()
+        Classification classification = Classification.builder()
                 .id(UUID.randomUUID())
                 .tag("tag1")
                 .url("url1")
@@ -39,7 +40,7 @@ public class FindClassificationByIdTest {
         when(service.findOneClassification(any())).thenReturn(classification);
 
         //WHEN
-        ClassificationDAO result = useCase.findOneClassification(UUID.randomUUID());
+        Classification result = useCase.findOneClassification(UUID.randomUUID());
 
 
         //THEN

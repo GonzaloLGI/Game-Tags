@@ -1,6 +1,7 @@
 package com.gametags.gametags.classification;
 
 import com.gametags.application.classification.FindAllClassificationsUseCase;
+import com.gametags.domain.Classification;
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
 import org.junit.jupiter.api.Test;
@@ -27,25 +28,25 @@ public class FindAllClassificationUseCaseTest {
     @Test
     public void findAll(){
         //GIVEN
-        ClassificationDAO classification1 = ClassificationDAO.builder()
+        Classification classification1 = Classification.builder()
                 .id(UUID.randomUUID())
                 .tag("tag1")
                 .url("url1")
                 .country("country1")
                 .system("system1")
                 .build();
-        ClassificationDAO classification2 = ClassificationDAO.builder()
+        Classification classification2 = Classification.builder()
                 .id(UUID.randomUUID())
                 .tag("tag2")
                 .url("url2")
                 .country("country2")
                 .system("system2")
                 .build();
-        List<ClassificationDAO> list = List.of(classification1,classification2);
+        List<Classification> list = List.of(classification1,classification2);
         when(useCase.findAllClassifications()).thenReturn(list);
 
         //WHEN
-        List<ClassificationDAO> result = useCase.findAllClassifications();
+        List<Classification> result = useCase.findAllClassifications();
 
         //THEN
         assertEquals(list.size(),result.size());

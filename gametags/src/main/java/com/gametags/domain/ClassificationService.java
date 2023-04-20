@@ -16,23 +16,23 @@ import java.util.UUID;
 public class ClassificationService {
     private ClassificationAdapter adapter;
 
-    public ClassificationDAO createClassification(ClassificationDAO dao) {
-        return adapter.create(dao);
+    public Classification createClassification(Classification classification) {
+        return adapter.create(classification);
     }
 
-    public ClassificationDAO findOneClassification(UUID id) {
+    public Classification findOneClassification(UUID id) {
         return adapter.findById(id);
     }
 
-    public List<ClassificationDAO> findAllClassifications() {
+    public List<Classification> findAllClassifications() {
         return adapter.findAll();
     }
 
-    public ClassificationDAO updateClassification(ClassificationDAO dao) {
-        return adapter.update(dao);
+    public Classification updateClassification(Classification classification) {
+        return adapter.update(classification);
     }
 
-    public ClassificationDAO deleteClassification(UUID id) {
+    public Classification deleteClassification(UUID id) {
         return adapter.delete(id);
     }
 }

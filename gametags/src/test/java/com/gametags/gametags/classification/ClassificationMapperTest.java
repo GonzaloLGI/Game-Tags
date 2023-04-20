@@ -1,6 +1,8 @@
 package com.gametags.gametags.classification;
 
+import com.gametags.domain.Classification;
 import com.gametags.infrastructure.ClassificationDAO;
+import com.gametags.infrastructure.ClassificationDTO;
 import com.gametags.infrastructure.mappers.ClassificationMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +20,7 @@ public class ClassificationMapperTest {
     @Test
     public void mappingWithExistingId(){
         //GIVEN
-        ClassificationDAO dao = ClassificationDAO.builder()
+        ClassificationDTO dto = ClassificationDTO.builder()
                 .id(UUID.randomUUID())
                 .tag("tag")
                 .url("url")
@@ -27,16 +29,16 @@ public class ClassificationMapperTest {
                 .build();
 
         //WHEN
-        ClassificationDAO mapped = mapper.toDomain(mapper.toDto(dao));
+        ClassificationDTO mapped = mapper.toDto(mapper.fromEntityToDomain(mapper.toEntity(mapper.fromDtoToDomain(dto))));
 
         //THEN
-        assertEquals(dao.getId(),mapped.getId());
+        assertEquals(dto.getId(),mapped.getId());
     }
 
     @Test
     public void mappingWithNonExistingId(){
         //GIVEN
-        ClassificationDAO dao = ClassificationDAO.builder()
+        ClassificationDTO dto = ClassificationDTO.builder()
                 .id(null)
                 .tag("tag")
                 .url("url")
@@ -45,9 +47,9 @@ public class ClassificationMapperTest {
                 .build();
 
         //WHEN
-        ClassificationDAO mapped = mapper.toDomain(mapper.toDto(dao));
+        ClassificationDTO mapped = mapper.toDto(mapper.fromEntityToDomain(mapper.toEntity(mapper.fromDtoToDomain(dto))));
 
         //THEN
-        assertEquals(dao.getId(),mapped.getId());
+        assertEquals(dto.getId(),mapped.getId());
     }
 }

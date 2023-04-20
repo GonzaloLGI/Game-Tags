@@ -1,6 +1,7 @@
 package com.gametags.gametags.classification;
 
 import com.gametags.application.classification.UpdateClassificationUseCase;
+import com.gametags.domain.Classification;
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
 import com.gametags.infrastructure.adapters.ClassificationAdapter;
@@ -29,14 +30,14 @@ public class UpdateClassificationUseCaseTest {
     @Test
     public void updateClassification(){
         //GIVEN
-        ClassificationDAO oldClassification = ClassificationDAO.builder()
+        Classification oldClassification = Classification.builder()
                 .id(UUID.randomUUID())
                 .tag("tag")
                 .url("url")
                 .country("country")
                 .system("system")
                 .build();
-        ClassificationDAO newClassification = ClassificationDAO.builder()
+        Classification newClassification = Classification.builder()
                 .id(UUID.randomUUID())
                 .tag("newTag")
                 .url("newUrl")
@@ -46,7 +47,7 @@ public class UpdateClassificationUseCaseTest {
         when(service.updateClassification(newClassification)).thenReturn(newClassification);
 
         //WHEN
-        ClassificationDAO returnedClassification = useCase.updateClassification(newClassification);
+        Classification returnedClassification = useCase.updateClassification(newClassification);
 
         //THEN
         assertNotEquals(oldClassification,returnedClassification);

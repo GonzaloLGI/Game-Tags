@@ -1,6 +1,8 @@
 package com.gametags.infrastructure.adapters;
 
+import com.gametags.domain.Classification;
 import com.gametags.infrastructure.ClassificationDAO;
+import com.gametags.infrastructure.mappers.ClassificationMapper;
 import com.gametags.infrastructure.repositories.ClassificationRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -19,25 +22,26 @@ import java.util.UUID;
 public class ClassificationAdapter {
 
     private ClassificationRepository repo;
+    private ClassificationMapper mapper;
 
-    public ClassificationDAO create(ClassificationDAO dao) {
-        return repo.save(dao);
+    public Classification create(Classification classification) {
+        return mapper.fromEntityToDomain(repo.save(mapper.toEntity(classification)));
     }
 
-    public ClassificationDAO findById(UUID id) {
-        return repo.findById(id).orElseGet(() -> ClassificationDAO.builder().build());
+    public Classification findById(UUID id) {
+        return mapper.fromEntityToDomain(repo.findById(id).orElseGet(() -> ClassificationDAO.builder().build()));
     }
 
-    public List<ClassificationDAO> findAll() {
-        return repo.findAll();
+    public List<Classification> findAll() {
+        return repo.findAll().stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
     }
 
-    public ClassificationDAO update(ClassificationDAO dao) {
-        return repo.save(dao);
+    public Classification update(Classification classification) {
+        return mapper.fromEntityToDomain(repo.save(mapper.toEntity(classification)));
     }
 
-    public ClassificationDAO delete(UUID id) {
-        ClassificationDAO dao = this.findById(id);
+    public Classification delete(UUID id) {
+        Classification dao = this.findById(id);
         repo.deleteById(id);
         return dao;
     }

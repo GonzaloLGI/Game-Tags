@@ -1,6 +1,7 @@
 package com.gametags.gametags.classification;
 
 import com.gametags.application.classification.create_classification.CreateClassificationUseCase;
+import com.gametags.domain.Classification;
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
 import org.junit.jupiter.api.Test;
@@ -27,17 +28,17 @@ public class CreateClassificationUseCaseTest {
     @Test
     public void createClassification(){
         //GIVEN
-        ClassificationDAO classification = ClassificationDAO.builder()
+        Classification classification = Classification.builder()
                 .id(UUID.randomUUID())
                 .tag("tag")
                 .url("url")
                 .country("country")
                 .system("system")
                 .build();
-        when(service.createClassification(any(ClassificationDAO.class))).thenReturn(classification);
+        when(service.createClassification(any(Classification.class))).thenReturn(classification);
 
         //WHEN
-        ClassificationDAO returnedClassification = useCase.createClassification(classification);
+        Classification returnedClassification = useCase.createClassification(classification);
 
         //THEN
         assertEquals(classification,returnedClassification);

@@ -2,6 +2,7 @@ package com.gametags.gametags.classification;
 
 import com.gametags.application.classification.DeleteClassificationUseCase;
 import com.gametags.application.classification.FindClassificationByIdUseCase;
+import com.gametags.domain.Classification;
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class DeleteClassificationUseCaseTest {
     @Test
     public void canDelete(){
         //GIVEN
-        ClassificationDAO classification = ClassificationDAO.builder()
+        Classification classification = Classification.builder()
                 .id(UUID.randomUUID())
                 .tag("tag1")
                 .url("url1")
@@ -40,7 +41,7 @@ public class DeleteClassificationUseCaseTest {
         when(service.deleteClassification(classification.getId())).thenReturn(classification);
 
         //WHEN
-        ClassificationDAO result = useCase.deleteClassification(classification.getId());
+        Classification result = useCase.deleteClassification(classification.getId());
 
         //THEN
         assertEquals(classification,result);

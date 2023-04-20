@@ -3,6 +3,7 @@ package com.gametags.infrastructure.controller;
 import com.gametags.application.classification.*;
 import com.gametags.application.classification.create_classification.CreateClassificationInput;
 import com.gametags.application.classification.create_classification.CreateClassificationUseCase;
+import com.gametags.domain.Classification;
 import com.gametags.infrastructure.ClassificationDAO;
 import com.gametags.infrastructure.ClassificationDTO;
 import com.gametags.infrastructure.mappers.ClassificationMapper;
@@ -30,7 +31,10 @@ public class ClassificationController {
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ClassificationDTO> createClassification(@RequestBody CreateClassificationInput input){
-        return new ResponseEntity<>(mapper.toDto(createUseCase.createClassification(mapper.toDomain(mapper.fromInputToDto(input)))),HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper
+                .toDto(createUseCase.createClassification(mapper
+                        .fromDtoToDomain(mapper
+                                .fromInputToDto(input)))),HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -47,14 +51,17 @@ public class ClassificationController {
     @GetMapping("/")
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<List<ClassificationDTO>> getAllClassification(){
-         List<ClassificationDAO> list = findAllUseCase.findAllClassifications();
+         List<Classification> list = findAllUseCase.findAllClassifications();
          return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()),HttpStatus.FOUND);
     }
 
     @PutMapping("/")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ClassificationDTO> updateClassification(@RequestBody CreateClassificationInput input){
-        return new ResponseEntity<>(mapper.toDto(updateUseCase.updateClassification(mapper.toDomain(mapper.fromInputToDto(input)))),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(mapper
+                .toDto(updateUseCase.updateClassification(mapper
+                        .fromDtoToDomain(mapper
+                                .fromInputToDto(input)))),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/[id}")
