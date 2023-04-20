@@ -14,6 +14,7 @@ public class CreateClassificationUseCase {
 
     public ClassificationDAO createClassification(ClassificationDAO dao) {
         //ESTO NO TIENE MUCHO SENTIDO YA QUE PODRIA HABER VARIAS CLASIFICACIONES IGUALES PERO CON DISTINTO ID
+        //SE DEBERIA COMPROBAR CONSULTANDO SI YA EXISTE UNA CLASIFICACION DE LA MISMA ENTIDAD EN EL VIDEOJUEGO
         ClassificationDAO previous = service.findOneClassification(dao.getId());
         if(ObjectUtils.isEmpty(previous)){
             return service.createClassification(dao);

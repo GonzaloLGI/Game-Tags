@@ -3,6 +3,7 @@ package com.gametags.gametags.classification;
 import com.gametags.application.classification.UpdateClassificationUseCase;
 import com.gametags.domain.ClassificationService;
 import com.gametags.infrastructure.ClassificationDAO;
+import com.gametags.infrastructure.adapters.ClassificationAdapter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,7 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,11 +45,11 @@ public class UpdateClassificationUseCaseTest {
                 .build();
         when(service.updateClassification(newClassification)).thenReturn(newClassification);
 
-
         //WHEN
         ClassificationDAO returnedClassification = useCase.updateClassification(newClassification);
 
         //THEN
+        assertNotEquals(oldClassification,returnedClassification);
         assertEquals(newClassification,returnedClassification);
 
     }

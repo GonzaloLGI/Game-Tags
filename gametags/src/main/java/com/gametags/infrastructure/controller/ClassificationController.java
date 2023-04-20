@@ -53,8 +53,8 @@ public class ClassificationController {
 
     @PutMapping("/")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ClassificationDTO> updateClassification(@RequestBody ClassificationDTO dto){
-        return new ResponseEntity<>(mapper.toDto(updateUseCase.updateClassification(mapper.toDomain(dto))),HttpStatus.ACCEPTED);
+    public ResponseEntity<ClassificationDTO> updateClassification(@RequestBody CreateClassificationInput input){
+        return new ResponseEntity<>(mapper.toDto(updateUseCase.updateClassification(mapper.toDomain(mapper.fromInputToDto(input)))),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/[id}")
