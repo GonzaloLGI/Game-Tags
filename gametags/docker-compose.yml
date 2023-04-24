@@ -8,12 +8,12 @@ services:
         ports:
             - 8080:8080
         depends_on:
-            mongodb:
+            - mongodb
         networks:
             - common
             
     mongodb:
-        container_name: mongo
+        container_name: mongodb
         image: mongo:5.0
         environment:
             - AUTH=no
@@ -26,3 +26,5 @@ services:
     
 networks:
     common:
+volumes:
+    mongo:
