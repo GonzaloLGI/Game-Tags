@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+    backend:
+        container_name: backend
+        build: ./
+        restart: always
+        ports:
+            - 8080:8080
+        depends_on:
+            mongodb:
+        networks:
+            - common
+            
+    mongodb:
+        container_name: mongo
+        image: mongo:5.0
+        environment:
+            - AUTH=no
+        ports: 
+            - 27017:27017
+        networks:
+            - common
+        volumes:
+            - mongo:/data/db
+    
+networks:
+    common:
