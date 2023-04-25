@@ -1,6 +1,6 @@
-package com.gametags.infrastructure.repositories;
+package com.gametags.gametags.infrastructure.repositories;
 
-import com.gametags.infrastructure.ClassificationDAO;
+import com.gametags.gametags.infrastructure.ClassificationDAO;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.UUID;

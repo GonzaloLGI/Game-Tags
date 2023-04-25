@@ -1,15 +1,15 @@
-package com.gametags.domain;
+package com.gametags.gametags.domain;
 
-import com.gametags.infrastructure.adapters.ClassificationAdapter;
-import com.gametags.infrastructure.ClassificationDAO;
+import com.gametags.gametags.infrastructure.adapters.ClassificationAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 @AllArgsConstructor
 @Slf4j
 @Builder

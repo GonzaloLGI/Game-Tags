@@ -1,4 +1,4 @@
-package com.gametags.domain;
+package com.gametags.gametags.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

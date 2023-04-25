@@ -1,12 +1,16 @@
-package com.gametags.infrastructure.mappers;
+package com.gametags.gametags.infrastructure.mappers;
 
-import com.gametags.application.classification.create_classification.CreateClassificationInput;
-import com.gametags.domain.Classification;
-import com.gametags.infrastructure.ClassificationDAO;
-import com.gametags.infrastructure.ClassificationDTO;
+import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
+import com.gametags.gametags.domain.Classification;
+import com.gametags.gametags.infrastructure.ClassificationDAO;
+import com.gametags.gametags.infrastructure.ClassificationDTO;
+import lombok.Builder;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Component
+@Builder
 public class ClassificationMapper {
     public ClassificationDAO toEntity(Classification domain){
         return ClassificationDAO.builder()
@@ -57,4 +61,15 @@ public class ClassificationMapper {
                 .url(input.getUrl())
                 .build();
     }
+
+    public ClassificationDTO fromCreateInputToDto(CreateClassificationInput input){
+        return ClassificationDTO.builder()
+                .id(input.getId())
+                .system(input.getSystem())
+                .country(input.getCountry())
+                .tag(input.getTag())
+                .url(input.getUrl())
+                .build();
+    }
+
 }

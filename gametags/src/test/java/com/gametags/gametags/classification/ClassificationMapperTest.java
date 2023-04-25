@@ -1,9 +1,7 @@
 package com.gametags.gametags.classification;
 
-import com.gametags.domain.Classification;
-import com.gametags.infrastructure.ClassificationDAO;
-import com.gametags.infrastructure.ClassificationDTO;
-import com.gametags.infrastructure.mappers.ClassificationMapper;
+import com.gametags.gametags.infrastructure.ClassificationDTO;
+import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

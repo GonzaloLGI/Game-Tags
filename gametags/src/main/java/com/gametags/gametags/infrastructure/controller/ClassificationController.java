@@ -1,13 +1,15 @@
-package com.gametags.infrastructure.controller;
+package com.gametags.gametags.infrastructure.controller;
 
-import com.gametags.application.classification.*;
-import com.gametags.application.classification.create_classification.CreateClassificationInput;
-import com.gametags.application.classification.create_classification.CreateClassificationUseCase;
-import com.gametags.domain.Classification;
-import com.gametags.infrastructure.ClassificationDAO;
-import com.gametags.infrastructure.ClassificationDTO;
-import com.gametags.infrastructure.mappers.ClassificationMapper;
-import lombok.RequiredArgsConstructor;
+import com.gametags.gametags.application.classification.DeleteClassificationUseCase;
+import com.gametags.gametags.application.classification.FindAllClassificationsUseCase;
+import com.gametags.gametags.application.classification.FindClassificationByIdUseCase;
+import com.gametags.gametags.application.classification.UpdateClassificationUseCase;
+import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
+import com.gametags.gametags.application.classification.create_classification.CreateClassificationUseCase;
+import com.gametags.gametags.domain.Classification;
+import com.gametags.gametags.infrastructure.ClassificationDTO;
+import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +19,21 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@RestController("/classification")
-@RequiredArgsConstructor
+@RestController
+@RequestMapping("/classification/")
 public class ClassificationController {
 
+    @Autowired
     private ClassificationMapper mapper;
+    @Autowired
     private CreateClassificationUseCase createUseCase;
+    @Autowired
     private DeleteClassificationUseCase deleteUseCase;
+    @Autowired
     private FindAllClassificationsUseCase findAllUseCase;
+    @Autowired
     private FindClassificationByIdUseCase findByIdUseCase;
+    @Autowired
     private UpdateClassificationUseCase updateUseCase;
 
     @PostMapping("/")
@@ -58,13 +66,17 @@ public class ClassificationController {
     @PutMapping("/")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ClassificationDTO> updateClassification(@RequestBody CreateClassificationInput input){
-        return new ResponseEntity<>(mapper
-                .toDto(updateUseCase.updateClassification(mapper
-                        .fromDtoToDomain(mapper
-                                .fromInputToDto(input)))),HttpStatus.ACCEPTED);
+        try{
+            return new ResponseEntity<>(mapper
+                    .toDto(updateUseCase.updateClassification(mapper
+                            .fromDtoToDomain(mapper
+                                    .fromCreateInputToDto(input)))),HttpStatus.ACCEPTED);
+        } catch (NoSuchElementException e){
+            throw new NoSuchElementException("La clasificacion a actualizar no se encuentra guardada en la base de datos. Prueba con otra o guarda la actual");
+        }
     }
 
-    @DeleteMapping("/[id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ClassificationDTO> deleteClassification(@PathVariable UUID id){
         try{

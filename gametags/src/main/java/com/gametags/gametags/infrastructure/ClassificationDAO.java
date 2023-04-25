@@ -1,17 +1,22 @@
-package com.gametags.application.classification.create_classification;
+package com.gametags.gametags.infrastructure;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
+@Document(collection = "classification")
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
-public class CreateClassificationInput {
+public class ClassificationDAO {
+    @Id
+    private UUID id;
     private String system;
     private String country;
     private String tag;
