@@ -2,6 +2,7 @@ package com.gametags.gametags.infrastructure.mappers;
 
 import com.gametags.gametags.application.user.create_user.CreateUserInput;
 import com.gametags.gametags.domain.model.User;
+import com.gametags.gametags.infrastructure.daos.UserDAO;
 import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import lombok.Builder;
 import org.springframework.stereotype.Component;
@@ -53,6 +54,28 @@ public class UserMapper {
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .username(user.getUsername())
+                .build();
+    }
+
+    public UserDAO toEntity(User user) {
+        return UserDAO.builder()
+                .id(user.getId())
+                .comments(user.getComments())
+                .country(user.getCountry())
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .username(user.getUsername())
+                .build();
+    }
+
+    public User fromEntityToDomain(UserDAO dao) {
+        return User.builder()
+                .id(dao.getId())
+                .country(dao.getCountry())
+                .password(dao.getPassword())
+                .email(dao.getEmail())
+                .username(dao.getUsername())
+                .comments(dao.getComments())
                 .build();
     }
 }
