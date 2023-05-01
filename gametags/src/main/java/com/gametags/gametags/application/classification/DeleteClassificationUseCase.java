@@ -16,6 +16,7 @@ public class DeleteClassificationUseCase {
     @Autowired
     private ClassificationService service;
     public Classification deleteClassification(UUID id) {
+        log.info("Deleting classification with id: " + id);
         Classification classification = service.findOneClassification(id);
         if(!Objects.isNull(classification.getId())){
             return service.deleteClassification(id);

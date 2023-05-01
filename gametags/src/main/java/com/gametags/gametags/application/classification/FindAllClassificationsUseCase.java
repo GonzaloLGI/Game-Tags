@@ -14,6 +14,7 @@ public class FindAllClassificationsUseCase {
     @Autowired
     private ClassificationService service;
     public List<Classification> findAllClassifications() {
+        log.info("Searching all classifications");
         return service.findAllClassifications();
     }
 }
