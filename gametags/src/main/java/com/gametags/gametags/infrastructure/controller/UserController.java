@@ -1,5 +1,6 @@
 package com.gametags.gametags.infrastructure.controller;
 
+import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
