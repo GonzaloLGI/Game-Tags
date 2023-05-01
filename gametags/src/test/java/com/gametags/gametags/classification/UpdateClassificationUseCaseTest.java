@@ -42,6 +42,7 @@ public class UpdateClassificationUseCaseTest {
                 .system("newSystem")
                 .build();
         when(service.updateClassification(newClassification)).thenReturn(newClassification);
+        when(service.findOneClassification(any(UUID.class))).thenReturn(oldClassification);
 
         //WHEN
         Classification returnedClassification = useCase.updateClassification(newClassification);

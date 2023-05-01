@@ -18,7 +18,7 @@ public class DeleteClassificationUseCase {
     public Classification deleteClassification(UUID id) {
         log.info("Deleting classification with id: " + id);
         Classification classification = service.findOneClassification(id);
-        if(!Objects.isNull(classification.getId())){
+        if(!Objects.isNull(classification)){
             return service.deleteClassification(id);
         }else{
             throw new NoSuchElementException("Non existing classification");

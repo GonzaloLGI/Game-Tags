@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 public class ClassificationMapperTest {
 
-    private ClassificationMapper mapper = new ClassificationMapper();
+    private ClassificationMapper mapper = ClassificationMapper.builder().build();
 
     @Test
     public void mappingWithExistingId(){

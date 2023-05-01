@@ -18,7 +18,7 @@ public class FindClassificationByIdUseCase {
     public Classification findOneClassification(UUID id) {
         log.info("Searching classification with id: " + id);
         Classification classification = service.findOneClassification(id);
-        if(Objects.isNull(classification.getId())){
+        if(Objects.isNull(classification)){
             throw new NoSuchElementException("The classification is not registered");
         }
         return classification;

@@ -20,7 +20,7 @@ public class CreateClassificationUseCase {
         //SE DEBERIA COMPROBAR CONSULTANDO SI YA EXISTE UNA CLASIFICACION DE LA MISMA ENTIDAD EN EL VIDEOJUEGO
         log.info("Creating classification with data: " + classification.getId() + classification.getSystem() + classification.getCountry());
         Classification previous = service.findOneClassification(classification.getId());
-        if(Objects.isNull(previous.getId())){
+        if(Objects.isNull(previous)){
             return service.createClassification(classification);
         }
         return previous;

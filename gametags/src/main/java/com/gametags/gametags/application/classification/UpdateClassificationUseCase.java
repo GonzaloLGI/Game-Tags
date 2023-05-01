@@ -16,7 +16,7 @@ public class UpdateClassificationUseCase {
     private ClassificationService service;
     public Classification updateClassification(Classification classification) {
         Classification foundClassification = service.findOneClassification(classification.getId());
-        if(Objects.isNull(foundClassification.getId())){
+        if(Objects.isNull(foundClassification)){
             throw new NoSuchElementException("The classification is not registered");
         }
         return service.updateClassification(classification);
