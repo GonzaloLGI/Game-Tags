@@ -20,7 +20,7 @@ public class DeleteUserUseCase {
     public User deleteUser(UUID id) {
         log.info("Deleting user with id: " + id);
         User user = service.findOneUserById(id);
-        if(!Objects.isNull(user.getId())){
+        if(!Objects.isNull(user)){
             return service.deleteUser(id);
         }else{
             throw new NoSuchElementException("Non existing user");

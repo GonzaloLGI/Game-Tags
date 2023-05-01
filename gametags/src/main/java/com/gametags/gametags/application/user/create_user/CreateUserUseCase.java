@@ -17,7 +17,7 @@ public class CreateUserUseCase {
     public User createUser(User user) {
         log.info("Creating classification with data: " + user.getId() + user.getUsername() + user.getEmail());
         User previous = service.findOneUserByUsername(user.getUsername());
-        if(Objects.isNull(previous.getId())){
+        if(Objects.isNull(previous)){
             return service.createUser(user);
         }
         return previous;

@@ -18,7 +18,7 @@ public class FindUserByNameUseCase {
     public User findOneUser(String name) {
         log.info("Searching user with name: " + name);
         User user = service.findOneUserByUsername(name);
-        if(Objects.isNull(user.getId())){
+        if(Objects.isNull(user)){
             throw new NoSuchElementException("The user is not registered");
         }
         return user;
