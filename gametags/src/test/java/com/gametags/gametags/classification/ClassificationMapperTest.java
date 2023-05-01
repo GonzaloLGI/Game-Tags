@@ -1,6 +1,6 @@
 package com.gametags.gametags.classification;
 
-import com.gametags.gametags.infrastructure.ClassificationDTO;
+import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
 import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

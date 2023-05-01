@@ -7,7 +7,7 @@ import com.gametags.gametags.application.classification.UpdateClassificationUseC
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationUseCase;
 import com.gametags.gametags.domain.Classification;
-import com.gametags.gametags.infrastructure.ClassificationDTO;
+import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
 import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

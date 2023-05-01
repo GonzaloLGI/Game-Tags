@@ -2,8 +2,8 @@ package com.gametags.gametags.infrastructure.mappers;
 
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
 import com.gametags.gametags.domain.Classification;
-import com.gametags.gametags.infrastructure.ClassificationDAO;
-import com.gametags.gametags.infrastructure.ClassificationDTO;
+import com.gametags.gametags.infrastructure.daos.ClassificationDAO;
+import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
 import lombok.Builder;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.gametags.gametags.infrastructure;
+package com.gametags.gametags.infrastructure.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
