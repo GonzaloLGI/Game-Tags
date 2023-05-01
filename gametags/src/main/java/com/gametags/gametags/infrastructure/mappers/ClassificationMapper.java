@@ -1,7 +1,7 @@
 package com.gametags.gametags.infrastructure.mappers;
 
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
-import com.gametags.gametags.domain.Classification;
+import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.infrastructure.daos.ClassificationDAO;
 import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
 import lombok.Builder;
@@ -62,7 +62,7 @@ public class ClassificationMapper {
                 .build();
     }
 
-    public ClassificationDTO fromCreateInputToDto(CreateClassificationInput input){
+    public ClassificationDTO fromUpdateInputToDto(CreateClassificationInput input){
         return ClassificationDTO.builder()
                 .id(input.getId())
                 .system(input.getSystem())

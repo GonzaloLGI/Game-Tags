@@ -6,7 +6,7 @@ import com.gametags.gametags.application.classification.FindClassificationByIdUs
 import com.gametags.gametags.application.classification.UpdateClassificationUseCase;
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationUseCase;
-import com.gametags.gametags.domain.Classification;
+import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
 import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +70,7 @@ public class ClassificationController {
             return new ResponseEntity<>(mapper
                     .toDto(updateUseCase.updateClassification(mapper
                             .fromDtoToDomain(mapper
-                                    .fromCreateInputToDto(input)))),HttpStatus.ACCEPTED);
+                                    .fromUpdateInputToDto(input)))),HttpStatus.ACCEPTED);
         } catch (NoSuchElementException e){
             throw new NoSuchElementException("La clasificacion a actualizar no se encuentra guardada en la base de datos. Prueba con otra o guarda la actual");
         }

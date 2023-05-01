@@ -1,5 +1,6 @@
-package com.gametags.gametags.domain;
+package com.gametags.gametags.domain.services;
 
+import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.infrastructure.adapters.ClassificationAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

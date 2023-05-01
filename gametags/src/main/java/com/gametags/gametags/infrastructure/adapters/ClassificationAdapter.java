@@ -1,6 +1,6 @@
 package com.gametags.gametags.infrastructure.adapters;
 
-import com.gametags.gametags.domain.Classification;
+import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.infrastructure.daos.ClassificationDAO;
 import com.gametags.gametags.infrastructure.repositories.ClassificationRepository;
 import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;

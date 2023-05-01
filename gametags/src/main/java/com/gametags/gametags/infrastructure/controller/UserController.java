@@ -1,6 +1,11 @@
 package com.gametags.gametags.infrastructure.controller;
 
+import com.gametags.gametags.application.user.*;
+import com.gametags.gametags.application.user.create_user.CreateUserInput;
+import com.gametags.gametags.application.user.create_user.CreateUserUseCase;
+import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.infrastructure.dtos.UserDTO;
+import com.gametags.gametags.infrastructure.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -74,7 +79,7 @@ public class UserController {
             return new ResponseEntity<>(mapper
                     .toDto(updateUseCase.updateUser(mapper
                             .fromDtoToDomain(mapper
-                                    .fromCreateInputToDto(input)))),HttpStatus.ACCEPTED);
+                                    .fromUpdateInputToDto(input)))),HttpStatus.ACCEPTED);
         } catch (NoSuchElementException e){
             throw new NoSuchElementException("El usuario a actualizar no se encuentra registrado en la base de datos. Prueba con otro o registra el actual");
         }
