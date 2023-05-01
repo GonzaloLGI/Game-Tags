@@ -16,8 +16,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 public class UserDAO {
-    private UUID id;
     @Id
+    private UUID id;
     private String username;
     private String email;
     private String password;

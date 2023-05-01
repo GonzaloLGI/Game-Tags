@@ -41,12 +41,12 @@ public class UserAdapter {
 
     public User delete(UUID id) {
         User dao = this.findById(id);
-        repo.deleteById(dao.getUsername());
+        repo.deleteById(id);
         return dao;
     }
 
     public User findByUsername(String username) {
-        return mapper.fromEntityToDomain(repo.findById(username).orElseGet(() -> UserDAO.builder().build()));
+        return mapper.fromEntityToDomain(repo.findByUsername(username).orElseGet(() -> UserDAO.builder().build()));
     }
 
     public User create(User user) {
