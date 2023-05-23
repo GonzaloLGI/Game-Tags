@@ -16,10 +16,12 @@ public class UpdateUserUseCase {
     @Autowired
     private UserService service;
     public User updateUser(User user) {
+        log.debug("[START] updateUser");
         User foundUser = service.findOneUserByUsername(user.getUsername());
         if(Objects.isNull(foundUser)){
             throw new NoSuchElementException("The user is not registered");
         }
+        log.debug("[STOP] updateUser");
         return service.updateUser(user);
     }
 }

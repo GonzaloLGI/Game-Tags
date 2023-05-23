@@ -16,11 +16,12 @@ public class FindClassificationByIdUseCase {
     @Autowired
     private ClassificationService service;
     public Classification findOneClassification(UUID id) {
-        log.info("Searching classification with id: " + id);
+        log.debug("[START] Searching classification with id: " + id);
         Classification classification = service.findOneClassification(id);
         if(Objects.isNull(classification)){
             throw new NoSuchElementException("The classification is not registered");
         }
+        log.debug("[STOP] findOneClassification");
         return classification;
     }
 }

@@ -16,11 +16,12 @@ public class FindUserByIdUseCase {
     @Autowired
     private UserService service;
     public User findOneUser(UUID id) {
-        log.info("Searching user with id: " + id);
+        log.debug("[START] Searching user with id: " + id);
         User user = service.findOneUserById(id);
         if(Objects.isNull(user)){
             throw new NoSuchElementException("The user is not registered");
         }
+        log.debug("[STOP] findOneUser");
         return user;
     }
 }

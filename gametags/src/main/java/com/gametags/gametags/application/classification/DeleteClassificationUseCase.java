@@ -16,9 +16,10 @@ public class DeleteClassificationUseCase {
     @Autowired
     private ClassificationService service;
     public Classification deleteClassification(UUID id) {
-        log.info("Deleting classification with id: " + id);
+        log.debug("[START] Deleting classification with id: " + id);
         Classification classification = service.findOneClassification(id);
         if(!Objects.isNull(classification)){
+            log.debug("[STOP] deleteClassification");
             return service.deleteClassification(id);
         }else{
             throw new NoSuchElementException("Non existing classification");

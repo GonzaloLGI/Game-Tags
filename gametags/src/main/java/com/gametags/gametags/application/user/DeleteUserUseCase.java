@@ -18,9 +18,10 @@ public class DeleteUserUseCase {
     @Autowired
     private UserService service;
     public User deleteUser(UUID id) {
-        log.info("Deleting user with id: " + id);
+        log.debug("[START] Deleting user with id: " + id);
         User user = service.findOneUserById(id);
         if(!Objects.isNull(user)){
+            log.debug("[STOP] Deleting user with id: " + id);
             return service.deleteUser(id);
         }else{
             throw new NoSuchElementException("Non existing user");

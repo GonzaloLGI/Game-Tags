@@ -15,10 +15,12 @@ public class UpdateClassificationUseCase {
     @Autowired
     private ClassificationService service;
     public Classification updateClassification(Classification classification) {
+        log.debug("[START] updateClassification");
         Classification foundClassification = service.findOneClassification(classification.getId());
         if(Objects.isNull(foundClassification)){
             throw new NoSuchElementException("The classification is not registered");
         }
+        log.debug("[STOP] updateClassification");
         return service.updateClassification(classification);
     }
 }

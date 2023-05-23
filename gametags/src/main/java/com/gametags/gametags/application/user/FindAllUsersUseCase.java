@@ -15,7 +15,7 @@ public class FindAllUsersUseCase {
     @Autowired
     private UserService service;
     public List<User> findAllUsers() {
-        log.info("Searching all users");
+        log.debug("[START] Searching all users");
         return service.findAllUsers();
     }
 }

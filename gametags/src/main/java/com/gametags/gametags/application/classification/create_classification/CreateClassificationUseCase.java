@@ -18,11 +18,12 @@ public class CreateClassificationUseCase {
     public Classification createClassification(Classification classification) {
         //ESTO NO TIENE MUCHO SENTIDO YA QUE PODRIA HABER VARIAS CLASIFICACIONES IGUALES PERO CON DISTINTO ID
         //SE DEBERIA COMPROBAR CONSULTANDO SI YA EXISTE UNA CLASIFICACION DE LA MISMA ENTIDAD EN EL VIDEOJUEGO
-        log.info("Creating classification with data: " + classification.getId() + classification.getSystem() + classification.getCountry());
+        log.debug("[START] Creating classification with data: " + classification.getId() + classification.getSystem() + classification.getCountry());
         Classification previous = service.findOneClassification(classification.getId());
         if(Objects.isNull(previous)){
             return service.createClassification(classification);
         }
+        log.debug("[STOP] createClassification");
         return previous;
     }
 }
