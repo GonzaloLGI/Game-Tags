@@ -1,29 +1,30 @@
 package com.gametags.gametags.application.classification.create_classification;
 
+import java.util.Objects;
+
 import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.domain.services.ClassificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
-
 @Component
 @Slf4j
 public class CreateClassificationUseCase {
 
-    @Autowired
-    private ClassificationService service;
+  @Autowired
+  private ClassificationService service;
 
-    public Classification createClassification(Classification classification) {
-        //ESTO NO TIENE MUCHO SENTIDO YA QUE PODRIA HABER VARIAS CLASIFICACIONES IGUALES PERO CON DISTINTO ID
-        //SE DEBERIA COMPROBAR CONSULTANDO SI YA EXISTE UNA CLASIFICACION DE LA MISMA ENTIDAD EN EL VIDEOJUEGO
-        log.debug("[START] Creating classification with data: " + classification.getId() + classification.getSystem() + classification.getCountry());
-        Classification previous = service.findOneClassification(classification.getId());
-        if(Objects.isNull(previous)){
-            return service.createClassification(classification);
-        }
-        log.debug("[STOP] createClassification");
-        return previous;
+  public Classification createClassification(Classification classification) {
+    //ESTO NO TIENE MUCHO SENTIDO YA QUE PODRIA HABER VARIAS CLASIFICACIONES IGUALES PERO CON DISTINTO ID
+    //SE DEBERIA COMPROBAR CONSULTANDO SI YA EXISTE UNA CLASIFICACION DE LA MISMA ENTIDAD EN EL VIDEOJUEGO
+    log.debug(
+        "[START] Creating classification with data: " + classification.getId() + classification.getSystem() + classification.getCountry());
+    Classification previous = service.findOneClassification(classification.getId());
+    if (Objects.isNull(previous)) {
+      return service.createClassification(classification);
     }
+    log.debug("[STOP] createClassification");
+    return previous;
+  }
 }

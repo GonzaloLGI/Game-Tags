@@ -1,5 +1,7 @@
 package com.gametags.gametags.domain.model;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -11,15 +13,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Classification {
+public class VideoGame {
 
   private UUID id;
 
-  private String system;
+  private String name;
 
-  private String country;
+  private String developer;
 
-  private String tag;
+  private LocalDateTime uploadDateTime;
 
-  private String url;
+  private List<String> platforms;
 }
