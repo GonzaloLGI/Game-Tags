@@ -17,7 +17,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/user/")
 public class UserController {
     @Autowired
     private UserMapper mapper;
@@ -37,6 +37,7 @@ public class UserController {
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UserDTO> createUser(@RequestBody CreateUserInput input){
+        System.out.println("OLA");
         return new ResponseEntity<>(mapper
                 .toDto(createUseCase.createUser(mapper
                         .fromDtoToDomain(mapper
