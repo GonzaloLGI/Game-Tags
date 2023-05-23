@@ -20,7 +20,7 @@ public class FindUserByIdUseCase {
   public User findOneUser(UUID id) {
     log.debug("[START] Searching user with id: " + id);
     User user = service.findOneUserById(id);
-    if (Objects.isNull(user)) {
+    if (Objects.isNull(user.getId())) {
       throw new NoSuchElementException("The user is not registered");
     }
     log.debug("[STOP] findOneUser");

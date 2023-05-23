@@ -20,7 +20,7 @@ public class DeleteUserUseCase {
   public User deleteUser(UUID id) {
     log.debug("[START] Deleting user with id: " + id);
     User user = service.findOneUserById(id);
-    if (!Objects.isNull(user)) {
+    if (!Objects.isNull(user.getId())) {
       log.debug("[STOP] Deleting user with id: " + id);
       return service.deleteUser(id);
     } else {

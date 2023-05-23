@@ -20,7 +20,7 @@ public class DeleteClassificationUseCase {
   public Classification deleteClassification(UUID id) {
     log.debug("[START] Deleting classification with id: " + id);
     Classification classification = service.findOneClassification(id);
-    if (!Objects.isNull(classification)) {
+    if (!Objects.isNull(classification.getId())) {
       log.debug("[STOP] deleteClassification");
       return service.deleteClassification(id);
     } else {

@@ -21,7 +21,7 @@ public class CreateClassificationUseCase {
     log.debug(
         "[START] Creating classification with data: " + classification.getId() + classification.getSystem() + classification.getCountry());
     Classification previous = service.findOneClassification(classification.getId());
-    if (Objects.isNull(previous)) {
+    if (Objects.isNull(previous.getId())) {
       return service.createClassification(classification);
     }
     log.debug("[STOP] createClassification");

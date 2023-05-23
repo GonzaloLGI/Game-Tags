@@ -16,13 +16,16 @@ public class CreateUserUseCase {
   private UserService service;
 
   public User createUser(User user) {
-    log.debug("[START] Creating classification with data: " + user.getId() + user.getUsername() + user.getEmail());
+    System.out.println("[START] Creating classification with data: " + user.getId() + " " + user.getUsername() + " " + user.getEmail());
+//    log.debug("[START] Creating classification with data: " + user.getId() + user.getUsername() + user.getEmail());
     User previous = service.findOneUserByUsername(user.getUsername());
-    if (Objects.isNull(previous)) {
-      log.debug("[STOP] createUser");
+    if (Objects.isNull(previous.getId())) {
+      System.out.println("[STOP] createUser Non existing user");
+//      log.debug("[STOP] createUser");
       return service.createUser(user);
     }
-    log.debug("[STOP] createUser");
+    System.out.println("[STOP] createUser Existing user previous: " + previous.getId());
+//    log.debug("[STOP] createUser");
     return previous;
   }
 }
