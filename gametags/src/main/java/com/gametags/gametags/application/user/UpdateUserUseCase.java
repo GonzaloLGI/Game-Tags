@@ -19,7 +19,7 @@ public class UpdateUserUseCase {
   public User updateUser(User user) {
     System.out.println("[START] updateUser");
     //    log.debug("[START] updateUser");
-    User foundUser = service.findOneUserByUsername(user.getUsername());
+    User foundUser = service.findOneUserById(user.getId());
     if (Objects.isNull(foundUser.getId())) {
       throw new NoSuchElementException("The user is not registered");
     }

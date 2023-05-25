@@ -11,8 +11,6 @@ t
 Dsrc/main/java/com/gametags/gametags/domain/model/Classification.java,5\9\594c1f35b867726cacc5bae152d1a41c7becc3c4
 £
 ssrc/main/java/com/gametags/gametags/application/classification/create_classification/CreateClassificationInput.java,a\f\af8d5552ace047fd43a38854d70c7ab938b274d1
-…
-Usrc/main/java/com/gametags/gametags/application/user/create_user/CreateUserInput.java,5\e\5e580e58fe9a292560d43479e728b7e2e6fb8aef
 ~
 Nsrc/main/java/com/gametags/gametags/domain/services/ClassificationService.java,b\5\b5993d6f30992213a23c24647459a69358864fe7
 †

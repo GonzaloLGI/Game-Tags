@@ -63,7 +63,7 @@ public class UserController {
                 .fromInputToDto(input)))), HttpStatus.CREATED);
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/id/{id}")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<UserDTO> getOneUserById(@PathVariable UUID id) {
     try {
@@ -74,7 +74,7 @@ public class UserController {
 
   }
 
-  @GetMapping("/{name}")
+  @GetMapping("/name/{name}")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<UserDTO> getOneUserByName(@PathVariable String name) {
     try {
