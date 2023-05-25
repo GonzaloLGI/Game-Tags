@@ -16,7 +16,8 @@ public class FindAllClassificationsUseCase {
   private ClassificationService service;
 
   public List<Classification> findAllClassifications() {
-    log.debug("[START] Searching all classifications");
+    System.out.println("[START] Searching all classifications");
+    //    log.debug("[START] Searching all classifications");
     return service.findAllClassifications();
   }
 }

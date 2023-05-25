@@ -17,12 +17,14 @@ public class UpdateUserUseCase {
   private UserService service;
 
   public User updateUser(User user) {
-    log.debug("[START] updateUser");
+    System.out.println("[START] updateUser");
+    //    log.debug("[START] updateUser");
     User foundUser = service.findOneUserByUsername(user.getUsername());
     if (Objects.isNull(foundUser.getId())) {
       throw new NoSuchElementException("The user is not registered");
     }
-    log.debug("[STOP] updateUser");
+    System.out.println("[STOP] updateUser");
+    //    log.debug("[STOP] updateUser");
     return service.updateUser(user);
   }
 }

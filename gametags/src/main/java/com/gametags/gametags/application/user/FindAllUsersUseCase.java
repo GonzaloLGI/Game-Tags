@@ -16,7 +16,8 @@ public class FindAllUsersUseCase {
   private UserService service;
 
   public List<User> findAllUsers() {
-    log.debug("[START] Searching all users");
+    System.out.println("[START] Searching all users");
+    //    log.debug("[START] Searching all users");
     return service.findAllUsers();
   }
 }

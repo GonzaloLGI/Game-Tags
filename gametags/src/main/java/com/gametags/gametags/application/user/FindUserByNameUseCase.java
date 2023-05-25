@@ -17,12 +17,14 @@ public class FindUserByNameUseCase {
   private UserService service;
 
   public User findOneUser(String name) {
-    log.debug("[START] Searching user with name: " + name);
+    System.out.println("[START] Searching user with name: " + name);
+    //    log.debug("[START] Searching user with name: " + name);
     User user = service.findOneUserByUsername(name);
     if (Objects.isNull(user.getId())) {
       throw new NoSuchElementException("The user is not registered");
     }
-    log.debug("[STOP] findUserByName");
+    System.out.println("[STOP] findUserByName");
+    //    log.debug("[STOP] findUserByName");
     return user;
   }
 }

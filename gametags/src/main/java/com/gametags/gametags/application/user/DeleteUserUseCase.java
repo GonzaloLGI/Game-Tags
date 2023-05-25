@@ -18,10 +18,12 @@ public class DeleteUserUseCase {
   private UserService service;
 
   public User deleteUser(UUID id) {
-    log.debug("[START] Deleting user with id: " + id);
+    System.out.println("[START] Deleting user with id: " + id);
+    //    log.debug("[START] Deleting user with id: " + id);
     User user = service.findOneUserById(id);
     if (!Objects.isNull(user.getId())) {
-      log.debug("[STOP] Deleting user with id: " + id);
+      System.out.println("[STOP] Deleting user with id: " + id);
+      //      log.debug("[STOP] Deleting user with id: " + id);
       return service.deleteUser(id);
     } else {
       throw new NoSuchElementException("Non existing user");

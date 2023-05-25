@@ -18,12 +18,14 @@ public class FindUserByIdUseCase {
   private UserService service;
 
   public User findOneUser(UUID id) {
-    log.debug("[START] Searching user with id: " + id);
+    System.out.println("[START] Searching user with id: " + id);
+    //    log.debug("[START] Searching user with id: " + id);
     User user = service.findOneUserById(id);
     if (Objects.isNull(user.getId())) {
       throw new NoSuchElementException("The user is not registered");
     }
-    log.debug("[STOP] findOneUser");
+    System.out.println("[STOP] findOneUser");
+    //    log.debug("[STOP] findOneUser");
     return user;
   }
 }
