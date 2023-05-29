@@ -37,6 +37,7 @@ class CreateVideoGameUseCaseTest {
         .uploadDateTime(LocalDateTime.now())
         .build();
     when(service.createVideoGame(any(VideoGame.class))).thenReturn(videogame);
+    when(service.findOneVideoGame(any())).thenReturn(VideoGame.builder().build());
 
     //WHEN
     VideoGame returnedClassification = useCase.createVideoGame(videogame);

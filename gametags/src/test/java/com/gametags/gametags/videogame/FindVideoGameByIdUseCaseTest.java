@@ -49,9 +49,9 @@ class FindVideoGameByIdUseCaseTest {
   }
 
   @Test
-  public void cantFindClassificationBecauseDoesntExist() {
+  public void cantFindVideoGameBecauseDoesntExist() {
     //GIVEN
-    when(service.findOneVideoGame(any())).thenReturn(null);
+    when(service.findOneVideoGame(any())).thenReturn(VideoGame.builder().build());
 
     //WHEN
     assertThrows(NoSuchElementException.class, () -> useCase.findOneVideoGame(UUID.randomUUID()));

@@ -49,7 +49,7 @@ public class FindClassificationByIdUseCaseTest {
   @Test
   public void cantFindClassificationBecauseDoesntExist() {
     //GIVEN
-    when(service.findOneClassification(any())).thenReturn(null);
+    when(service.findOneClassification(any())).thenReturn(Classification.builder().build());
 
     //WHEN
     assertThrows(NoSuchElementException.class, () -> useCase.findOneClassification(UUID.randomUUID()));

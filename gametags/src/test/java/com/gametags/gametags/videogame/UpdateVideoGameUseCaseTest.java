@@ -28,7 +28,7 @@ class UpdateVideoGameUseCaseTest {
   VideoGameService service;
 
   @Test
-  public void updateClassification() {
+  public void updateVideoGame() {
     //GIVEN
     VideoGame oldVideogame = VideoGame.builder()
         .id(UUID.randomUUID())

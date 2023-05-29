@@ -50,7 +50,7 @@ public class FindUserByUsernameUseCaseTest {
   @Test
   public void cantFindUserBecauseDoesntExist() {
     //GIVEN
-    when(service.findOneUserByUsername(any())).thenReturn(null);
+    when(service.findOneUserByUsername(any())).thenReturn(User.builder().build());
 
     //WHEN
     assertThrows(NoSuchElementException.class, () -> useCase.findOneUser("name"));

@@ -49,9 +49,9 @@ class DeleteVideoGameUseCaseTest {
   }
 
   @Test
-  public void cantDeleteBecauseClassificationDoesntExist() {
+  public void cantDeleteBecauseVideoGameDoesntExist() {
     //GIVEN
-    when(service.findOneVideoGame(any())).thenReturn(null);
+    when(service.findOneVideoGame(any())).thenReturn(VideoGame.builder().build());
 
     //WHEN
     assertThrows(NoSuchElementException.class, () -> useCase.deleteVideoGame(UUID.randomUUID()));

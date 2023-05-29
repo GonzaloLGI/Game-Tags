@@ -49,7 +49,7 @@ public class DeleteClassificationUseCaseTest {
   @Test
   public void cantDeleteBecauseClassificationDoesntExist() {
     //GIVEN
-    when(service.findOneClassification(any())).thenReturn(null);
+    when(service.findOneClassification(any())).thenReturn(Classification.builder().build());
 
     //WHEN
     assertThrows(NoSuchElementException.class, () -> useCase.deleteClassification(UUID.randomUUID()));

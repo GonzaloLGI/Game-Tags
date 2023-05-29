@@ -51,7 +51,7 @@ public class DeleteUserUseCaseTest {
   @Test
   public void cantDeleteBecauseUserDoesntExist() {
     //GIVEN
-    when(service.findOneUserById(any())).thenReturn(null);
+    when(service.findOneUserById(any())).thenReturn(User.builder().build());
 
     //WHEN
     assertThrows(NoSuchElementException.class, () -> useCase.deleteUser(UUID.randomUUID()));

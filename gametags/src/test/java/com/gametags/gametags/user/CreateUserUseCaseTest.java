@@ -37,6 +37,7 @@ public class CreateUserUseCaseTest {
         .comments(List.of("comment1", "comment2"))
         .build();
     when(service.createUser(any(User.class))).thenReturn(user);
+    when(service.findOneUserByUsername(any(String.class))).thenReturn(User.builder().build());
 
     //WHEN
     User returnedUser = useCase.createUser(user);

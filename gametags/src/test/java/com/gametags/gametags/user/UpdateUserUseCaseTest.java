@@ -46,7 +46,7 @@ public class UpdateUserUseCaseTest {
         .comments(List.of("comment1", "comment2"))
         .build();
     when(service.updateUser(newUser)).thenReturn(newUser);
-    when(service.findOneUserByUsername(any(String.class))).thenReturn(oldUser);
+    when(service.findOneUserById(any())).thenReturn(oldUser);
 
     //WHEN
     User returnedUser = useCase.updateUser(newUser);
