@@ -19,7 +19,7 @@ public class UpdateVideoGameUseCase {
   public VideoGame updateVideoGame(VideoGame videogame) {
     System.out.println("[START] updateVideoGame");
     VideoGame toUpdate = service.findOneVideoGame(videogame.getId());
-    if(Objects.isNull(toUpdate.getId())){
+    if (Objects.isNull(toUpdate.getId())) {
       System.out.println("[STOP] updateVideoGame");
       throw new NoSuchElementException("The videogame is not registered");
     }

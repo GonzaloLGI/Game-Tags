@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.domain.model.VideoGame;
-import com.gametags.gametags.infrastructure.daos.UserDAO;
 import com.gametags.gametags.infrastructure.daos.VideoGameDAO;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;
 import com.gametags.gametags.infrastructure.repositories.VideoGameRepository;

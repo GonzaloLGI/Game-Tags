@@ -20,7 +20,7 @@ public class FindVideoGameByIdUseCase {
   public VideoGame findOneVideoGame(UUID id) {
     System.out.println("[START] findOneVideoGame");
     VideoGame result = service.findOneVideoGame(id);
-    if(Objects.isNull(result.getId())){
+    if (Objects.isNull(result.getId())) {
       System.out.println("[STOP] findOneVideoGame");
       throw new NoSuchElementException("The videogame is not registered");
     }

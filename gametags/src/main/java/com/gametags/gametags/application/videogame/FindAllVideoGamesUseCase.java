@@ -2,7 +2,6 @@ package com.gametags.gametags.application.videogame;
 
 import java.util.List;
 
-import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.domain.services.VideoGameService;
 import lombok.extern.slf4j.Slf4j;

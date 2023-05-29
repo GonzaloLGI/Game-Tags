@@ -5,13 +5,12 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameInput;
-import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameUseCase;
 import com.gametags.gametags.application.videogame.DeleteVideoGameUseCase;
 import com.gametags.gametags.application.videogame.FindAllVideoGamesUseCase;
 import com.gametags.gametags.application.videogame.FindVideoGameByIdUseCase;
 import com.gametags.gametags.application.videogame.UpdateVideoGameUseCase;
-import com.gametags.gametags.domain.model.User;
+import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameInput;
+import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameUseCase;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;

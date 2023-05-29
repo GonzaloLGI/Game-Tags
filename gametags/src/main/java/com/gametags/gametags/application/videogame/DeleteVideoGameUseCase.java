@@ -20,7 +20,7 @@ public class DeleteVideoGameUseCase {
   public VideoGame deleteVideoGame(UUID id) {
     System.out.println("[START] deleteVideoGame");
     VideoGame result = service.findOneVideoGame(id);
-    if(Objects.isNull(result.getId())){
+    if (Objects.isNull(result.getId())) {
       System.out.println("[STOP] deleteVideoGame");
       throw new NoSuchElementException("The videogame wanted to delete is not registered");
     }

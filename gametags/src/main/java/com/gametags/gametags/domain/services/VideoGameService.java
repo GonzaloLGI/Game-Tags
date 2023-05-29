@@ -3,7 +3,6 @@ package com.gametags.gametags.domain.services;
 import java.util.List;
 import java.util.UUID;
 
-import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.infrastructure.adapters.VideoGameAdapter;
 import lombok.AllArgsConstructor;

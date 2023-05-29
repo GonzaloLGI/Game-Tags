@@ -1,14 +1,11 @@
 package com.gametags.gametags.infrastructure.mappers;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.gametags.gametags.application.user.create_user.CreateUserInput;
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameInput;
-import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.domain.model.VideoGame;
-import com.gametags.gametags.infrastructure.daos.UserDAO;
 import com.gametags.gametags.infrastructure.daos.VideoGameDAO;
-import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import lombok.Builder;
 import org.springframework.stereotype.Component;
@@ -16,13 +13,14 @@ import org.springframework.stereotype.Component;
 @Component
 @Builder
 public class VideoGameMapper {
+
   public VideoGameDTO fromInputToDto(CreateVideoGameInput input) {
     return VideoGameDTO.builder()
         .id(UUID.randomUUID())
         .name(input.getName())
         .developer(input.getDeveloper())
         .platforms(input.getPlatforms())
-        .uploadDateTime(input.getUploadDateTime())
+        .uploadDateTime(LocalDateTime.now())
         .build();
   }
 
@@ -42,7 +40,7 @@ public class VideoGameMapper {
         .name(input.getName())
         .developer(input.getDeveloper())
         .platforms(input.getPlatforms())
-        .uploadDateTime(input.getUploadDateTime())
+        .uploadDateTime(LocalDateTime.now())
         .build();
   }
 
