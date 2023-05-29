@@ -3,6 +3,7 @@ package com.gametags.gametags.infrastructure.mappers;
 import java.util.UUID;
 
 import com.gametags.gametags.application.user.create_user.CreateUserInput;
+import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameInput;
 import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.infrastructure.daos.UserDAO;

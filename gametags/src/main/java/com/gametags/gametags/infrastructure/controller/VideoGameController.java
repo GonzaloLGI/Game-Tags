@@ -5,9 +5,14 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.gametags.gametags.application.user.create_user.CreateUserInput;
+import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameInput;
+import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameUseCase;
+import com.gametags.gametags.application.videogame.DeleteVideoGameUseCase;
+import com.gametags.gametags.application.videogame.FindAllVideoGamesUseCase;
+import com.gametags.gametags.application.videogame.FindVideoGameByIdUseCase;
+import com.gametags.gametags.application.videogame.UpdateVideoGameUseCase;
 import com.gametags.gametags.domain.model.User;
-import com.gametags.gametags.infrastructure.dtos.UserDTO;
+import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +34,21 @@ public class VideoGameController {
 
   @Autowired
   private VideoGameMapper mapper;
+
+  @Autowired
+  private FindVideoGameByIdUseCase findByIdUseCase;
+
+  @Autowired
+  private FindAllVideoGamesUseCase findAllUseCase;
+
+  @Autowired
+  private UpdateVideoGameUseCase updateUseCase;
+
+  @Autowired
+  private DeleteVideoGameUseCase deleteUseCase;
+
+  @Autowired
+  private CreateVideoGameUseCase createUseCase;
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
@@ -52,7 +72,7 @@ public class VideoGameController {
   @GetMapping("/")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<VideoGameDTO>> getAllVideogames() {
-    List<User> list = findAllUseCase.findAllVideoGames();
+    List<VideoGame> list = findAllUseCase.findAllVideoGames();
     return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
