@@ -5,13 +5,16 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.gametags.gametags.application.user.FindUserByIdUseCase;
 import com.gametags.gametags.application.videogame.DeleteVideoGameUseCase;
 import com.gametags.gametags.application.videogame.FindAllVideoGamesUseCase;
 import com.gametags.gametags.application.videogame.FindVideoGameByIdUseCase;
+import com.gametags.gametags.application.videogame.FindVideoGameByNameUseCase;
 import com.gametags.gametags.application.videogame.UpdateVideoGameUseCase;
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameInput;
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameUseCase;
 import com.gametags.gametags.domain.model.VideoGame;
+import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +51,9 @@ public class VideoGameController {
 
   @Autowired
   private CreateVideoGameUseCase createUseCase;
+
+  @Autowired
+  private FindVideoGameByNameUseCase findByNameUseCase;
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
@@ -97,5 +103,16 @@ public class VideoGameController {
     } catch (NoSuchElementException e) {
       throw new NoSuchElementException("El videojuego a eliminar no existe. Prueba con otro");
     }
+  }
+
+  @GetMapping("/name/{name}")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<VideoGameDTO> getOneVideoGameByName(@PathVariable String name) {
+    try {
+      return new ResponseEntity<>(mapper.toDto(findByNameUseCase.findByName(name)), HttpStatus.FOUND);
+    } catch (NoSuchElementException e) {
+      throw new NoSuchElementException("El videojuego a buscar no se encuentra registrado en la base de datos. Prueba con otro nombre");
+    }
+
   }
 }

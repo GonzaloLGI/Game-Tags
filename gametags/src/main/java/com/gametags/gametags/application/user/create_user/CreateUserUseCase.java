@@ -16,7 +16,7 @@ public class CreateUserUseCase {
   private UserService service;
 
   public User createUser(User user) {
-    System.out.println("[START] Creating classification with data: " + user.getId() + " " + user.getUsername() + " " + user.getEmail());
+    System.out.println("[START] Creating user with data: " + user.getId() + " " + user.getUsername() + " " + user.getEmail());
     //    log.debug("[START] Creating classification with data: " + user.getId() + user.getUsername() + user.getEmail());
     User previous = service.findOneUserByUsername(user.getUsername());
     if (Objects.isNull(previous.getId())) {
