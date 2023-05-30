@@ -23,7 +23,7 @@ public class UpdateCommentUseCase {
     if (Objects.isNull(foundComment.getId())) {
       throw new NoSuchElementException("The comment is not registered");
     }
-    System.out.println("[STOP] updateUser");
+    System.out.println("[STOP] updateComment");
     //    log.debug("[STOP] updateUser");
     return service.updateComment(comment);
   }

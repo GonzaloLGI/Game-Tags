@@ -37,4 +37,8 @@ public class VideoGameService {
   public VideoGame deleteVideoGame(UUID id) {
     return adapter.delete(id);
   }
+
+  public VideoGame findVideoGameByName(String name){
+    return adapter.findByName(name);
+  }
 }

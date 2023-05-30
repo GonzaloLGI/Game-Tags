@@ -23,16 +23,10 @@ Nsrc/main/java/com/gametags/gametags/infrastructure/daos/ClassificationDAO.java
 Nsrc/main/java/com/gametags/gametags/domain/services/ClassificationService.java,b\5\b5993d6f30992213a23c24647459a69358864fe7
 Ö
 Usrc/main/java/com/gametags/gametags/application/user/create_user/CreateUserInput.java,5\e\5e580e58fe9a292560d43479e728b7e2e6fb8aef
-Å
-Qsrc/main/java/com/gametags/gametags/infrastructure/adapters/VideoGameAdapter.java,3\b\3be2f33af51d66f74b42882ce6872c109ce5c47b
-à
-Xsrc/main/java/com/gametags/gametags/infrastructure/repositories/VideoGameRepository.java,e\e\ee6a0cb023d0633e740b12a28932b77e9144e944
 y
 Isrc/main/java/com/gametags/gametags/infrastructure/dtos/VideoGameDTO.java,a\2\a2cdaf9a09aa774d740e1e6100cd8d412c7ec7cf
 y
 Isrc/main/java/com/gametags/gametags/infrastructure/daos/VideoGameDAO.java,6\0\60f235a28c1e34b4f52d9ffffb6fd95a62b9a9f8
-y
-Isrc/main/java/com/gametags/gametags/domain/services/VideoGameService.java,8\1\81edc7db57cd153164403688dca16625dde9b417
 o
 ?src/main/java/com/gametags/gametags/domain/model/VideoGame.java,4\b\4bb75d5926fee671e2775d0c29708b6b066f0e6d
 

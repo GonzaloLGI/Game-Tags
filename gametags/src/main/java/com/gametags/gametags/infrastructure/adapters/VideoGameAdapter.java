@@ -46,4 +46,8 @@ public class VideoGameAdapter {
   public VideoGame create(VideoGame videogame) {
     return mapper.fromEntityToDomain(repo.save(mapper.toEntity(videogame)));
   }
+
+  public VideoGame findByName(String name) {
+    return mapper.fromEntityToDomain(repo.findByName(name).orElseGet(() -> VideoGameDAO.builder().build()));
+  }
 }

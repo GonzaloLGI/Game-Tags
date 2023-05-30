@@ -17,7 +17,7 @@ public class CreateVideoGameUseCase {
 
   public VideoGame createVideoGame(VideoGame videoGame) {
     System.out.println("[START] createVideoGame");
-    VideoGame previous = service.findOneVideoGame(videoGame.getId());
+    VideoGame previous = service.findVideoGameByName(videoGame.getName());
     if (!Objects.isNull(previous.getId())) {
       System.out.println("[STOP] createVideoGame");
       return previous;
