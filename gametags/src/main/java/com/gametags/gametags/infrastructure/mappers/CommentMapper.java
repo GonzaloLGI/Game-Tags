@@ -2,6 +2,7 @@ package com.gametags.gametags.infrastructure.mappers;
 
 import java.util.UUID;
 
+import com.gametags.gametags.application.comment.create_comment.CreateCommentInput;
 import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.infrastructure.daos.CommentDAO;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
