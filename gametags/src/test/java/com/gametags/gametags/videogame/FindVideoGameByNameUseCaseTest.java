@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-import com.gametags.gametags.application.videogame.FindVideoGameByIdUseCase;
 import com.gametags.gametags.application.videogame.FindVideoGameByNameUseCase;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.domain.services.VideoGameService;
@@ -22,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class FindVideoGameByNameUseCaseTest {
+
   @InjectMocks
   FindVideoGameByNameUseCase useCase;
 

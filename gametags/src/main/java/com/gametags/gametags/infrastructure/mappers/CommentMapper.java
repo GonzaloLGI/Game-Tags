@@ -1,5 +1,6 @@
 package com.gametags.gametags.infrastructure.mappers;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.gametags.gametags.application.comment.create_comment.CreateCommentInput;
@@ -19,7 +20,7 @@ public class CommentMapper {
         .text(input.getText())
         .category(input.getCategory())
         .severity(input.getSeverity())
-        .uploadDate(input.getUploadDate())
+        .uploadDate(LocalDateTime.now())
         .build();
   }
 
@@ -39,7 +40,7 @@ public class CommentMapper {
         .text(input.getText())
         .category(input.getCategory())
         .severity(input.getSeverity())
-        .uploadDate(input.getUploadDate())
+        .uploadDate(LocalDateTime.now())
         .build();
   }
 

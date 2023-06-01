@@ -21,6 +21,4 @@ public class CreateCommentInput {
   private String category;
 
   private String severity;
-
-  private LocalDateTime uploadDate;
 }
