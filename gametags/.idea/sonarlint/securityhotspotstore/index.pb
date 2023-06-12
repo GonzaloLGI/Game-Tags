@@ -99,8 +99,6 @@ Isrc/main/java/com/gametags/gametags/domain/services/VideoGameService.java,8\1\
 Wsrc/main/java/com/gametags/gametags/application/videogame/FindVideoGameByIdUseCase.java,b\b\bb84b74d6ff4aacc51e8506661bc12aac3b98658
 â
 Ysrc/main/java/com/gametags/gametags/application/videogame/FindVideoGameByNameUseCase.java,e\0\e0f5363b545e76901a94ad8a80e1fb88b361cc82
-Ñ
-Tsrc/main/java/com/gametags/gametags/infrastructure/controller/CommentController.java,c\b\cb01eb009aa3fdf5dd7970c3b1385aa69cf814f8
 é
 ^src/main/java/com/gametags/gametags/application/comment/create_comment/CreateCommentInput.java,7\6\76c6b94b2b85c02eb4aedc0c902403be72b89c17
 m
@@ -147,8 +145,6 @@ Msrc/test/java/com/gametags/gametags/videogame/UpdateVideoGameUseCaseTest.java,
 Qsrc/test/java/com/gametags/gametags/videogame/FindVideoGameByNameUseCaseTest.java,9\6\9676df3f4ded5bfdd14e8a4f6ec01d0c43130007
 v
 Fsrc/test/java/com/gametags/gametags/videogame/VideoGameMapperTest.java,f\8\f850200e584e265ed08dd16f981da6ab39cc2d2f
-}
-Msrc/test/java/com/gametags/gametags/videogame/CreateVideoGameUseCaseTest.java,e\5\e54f31a51c1d28706637df7ca6a226b4bd58b548
 {
 Ksrc/test/java/com/gametags/gametags/comment/FindAllCommentsUseCaseTest.java,6\f\6fa6eea5511c7151138752becafff49a6c382e39
 ê
@@ -167,3 +163,9 @@ u
 Esrc/test/java/com/gametags/gametags/user/FindAllUsersUseCaseTest.java,7\7\77afaf030a029660b6d595d4689b1c742ec69cba
 s
 Csrc/test/java/com/gametags/gametags/user/UpdateUserUseCaseTest.java,b\3\b38fdda6da6ef5ade7efff41a627ff1175f0e53f
+ã
+[src/main/java/com/gametags/gametags/infrastructure/controller/ClassificationController.java,d\8\d8794247924b854df002c0d0af1b6496f5293f09
+}
+Msrc/test/java/com/gametags/gametags/videogame/CreateVideoGameUseCaseTest.java,e\5\e54f31a51c1d28706637df7ca6a226b4bd58b548
+Ñ
+Tsrc/main/java/com/gametags/gametags/infrastructure/controller/CommentController.java,c\b\cb01eb009aa3fdf5dd7970c3b1385aa69cf814f8

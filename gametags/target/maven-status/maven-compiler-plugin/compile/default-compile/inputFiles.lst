@@ -1,4 +1,3 @@
-C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\SwaggerConfig.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\videogame\FindVideoGameByNameUseCase.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\dtos\UserDTO.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\user\create_user\CreateUserInput.java
@@ -16,6 +15,7 @@ C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\domain\services\CommentService.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\dtos\VideoGameDTO.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\domain\model\VideoGame.java
+C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\SecurityConfig.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\comment\UpdateCommentUseCase.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\user\FindAllUsersUseCase.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\domain\services\VideoGameService.java

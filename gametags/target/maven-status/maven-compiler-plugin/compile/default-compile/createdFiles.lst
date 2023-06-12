@@ -61,7 +61,7 @@ com\gametags\gametags\application\videogame\FindAllVideoGamesUseCase.class
 com\gametags\gametags\application\user\create_user\CreateUserInput.class
 com\gametags\gametags\domain\services\CommentService$CommentServiceBuilder.class
 com\gametags\gametags\application\user\FindUserByNameUseCase.class
-com\gametags\gametags\infrastructure\SwaggerConfig.class
+com\gametags\gametags\infrastructure\SecurityConfig.class
 com\gametags\gametags\domain\model\User$UserBuilder.class
 com\gametags\gametags\infrastructure\adapters\VideoGameAdapter.class
 com\gametags\gametags\application\user\UpdateUserUseCase.class
