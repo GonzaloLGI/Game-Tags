@@ -21,4 +21,8 @@ public class CreateCommentInput {
   private String category;
 
   private String severity;
+
+  private UUID uploadUser;
+
+  private UUID videogame;
 }

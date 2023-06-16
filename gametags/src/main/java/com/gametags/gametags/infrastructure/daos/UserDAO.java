@@ -26,7 +26,7 @@ public class UserDAO {
 
   private String password;
 
-  private List<String> comments;
+  private List<CommentDAO> comments;
 
   private String country;
 }

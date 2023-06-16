@@ -5,13 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import com.gametags.gametags.application.user.DeleteUserUseCase;
+import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.domain.services.UserService;
+import com.gametags.gametags.infrastructure.dtos.CommentDTO;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,6 +31,28 @@ public class DeleteUserUseCaseTest {
   @Mock
   UserService service;
 
+  private Comment comment1;
+  private Comment comment2;
+
+  @BeforeEach
+  void createComments(){
+    comment1 = Comment.builder()
+        .id(UUID.randomUUID())
+        .text("text1")
+        .category("category1")
+        .severity("severity1")
+        .uploadDate(LocalDateTime.now())
+        .build();
+
+    comment2 = Comment.builder()
+        .id(UUID.randomUUID())
+        .text("text2")
+        .category("category2")
+        .severity("severity2")
+        .uploadDate(LocalDateTime.now())
+        .build();
+  }
+
   @Test
   public void canDelete() {
     //GIVEN
@@ -36,7 +62,7 @@ public class DeleteUserUseCaseTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of("comment1", "comment2"))
+        .comments(List.of(comment1, comment2))
         .build();
     when(service.findOneUserById(user.getId())).thenReturn(user);
     when(service.deleteUser(user.getId())).thenReturn(user);

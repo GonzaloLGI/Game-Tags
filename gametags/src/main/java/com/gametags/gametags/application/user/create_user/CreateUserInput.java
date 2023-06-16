@@ -3,6 +3,7 @@ package com.gametags.gametags.application.user.create_user;
 import java.util.List;
 import java.util.UUID;
 
+import com.gametags.gametags.infrastructure.dtos.CommentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +23,7 @@ public class CreateUserInput {
 
   private String password;
 
-  private List<String> comments;
+  private List<CommentDTO> comments;
 
   private String country;
 }

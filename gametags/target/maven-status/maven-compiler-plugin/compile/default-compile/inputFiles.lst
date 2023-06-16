@@ -55,6 +55,7 @@ C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\mappers\ClassificationMapper.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\comment\DeleteCommentUseCase.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\adapters\VideoGameAdapter.java
+C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\controller\LoginController.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\classification\FindClassificationByIdUseCase.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\controller\VideoGameController.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\user\FindUserByIdUseCase.java

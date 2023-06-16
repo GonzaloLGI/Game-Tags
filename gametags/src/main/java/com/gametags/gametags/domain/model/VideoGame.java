@@ -24,4 +24,10 @@ public class VideoGame {
   private LocalDateTime uploadDateTime;
 
   private List<String> platforms;
+
+  private List<Classification> classifications;
+
+  private UUID uploadUser;
+
+  private List<Comment> comments;
 }

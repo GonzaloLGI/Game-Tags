@@ -17,12 +17,15 @@ public class CreateVideoGameUseCase {
 
   public VideoGame createVideoGame(VideoGame videoGame) {
     System.out.println("[START] createVideoGame");
+    log.debug("[START] createVideoGame");
     VideoGame previous = service.findVideoGameByName(videoGame.getName());
     if (!Objects.isNull(previous.getId())) {
       System.out.println("[STOP] createVideoGame");
+      log.debug("[STOP] createVideoGame");
       return previous;
     }
     System.out.println("[STOP] createVideoGame");
+    log.debug("[STOP] createVideoGame");
     return service.createVideoGame(videoGame);
   }
 }

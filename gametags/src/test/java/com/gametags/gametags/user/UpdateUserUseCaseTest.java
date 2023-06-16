@@ -5,12 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 import com.gametags.gametags.application.user.UpdateUserUseCase;
+import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.domain.services.UserService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,6 +29,28 @@ public class UpdateUserUseCaseTest {
   @Mock
   UserService service;
 
+  private Comment comment1;
+  private Comment comment2;
+
+  @BeforeEach
+  void createComments(){
+    comment1 = Comment.builder()
+        .id(UUID.randomUUID())
+        .text("text1")
+        .category("category1")
+        .severity("severity1")
+        .uploadDate(LocalDateTime.now())
+        .build();
+
+    comment2 = Comment.builder()
+        .id(UUID.randomUUID())
+        .text("text2")
+        .category("category2")
+        .severity("severity2")
+        .uploadDate(LocalDateTime.now())
+        .build();
+  }
+
   @Test
   public void updateUser() {
     //GIVEN
@@ -35,7 +60,7 @@ public class UpdateUserUseCaseTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of("comment1", "comment2"))
+        .comments(List.of(comment1, comment2))
         .build();
     User newUser = User.builder()
         .id(UUID.randomUUID())
@@ -43,7 +68,7 @@ public class UpdateUserUseCaseTest {
         .email("newEmail")
         .password("newPassword")
         .country("newCountry")
-        .comments(List.of("comment1", "comment2"))
+        .comments(List.of(comment1, comment2))
         .build();
     when(service.updateUser(newUser)).thenReturn(newUser);
     when(service.findOneUserById(any())).thenReturn(oldUser);

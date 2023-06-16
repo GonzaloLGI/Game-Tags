@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import com.gametags.gametags.domain.model.Classification;
+import com.gametags.gametags.domain.model.Comment;
+import com.gametags.gametags.domain.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,4 +31,10 @@ public class VideoGameDAO {
   private LocalDateTime uploadDateTime;
 
   private List<String> platforms;
+
+  private List<ClassificationDAO> classifications;
+
+  private UUID uploadUser;
+
+  private List<CommentDAO> comments;
 }

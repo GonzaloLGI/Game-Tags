@@ -3,6 +3,7 @@ package com.gametags.gametags.infrastructure.dtos;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.gametags.gametags.infrastructure.daos.UserDAO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,4 +24,8 @@ public class CommentDTO {
   private String severity;
 
   private LocalDateTime uploadDate;
+
+  private UUID uploadUser;
+
+  private UUID videogame;
 }

@@ -22,7 +22,7 @@ public class UserDTO {
 
   private String password;
 
-  private List<String> comments;
+  private List<CommentDTO> comments;
 
   private String country;
 }

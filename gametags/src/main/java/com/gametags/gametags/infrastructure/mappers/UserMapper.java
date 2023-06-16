@@ -1,17 +1,26 @@
 package com.gametags.gametags.infrastructure.mappers;
 
+import java.util.ArrayList;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.gametags.gametags.application.user.create_user.CreateUserInput;
+import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.domain.model.User;
+import com.gametags.gametags.infrastructure.daos.CommentDAO;
 import com.gametags.gametags.infrastructure.daos.UserDAO;
+import com.gametags.gametags.infrastructure.dtos.CommentDTO;
 import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import lombok.Builder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 @Builder
 public class UserMapper {
+
+  @Autowired
+  private CommentMapper commentMapper;
 
   public UserDTO fromInputToDto(CreateUserInput input) {
     return UserDTO.builder()
@@ -28,7 +37,7 @@ public class UserMapper {
     return User.builder()
         .id(dto.getId())
         .country(dto.getCountry())
-        .comments(dto.getComments())
+        .comments(dto.getComments() == null? new ArrayList<Comment>():dto.getComments().stream().map(commentDTO -> commentMapper.fromDtoToDomain(commentDTO)).collect(Collectors.toList()))
         .username(dto.getUsername())
         .email(dto.getEmail())
         .password(dto.getPassword())
@@ -49,7 +58,7 @@ public class UserMapper {
   public UserDTO toDto(User user) {
     return UserDTO.builder()
         .id(user.getId())
-        .comments(user.getComments())
+        .comments(user.getComments() == null? new ArrayList<CommentDTO>():user.getComments().stream().map(comment -> commentMapper.toDto(comment)).collect(Collectors.toList()))
         .country(user.getCountry())
         .email(user.getEmail())
         .password(user.getPassword())
@@ -60,7 +69,7 @@ public class UserMapper {
   public UserDAO toEntity(User user) {
     return UserDAO.builder()
         .id(user.getId())
-        .comments(user.getComments())
+        .comments(user.getComments() == null? new ArrayList<CommentDAO>():user.getComments().stream().map(comment -> commentMapper.toEntity(comment)).collect(Collectors.toList()))
         .country(user.getCountry())
         .email(user.getEmail())
         .password(user.getPassword())
@@ -75,7 +84,7 @@ public class UserMapper {
         .password(dao.getPassword())
         .email(dao.getEmail())
         .username(dao.getUsername())
-        .comments(dao.getComments())
+        .comments(dao.getComments() == null? new ArrayList<Comment>():dao.getComments().stream().map(commentDAO -> commentMapper.fromEntityToDomain(commentDAO)).collect(Collectors.toList()))
         .build();
   }
 }

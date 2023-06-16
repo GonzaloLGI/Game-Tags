@@ -21,6 +21,8 @@ public class CommentMapper {
         .category(input.getCategory())
         .severity(input.getSeverity())
         .uploadDate(LocalDateTime.now())
+        .uploadUser(input.getUploadUser())
+        .videogame(input.getVideogame())
         .build();
   }
 
@@ -31,6 +33,8 @@ public class CommentMapper {
         .category(dto.getCategory())
         .severity(dto.getSeverity())
         .uploadDate(dto.getUploadDate())
+        .uploadUser(dto.getUploadUser())
+        .videogame(dto.getVideogame())
         .build();
   }
 
@@ -41,6 +45,8 @@ public class CommentMapper {
         .category(input.getCategory())
         .severity(input.getSeverity())
         .uploadDate(LocalDateTime.now())
+        .uploadUser(input.getUploadUser())
+        .videogame(input.getVideogame())
         .build();
   }
 
@@ -51,6 +57,8 @@ public class CommentMapper {
         .category(comment.getCategory())
         .severity(comment.getSeverity())
         .uploadDate(comment.getUploadDate())
+        .uploadUser(comment.getUploadUser())
+        .videogame(comment.getVideogame())
         .build();
   }
 
@@ -61,6 +69,8 @@ public class CommentMapper {
         .category(comment.getCategory())
         .severity(comment.getSeverity())
         .uploadDate(comment.getUploadDate())
+        .uploadUser(comment.getUploadUser())
+        .videogame(comment.getVideogame())
         .build();
   }
 
@@ -71,6 +81,8 @@ public class CommentMapper {
         .category(dao.getCategory())
         .severity(dao.getSeverity())
         .uploadDate(dao.getUploadDate())
+        .uploadUser(dao.getUploadUser())
+        .videogame(dao.getVideogame())
         .build();
   }
 }

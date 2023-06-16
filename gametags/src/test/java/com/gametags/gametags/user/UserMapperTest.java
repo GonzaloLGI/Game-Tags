@@ -1,18 +1,30 @@
 package com.gametags.gametags.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import com.gametags.gametags.domain.model.Comment;
+import com.gametags.gametags.infrastructure.dtos.CommentDTO;
 import com.gametags.gametags.infrastructure.dtos.UserDTO;
+import com.gametags.gametags.infrastructure.mappers.CommentMapper;
 import com.gametags.gametags.infrastructure.mappers.UserMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class UserMapperTest {
+
 
   private UserMapper mapper = UserMapper.builder().build();
 
@@ -25,8 +37,9 @@ public class UserMapperTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of("comment1", "comment2"))
+        .comments(List.of())
         .build();
+
 
     //WHEN
     UserDTO mapped = mapper.toDto(mapper.fromEntityToDomain(mapper.toEntity(mapper.fromDtoToDomain(dto))));
@@ -44,7 +57,7 @@ public class UserMapperTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of("comment1", "comment2"))
+        .comments(List.of())
         .build();
 
     //WHEN

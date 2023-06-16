@@ -10,6 +10,7 @@ com\gametags\gametags\domain\services\VideoGameService$VideoGameServiceBuilder.c
 com\gametags\gametags\infrastructure\daos\VideoGameDAO.class
 com\gametags\gametags\application\classification\UpdateClassificationUseCase.class
 com\gametags\gametags\infrastructure\daos\CommentDAO.class
+com\gametags\gametags\infrastructure\controller\LoginController.class
 com\gametags\gametags\infrastructure\repositories\VideoGameRepository.class
 com\gametags\gametags\infrastructure\adapters\ClassificationAdapter.class
 com\gametags\gametags\application\comment\FindAllCommentsUseCase.class

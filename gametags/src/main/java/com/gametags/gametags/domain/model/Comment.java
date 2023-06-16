@@ -23,4 +23,8 @@ public class Comment {
   private String severity;
 
   private LocalDateTime uploadDate;
+
+  private UUID uploadUser;
+
+  private UUID videogame;
 }

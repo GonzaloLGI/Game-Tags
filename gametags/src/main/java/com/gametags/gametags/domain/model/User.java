@@ -22,7 +22,7 @@ public class User {
 
   private String password;
 
-  private List<String> comments;
+  private List<Comment> comments;
 
   private String country;
 }
