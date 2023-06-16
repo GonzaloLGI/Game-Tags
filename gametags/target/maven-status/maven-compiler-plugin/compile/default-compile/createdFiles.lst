@@ -61,6 +61,7 @@ com\gametags\gametags\infrastructure\mappers\CommentMapper$CommentMapperBuilder.
 com\gametags\gametags\application\videogame\FindAllVideoGamesUseCase.class
 com\gametags\gametags\application\user\create_user\CreateUserInput.class
 com\gametags\gametags\domain\services\CommentService$CommentServiceBuilder.class
+com\gametags\gametags\application\authentication\RegisterDTO.class
 com\gametags\gametags\application\user\FindUserByNameUseCase.class
 com\gametags\gametags\infrastructure\SecurityConfig.class
 com\gametags\gametags\domain\model\User$UserBuilder.class
@@ -77,6 +78,7 @@ com\gametags\gametags\application\comment\UpdateCommentUseCase.class
 com\gametags\gametags\infrastructure\mappers\ClassificationMapper$ClassificationMapperBuilder.class
 com\gametags\gametags\infrastructure\repositories\UserRepository.class
 com\gametags\gametags\application\videogame\create_videogame\CreateVideoGameInput$CreateVideoGameInputBuilder.class
+com\gametags\gametags\application\authentication\RegisterDTO$RegisterDTOBuilder.class
 com\gametags\gametags\infrastructure\adapters\CommentAdapter.class
 com\gametags\gametags\application\comment\FindCommentByIdUseCase.class
 com\gametags\gametags\application\classification\create_classification\CreateClassificationUseCase.class

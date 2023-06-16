@@ -46,6 +46,7 @@ C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\adapters\UserAdapter.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\videogame\DeleteVideoGameUseCase.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\user\DeleteUserUseCase.java
+C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\application\authentication\RegisterDTO.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\GametagsApplication.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\domain\services\ClassificationService.java
 C:\Users\gonza\Documents\TFG\TFG2\Game-Tags\gametags\src\main\java\com\gametags\gametags\infrastructure\mappers\CommentMapper.java

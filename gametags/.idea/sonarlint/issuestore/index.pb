@@ -17,10 +17,6 @@ Ssrc/main/java/com/gametags/gametags/infrastructure/repositories/UserRepository.
 Xsrc/main/java/com/gametags/gametags/infrastructure/repositories/VideoGameRepository.java,e\e\ee6a0cb023d0633e740b12a28932b77e9144e944
 Å
 Qsrc/main/java/com/gametags/gametags/infrastructure/adapters/VideoGameAdapter.java,3\b\3be2f33af51d66f74b42882ce6872c109ce5c47b
-•
-usrc/main/java/com/gametags/gametags/application/classification/create_classification/CreateClassificationUseCase.java,1\b\1bb5046bcac0ab17160fcdb906113ef6380d6e30
-£
-ssrc/main/java/com/gametags/gametags/application/classification/create_classification/CreateClassificationInput.java,a\f\af8d5552ace047fd43a38854d70c7ab938b274d1
 è
 _src/main/java/com/gametags/gametags/application/classification/DeleteClassificationUseCase.java,7\0\70a3bc9a23c3f3d1523f7e7c7f254d3aedd244af
 ë
@@ -99,8 +95,6 @@ Osrc/test/java/com/gametags/gametags/videogame/FindAllVideoGamesUseCaseTest.java
 [src/main/java/com/gametags/gametags/infrastructure/controller/ClassificationController.java,d\8\d8794247924b854df002c0d0af1b6496f5293f09
 }
 Msrc/test/java/com/gametags/gametags/videogame/CreateVideoGameUseCaseTest.java,e\5\e54f31a51c1d28706637df7ca6a226b4bd58b548
-Ñ
-Tsrc/main/java/com/gametags/gametags/infrastructure/controller/CommentController.java,c\b\cb01eb009aa3fdf5dd7970c3b1385aa69cf814f8
 t
 Dsrc/main/java/com/gametags/gametags/domain/model/Classification.java,5\9\594c1f35b867726cacc5bae152d1a41c7becc3c4
 ç
@@ -111,8 +105,6 @@ y
 Isrc/main/java/com/gametags/gametags/infrastructure/daos/VideoGameDAO.java,6\0\60f235a28c1e34b4f52d9ffffb6fd95a62b9a9f8
 m
 =src/main/java/com/gametags/gametags/domain/model/Comment.java,a\f\aff0e79a249cf9e665a49ea25d79b11344b42f8e
-j
-:src/main/java/com/gametags/gametags/domain/model/User.java,7\c\7ca1062042b395a99543f0f9bbd8965d345c448b
 y
 Isrc/test/java/com/gametags/gametags/comment/CreateCommentUseCaseTest.java,0\1\0104bf13291826c566ee2088c0f244fe73a33ea3
 s
@@ -129,15 +121,7 @@ s
 Csrc/test/java/com/gametags/gametags/user/UpdateUserUseCaseTest.java,b\3\b38fdda6da6ef5ade7efff41a627ff1175f0e53f
 Ö
 Usrc/main/java/com/gametags/gametags/application/user/create_user/CreateUserInput.java,5\e\5e580e58fe9a292560d43479e728b7e2e6fb8aef
-Ç
-Rsrc/main/java/com/gametags/gametags/infrastructure/controller/LoginController.java,e\c\eccefd038e5c0f6c7b03caba52fc71e3eb1d8df4
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-á
-Wsrc/main/java/com/gametags/gametags/application/user/create_user/CreateUserUseCase.java,2\6\26bfcfb8e5332379b25ab089282972b27106b16e
-t
-Dsrc/main/java/com/gametags/gametags/domain/services/UserService.java,9\0\90899a26a5d4743dab680df72900bbabb990f2c3
 |
 Lsrc/main/java/com/gametags/gametags/infrastructure/adapters/UserAdapter.java,7\1\71b52ee89fd8ba1191a24022e5b0ef7fed82def7
-Å
-Qsrc/main/java/com/gametags/gametags/infrastructure/controller/UserController.java,4\6\46c1e046f6bed8072fd4eb5356bbb7a3b1c0f2fa
