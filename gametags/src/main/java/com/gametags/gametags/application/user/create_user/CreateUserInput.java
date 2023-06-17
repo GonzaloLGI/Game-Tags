@@ -26,4 +26,6 @@ public class CreateUserInput {
   private List<CommentDTO> comments;
 
   private String country;
+
+  private List<String> roles;
 }

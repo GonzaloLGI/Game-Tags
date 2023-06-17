@@ -30,6 +30,7 @@ public class UserMapper {
         .country(input.getCountry())
         .email(input.getEmail())
         .password(input.getPassword())
+        .roles(input.getRoles())
         .build();
   }
 
@@ -41,6 +42,7 @@ public class UserMapper {
         .username(dto.getUsername())
         .email(dto.getEmail())
         .password(dto.getPassword())
+        .roles(dto.getRoles())
         .build();
   }
 
@@ -52,6 +54,7 @@ public class UserMapper {
         .email(input.getEmail())
         .country(input.getCountry())
         .comments(input.getComments())
+        .roles(input.getRoles())
         .build();
   }
 
@@ -63,6 +66,7 @@ public class UserMapper {
         .email(user.getEmail())
         .password(user.getPassword())
         .username(user.getUsername())
+        .roles(user.getRoles())
         .build();
   }
 
@@ -74,6 +78,7 @@ public class UserMapper {
         .email(user.getEmail())
         .password(user.getPassword())
         .username(user.getUsername())
+        .roles(user.getRoles())
         .build();
   }
 
@@ -85,6 +90,7 @@ public class UserMapper {
         .email(dao.getEmail())
         .username(dao.getUsername())
         .comments(dao.getComments() == null? new ArrayList<Comment>():dao.getComments().stream().map(commentDAO -> commentMapper.fromEntityToDomain(commentDAO)).collect(Collectors.toList()))
+        .roles(dao.getRoles())
         .build();
   }
 }

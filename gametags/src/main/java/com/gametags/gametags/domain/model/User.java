@@ -25,4 +25,6 @@ public class User {
   private List<Comment> comments;
 
   private String country;
+
+  private List<String> roles;
 }

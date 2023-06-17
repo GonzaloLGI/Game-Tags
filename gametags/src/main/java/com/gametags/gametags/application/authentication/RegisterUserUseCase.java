@@ -1,5 +1,6 @@
 package com.gametags.gametags.application.authentication;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -25,6 +26,7 @@ public class RegisterUserUseCase {
         .id(UUID.randomUUID())
         .password(input.getPassword())
         .username(input.getUserName())
+        .roles(List.of("USER"))
         .build());
   }
 }

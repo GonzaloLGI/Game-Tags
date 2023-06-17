@@ -25,4 +25,6 @@ public class UserDTO {
   private List<CommentDTO> comments;
 
   private String country;
+
+  private List<String> roles;
 }

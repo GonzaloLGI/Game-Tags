@@ -29,4 +29,6 @@ public class UserDAO {
   private List<CommentDAO> comments;
 
   private String country;
+
+  private List<String> roles;
 }
