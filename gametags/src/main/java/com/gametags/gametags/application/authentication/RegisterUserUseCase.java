@@ -26,6 +26,7 @@ public class RegisterUserUseCase {
         .id(UUID.randomUUID())
         .password(input.getPassword())
         .username(input.getUserName())
+        .country(input.getCountry())
         .roles(List.of("USER"))
         .build());
   }

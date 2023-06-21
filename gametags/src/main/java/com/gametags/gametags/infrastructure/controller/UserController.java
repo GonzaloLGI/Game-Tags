@@ -1,5 +1,6 @@
 package com.gametags.gametags.infrastructure.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -12,6 +13,8 @@ import com.gametags.gametags.application.user.FindUserByNameUseCase;
 import com.gametags.gametags.application.user.UpdateUserUseCase;
 import com.gametags.gametags.application.user.create_user.CreateUserInput;
 import com.gametags.gametags.application.user.create_user.CreateUserUseCase;
+import com.gametags.gametags.application.user.update_username.UpdateUsernameInput;
+import com.gametags.gametags.application.user.update_username.UpdateUsernameUseCase;
 import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import com.gametags.gametags.infrastructure.mappers.UserMapper;
@@ -52,6 +55,9 @@ public class UserController {
 
   @Autowired
   private UpdateUserUseCase updateUseCase;
+
+  @Autowired
+  private UpdateUsernameUseCase updateUsernameUseCase;
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
@@ -113,5 +119,11 @@ public class UserController {
     } catch (NoSuchElementException e) {
       throw new NoSuchElementException("El usuario a eliminar no existe. Prueba con otro");
     }
+  }
+
+  @PutMapping("/username")
+  @ResponseStatus(HttpStatus.ACCEPTED)
+  public ResponseEntity<UserDTO> updateUsername(@RequestBody UpdateUsernameInput input, Principal principal){
+    return new ResponseEntity<>(mapper.toDto(updateUsernameUseCase.updateUsername(input.getNewUsername(), principal)), HttpStatus.ACCEPTED);
   }
 }

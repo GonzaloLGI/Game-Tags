@@ -5,7 +5,6 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.gametags.gametags.application.user.FindUserByIdUseCase;
 import com.gametags.gametags.application.videogame.DeleteVideoGameUseCase;
 import com.gametags.gametags.application.videogame.FindAllVideoGamesUseCase;
 import com.gametags.gametags.application.videogame.FindVideoGameByIdUseCase;
@@ -13,8 +12,9 @@ import com.gametags.gametags.application.videogame.FindVideoGameByNameUseCase;
 import com.gametags.gametags.application.videogame.UpdateVideoGameUseCase;
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameInput;
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameUseCase;
+import com.gametags.gametags.application.videogame.filter_videogames.FilterByDeveloperUseCase;
+import com.gametags.gametags.application.videogame.filter_videogames.FilterByPlatformsUseCase;
 import com.gametags.gametags.domain.model.VideoGame;
-import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +54,12 @@ public class VideoGameController {
 
   @Autowired
   private FindVideoGameByNameUseCase findByNameUseCase;
+
+  @Autowired
+  private FilterByDeveloperUseCase filterByDeveloperUseCase;
+
+  @Autowired
+  private FilterByPlatformsUseCase filterByPlatformsUseCase;
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
@@ -114,5 +120,18 @@ public class VideoGameController {
       throw new NoSuchElementException("El videojuego a buscar no se encuentra registrado en la base de datos. Prueba con otro nombre");
     }
 
+  }
+
+  @GetMapping("/developer")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<VideoGameDTO>> filterByDeveloper(@RequestBody String developer){
+    return new ResponseEntity<>(filterByDeveloperUseCase.videoGamesByDeveloper(developer.toString()).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
+  }
+
+  @GetMapping("/platforms")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<VideoGameDTO>> filterByPlatforms(@RequestBody List<String> platforms){
+    System.out.println("ARGUMENTO: " + platforms.get(0));
+    return new ResponseEntity<>(filterByPlatformsUseCase.videoGamesByPlatforms(platforms).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 }

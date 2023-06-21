@@ -41,4 +41,14 @@ public class VideoGameService {
   public VideoGame findVideoGameByName(String name){
     return adapter.findByName(name);
   }
+
+  public List<VideoGame> findAllVideoGamesByDeveloper(String developer) {
+    return adapter.findAllByDeveloper(developer);
+  }
+
+  public List<VideoGame> findAllVideoGamesByPlatforms(List<String> platforms) {
+    List<VideoGame> result = adapter.findAllByPlatforms(platforms);
+    System.out.println(result.toString());
+    return result;
+  }
 }

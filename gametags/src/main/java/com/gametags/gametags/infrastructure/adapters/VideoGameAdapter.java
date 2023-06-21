@@ -50,4 +50,12 @@ public class VideoGameAdapter {
   public VideoGame findByName(String name) {
     return mapper.fromEntityToDomain(repo.findByName(name).orElseGet(() -> VideoGameDAO.builder().build()));
   }
+
+  public List<VideoGame> findAllByDeveloper(String developer) {
+    return repo.findAllByDeveloper(developer).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+  }
+
+  public List<VideoGame> findAllByPlatforms(List<String> platforms) {
+    return repo.findAllByPlatformsIn(platforms).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+  }
 }

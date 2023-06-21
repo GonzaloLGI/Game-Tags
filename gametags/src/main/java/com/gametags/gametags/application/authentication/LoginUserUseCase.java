@@ -17,8 +17,8 @@ public class LoginUserUseCase {
   private AuthenticationManager authenticationManager;
 
   public String loginUser(LoginInput input) {
-    System.out.println("INPUT: " + input.getUserName() + " " + input.getPassword());
-    log.debug("INPUT: " + input.getUserName() + " " + input.getPassword());
+//    System.out.println("INPUT: " + input.getUserName() + " " + input.getPassword());
+//    log.debug("INPUT: " + input.getUserName() + " " + input.getPassword());
     Authentication authentication = authenticationManager
         .authenticate(new UsernamePasswordAuthenticationToken(input.getUserName(), input.getPassword()));
     SecurityContextHolder.getContext().setAuthentication(authentication);

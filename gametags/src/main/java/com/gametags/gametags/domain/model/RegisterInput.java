@@ -14,4 +14,6 @@ public class RegisterInput {
   private String password;
 
   private String userName;
+
+  private String country;
 }

@@ -1,0 +1,9 @@
+
+t
+java:S6204)"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¾ØÔ’ıÿÿÿÿ8Å¯ŠûŠ1
+o
+java:S6204@"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¼šĞú8Ì¯ŠûŠ1
+n
+java:S6204L"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ÑÙ‘8Ğ¯ŠûŠ1
+t
+java:S6204\"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Àğùÿÿÿÿ8Õ¯ŠûŠ1
