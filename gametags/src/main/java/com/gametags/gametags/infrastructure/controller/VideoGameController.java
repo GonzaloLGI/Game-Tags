@@ -5,11 +5,13 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
 import com.gametags.gametags.application.videogame.DeleteVideoGameUseCase;
 import com.gametags.gametags.application.videogame.FindAllVideoGamesUseCase;
 import com.gametags.gametags.application.videogame.FindVideoGameByIdUseCase;
 import com.gametags.gametags.application.videogame.FindVideoGameByNameUseCase;
 import com.gametags.gametags.application.videogame.UpdateVideoGameUseCase;
+import com.gametags.gametags.application.videogame.add_new_classification.AddNewClassificationUseCase;
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameInput;
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameUseCase;
 import com.gametags.gametags.application.videogame.filter_videogames.FilterByDeveloperUseCase;
@@ -18,6 +20,7 @@ import com.gametags.gametags.application.videogame.filter_videogames.FilterBySys
 import com.gametags.gametags.application.videogame.filter_videogames.FilterByTagUseCase;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
+import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +41,9 @@ public class VideoGameController {
 
   @Autowired
   private VideoGameMapper mapper;
+
+  @Autowired
+  private ClassificationMapper classMapper;
 
   @Autowired
   private FindVideoGameByIdUseCase findByIdUseCase;
@@ -68,6 +74,9 @@ public class VideoGameController {
 
   @Autowired
   private FilterBySystemUseCase filterBySystemUseCase;
+
+  @Autowired
+  private AddNewClassificationUseCase addNewClassificationUseCase;
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
@@ -154,5 +163,18 @@ public class VideoGameController {
   public ResponseEntity<List<VideoGameDTO>> filterBySystem(@RequestBody String system){
     System.out.println("ARGUMENTO: " + system.toString());
     return new ResponseEntity<>(filterBySystemUseCase.videoGamesBySystem(system).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
+  }
+
+  @PutMapping("/classification/{videoGameName}")
+  @ResponseStatus(HttpStatus.CREATED)
+  public ResponseEntity<VideoGameDTO> addNewClassificationToExistingVideoGame(@RequestBody CreateClassificationInput input, @PathVariable String videoGameName){
+    try{
+      System.out.println("ARGUMENTO: " + videoGameName.toString());
+      return new ResponseEntity<>(mapper
+          .toDto(addNewClassificationUseCase.addClassification(classMapper.fromDtoToDomain(classMapper
+              .fromInputToDto(input)), videoGameName)), HttpStatus.CREATED);
+    } catch (NoSuchElementException e){
+      throw new NoSuchElementException("El videojuego a actualizar no se encuentra registrado en la base de datos. Prueba con otro nombre");
+    }
   }
 }
