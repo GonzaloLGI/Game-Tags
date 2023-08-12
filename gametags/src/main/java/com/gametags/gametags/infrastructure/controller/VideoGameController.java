@@ -14,6 +14,8 @@ import com.gametags.gametags.application.videogame.create_videogame.CreateVideoG
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameUseCase;
 import com.gametags.gametags.application.videogame.filter_videogames.FilterByDeveloperUseCase;
 import com.gametags.gametags.application.videogame.filter_videogames.FilterByPlatformsUseCase;
+import com.gametags.gametags.application.videogame.filter_videogames.FilterBySystemUseCase;
+import com.gametags.gametags.application.videogame.filter_videogames.FilterByTagUseCase;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;
@@ -60,6 +62,12 @@ public class VideoGameController {
 
   @Autowired
   private FilterByPlatformsUseCase filterByPlatformsUseCase;
+
+  @Autowired
+  private FilterByTagUseCase filterByTagUseCase;
+
+  @Autowired
+  private FilterBySystemUseCase filterBySystemUseCase;
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
@@ -131,7 +139,20 @@ public class VideoGameController {
   @GetMapping("/platforms")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<VideoGameDTO>> filterByPlatforms(@RequestBody List<String> platforms){
-    System.out.println("ARGUMENTO: " + platforms.get(0));
     return new ResponseEntity<>(filterByPlatformsUseCase.videoGamesByPlatforms(platforms).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
+  }
+
+  @GetMapping("/tag")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<VideoGameDTO>> filterByTag(@RequestBody String tag){
+    System.out.println("ARGUMENTO: " + tag.toString());
+    return new ResponseEntity<>(filterByTagUseCase.videoGamesByTag(tag).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
+  }
+
+  @GetMapping("/system")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<VideoGameDTO>> filterBySystem(@RequestBody String system){
+    System.out.println("ARGUMENTO: " + system.toString());
+    return new ResponseEntity<>(filterBySystemUseCase.videoGamesBySystem(system).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 }

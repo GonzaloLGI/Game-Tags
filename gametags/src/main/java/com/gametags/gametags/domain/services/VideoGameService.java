@@ -51,4 +51,12 @@ public class VideoGameService {
     System.out.println(result.toString());
     return result;
   }
+
+  public List<VideoGame> findAllVideoGamesByTag(String tag) {
+    return adapter.findAllByTag(tag);
+  }
+
+  public List<VideoGame> findAllVideoGamesBySystem(String system) {
+    return adapter.findAllBySystem(system);
+  }
 }
