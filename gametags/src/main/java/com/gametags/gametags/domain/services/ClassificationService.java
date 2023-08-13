@@ -34,6 +34,10 @@ public class ClassificationService {
     return adapter.update(classification);
   }
 
+  public Classification findOneClassificationBySystemAndTag(String system, String tag){
+    return adapter.findBySystemAndTag(system,tag);
+  }
+
   public Classification deleteClassification(UUID id) {
     return adapter.delete(id);
   }

@@ -46,4 +46,8 @@ public class ClassificationAdapter {
     repo.deleteById(id);
     return dao;
   }
+
+  public Classification findBySystemAndTag(String system, String tag) {
+    return mapper.fromEntityToDomain(repo.findBySystemAndTag(system,tag).orElseGet(() -> ClassificationDAO.builder().build()));
+  }
 }

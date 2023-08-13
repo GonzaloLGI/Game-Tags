@@ -2,6 +2,7 @@ package com.gametags.gametags.application.videogame.add_new_classification;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.UUID;
 
 import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.domain.model.VideoGame;
@@ -33,8 +34,20 @@ public class AddNewClassificationUseCase {
     }
     System.out.println("[STOP] addClassificationToVideoGame");
     log.debug("[STOP] addClassificationToVideoGame");
-    Classification createdClassification = classificationService.createClassification(newClassification);
-    videoGameToUpdate.getClassifications().add(createdClassification);
+    Classification createdClassification = checkAndAddNewClassifications(newClassification);
+    if(!videoGameToUpdate.getClassifications().contains(createdClassification)){
+      videoGameToUpdate.getClassifications().add(createdClassification);
+    }
     return videoGameService.updateVideoGame(videoGameToUpdate);
+  }
+
+  private Classification checkAndAddNewClassifications(Classification classification){
+    log.debug("CLASIFICACION: " + classification.toString());
+    System.out.println("CLASIFICACION: " + classification);
+    Classification existingClassification = classificationService.findOneClassificationBySystemAndTag(classification.getSystem(), classification.getTag());
+    if(Objects.isNull(existingClassification.getId())){
+      return classificationService.createClassification(classification);
+    }
+    return existingClassification;
   }
 }
