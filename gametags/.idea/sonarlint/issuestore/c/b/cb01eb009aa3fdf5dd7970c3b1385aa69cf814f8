@@ -1,5 +1,0 @@
-
-o
-java:S6204L"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8øÃ„½‡1
-p
-java:S1128"NRemove this unused import 'com.gametags.gametags.infrastructure.dtos.UserDTO'.(êÇ ¯ûÿÿÿÿ8ÚÄ„½‡1

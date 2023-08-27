@@ -37,4 +37,24 @@ public class CommentService {
   public Comment createComment(Comment comment) {
     return adapter.create(comment);
   }
+
+  public List<Comment> findAllCommentsByCategory(String category) {
+    return adapter.findAllByCategory(category);
+  }
+
+  public List<Comment> findAllCommentsBySeverity(String severity) {
+    return adapter.findAllBySeverity(severity);
+  }
+
+  public List<Comment> findAllCommentsByVideoGame(UUID videogame) {
+    return adapter.findAllByVideoGame(videogame);
+  }
+
+  public List<Comment> findAllCommentsByCategoryAndVideoGame(String category, UUID videogame) {
+    return adapter.findAllByCategoryAndVideoGame(category, videogame);
+  }
+
+  public List<Comment> findAllCommentsBySeverityAndVideoGame(String severity, UUID videogame) {
+    return adapter.findAllBySeverityAndVideoGame(severity, videogame);
+  }
 }

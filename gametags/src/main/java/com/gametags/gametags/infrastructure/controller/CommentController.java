@@ -11,9 +11,11 @@ import com.gametags.gametags.application.comment.DeleteCommentUseCase;
 import com.gametags.gametags.application.comment.FindAllCommentsUseCase;
 import com.gametags.gametags.application.comment.FindCommentByIdUseCase;
 import com.gametags.gametags.application.comment.UpdateCommentUseCase;
+import com.gametags.gametags.application.comment.filter_comments.FilterByCategoryUseCase;
+import com.gametags.gametags.application.comment.filter_comments.FilterBySeverityUseCase;
+import com.gametags.gametags.application.comment.filter_comments.FilterByVideoGameUseCase;
 import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
-import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import com.gametags.gametags.infrastructure.mappers.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,6 +50,15 @@ public class CommentController {
 
   @Autowired
   private UpdateCommentUseCase updateUseCase;
+
+  @Autowired
+  private FilterByCategoryUseCase filterByCategoryUseCase;
+
+  @Autowired
+  private FilterBySeverityUseCase filterBySeverityUseCase;
+
+  @Autowired
+  private FilterByVideoGameUseCase filterByVideoGameUseCase;
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
@@ -98,5 +109,39 @@ public class CommentController {
     } catch (NoSuchElementException e) {
       throw new NoSuchElementException("El usuario a eliminar no existe. Prueba con otro");
     }
+  }
+
+  //ESTOS PARA EL USUARIO EN SU PAGINA DE CONSULTAR COMENTARIOS
+  //HABRIA QUE AÑADIR LO DE LA SESION PARA SABER EL USUARIO
+  @GetMapping("/category/user")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<CommentDTO>> filterByCategoryAndUser(@RequestBody String category){
+    return new ResponseEntity<>(filterByCategoryUseCase.commentsByCategoryAndUser(category.toString()).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+  }
+
+  @GetMapping("/severity/user")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<CommentDTO>> filterBySeverityAndUser(@RequestBody String severity){
+    return new ResponseEntity<>(filterBySeverityUseCase.commentsBySeverityAndUser(severity.toString()).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+  }
+
+  @GetMapping("/videogame/user")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<CommentDTO>> filterByVideoGameAndUser(@RequestBody UUID videogame){
+    return new ResponseEntity<>(filterByVideoGameUseCase.commentsByVideoGameAndUser(videogame).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+  }
+
+
+  //ESTOS PARA EL VIDEOJUEGO EN SU PAGINA DE CONSULTAR VIDEOJUEGO
+  @GetMapping("/category/videogame/{id}")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<CommentDTO>> filterByCategoryAndVideoGame(@PathVariable UUID id, @RequestBody String category){
+    return new ResponseEntity<>(filterByCategoryUseCase.commentsByCategoryAndVideoGame(category.toString(), id).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+  }
+
+  @GetMapping("/severity/videogame/{id}")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<CommentDTO>> filterBySeverityAndVideoGame(@PathVariable UUID id, @RequestBody String severity){
+    return new ResponseEntity<>(filterBySeverityUseCase.commentsBySeverityAndVideoGame(severity.toString(), id).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 }
