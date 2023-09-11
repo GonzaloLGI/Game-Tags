@@ -18,6 +18,7 @@ public class FilterBySeverityUseCase {
   private CommentService service;
 
   public List<Comment> commentsBySeverityAndUser(String severity) {
+    //AQUI DEBERIA HACERSE TODA LA LOGICA DEL USUARIO
     System.out.println("[START] filterBySeverity");
     log.debug("[START] filterBySeverity");
     System.out.println("[STOP] filterBySeverity");

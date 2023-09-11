@@ -18,6 +18,7 @@ public class FilterByVideoGameUseCase {
   private CommentService service;
 
   public List<Comment> commentsByVideoGameAndUser(UUID videogame) {
+    //AQUI DEBERIA HACERSE TODA LA LOGICA DEL USUARIO
     System.out.println("[START] filterByVideoGame");
     log.debug("[START] filterByVideoGame");
     System.out.println("[STOP] filterByVideoGame");

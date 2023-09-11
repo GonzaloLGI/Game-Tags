@@ -1,6 +1,5 @@
 package com.gametags.gametags.infrastructure.repositories;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,9 +12,9 @@ public interface CommentRepository extends MongoRepository<CommentDAO, UUID> {
 
   List<CommentDAO> findAllBySeverity(String severity);
 
-  List<CommentDAO> findAllByVideoGame(UUID videogame);
+  List<CommentDAO> findAllByVideogame(UUID videogame);
 
-  List<CommentDAO> findAllByCategoryAndVideoGame(String category, UUID videogame);
+  List<CommentDAO> findAllByCategoryAndVideogame(String category, UUID videogame);
 
-  List<CommentDAO> findAllBySeverityAndVideoGame(String severity, UUID videogame);
+  List<CommentDAO> findAllBySeverityAndVideogame(String severity, UUID videogame);
 }

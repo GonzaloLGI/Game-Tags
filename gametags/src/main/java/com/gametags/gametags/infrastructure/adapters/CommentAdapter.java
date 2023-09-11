@@ -56,14 +56,14 @@ public class CommentAdapter {
   }
 
   public List<Comment> findAllByVideoGame(UUID videogame) {
-    return repo.findAllByVideoGame(videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllByVideogame(videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
 
   public List<Comment> findAllByCategoryAndVideoGame(String category, UUID videogame) {
-    return repo.findAllByCategoryAndVideoGame(category, videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllByCategoryAndVideogame(category, videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
 
   public List<Comment> findAllBySeverityAndVideoGame(String severity, UUID videogame) {
-    return repo.findAllBySeverityAndVideoGame(severity, videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllBySeverityAndVideogame(severity, videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
 }

@@ -19,6 +19,7 @@ public class FilterByCategoryUseCase {
   private CommentService service;
 
   public List<Comment> commentsByCategoryAndUser(String category) {
+    //AQUI DEBERIA HACERSE TODA LA LOGICA DEL USUARIO
     System.out.println("[START] filterByCategory");
     log.debug("[START] filterByCategory");
     System.out.println("[STOP] filterByCategory");

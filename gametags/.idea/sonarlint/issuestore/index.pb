@@ -17,8 +17,6 @@ Msrc/main/java/com/gametags/gametags/application/user/FindAllUsersUseCase.java,
 Msrc/main/java/com/gametags/gametags/application/user/FindUserByIdUseCase.java,9\d\9de28fb26a755aac38650ac4965e6204700362c2
 
 Osrc/main/java/com/gametags/gametags/application/user/FindUserByNameUseCase.java,e\e\eec4d3a5cebf773a849c3e8318bbe2fb54cce47a
-…
-Usrc/main/java/com/gametags/gametags/application/videogame/UpdateVideoGameUseCase.java,3\3\3369355fbbedd5343f8c5ba4a3a82843088ced50
 ‡
 Wsrc/main/java/com/gametags/gametags/application/videogame/FindAllVideoGamesUseCase.java,5\7\57c43f0f89188d890e94aa34a631125e6c4e246a
 ‡
@@ -79,8 +77,6 @@ l
 <src/main/java/com/gametags/gametags/GametagsApplication.java,0\0\00843a078d13ac7973fa833cf8a6ac06d7762386
 w
 Gsrc/main/java/com/gametags/gametags/infrastructure/dtos/CommentDTO.java,6\4\64df3af418bf7d50af9c7a223e5f64f469541fa9
-w
-Gsrc/main/java/com/gametags/gametags/infrastructure/daos/CommentDAO.java,3\0\30c2a822b833aac9042ec5a5884a4cccb5908cad
 }
 Msrc/main/java/com/gametags/gametags/infrastructure/mappers/CommentMapper.java,e\f\ef5622b35b4b50e6cf29fd2ee98eb8de873309cb
 l
@@ -151,8 +147,6 @@ Isrc/main/java/com/gametags/gametags/infrastructure/dtos/VideoGameDTO.java,a\2\
 csrc/main/java/com/gametags/gametags/application/videogame/filter_videogames/FilterByTagUseCase.java,d\a\da09589095c5e2154353fd14c1daebd1296c9a2b
 –
 fsrc/main/java/com/gametags/gametags/application/videogame/filter_videogames/FilterBySystemUseCase.java,3\c\3c405144c2df76c8b29aa22b1be7d77b8901ea34
-7
-HELP.md,1\a\1a273f73b7a477b0745593641bd708a6182c7ad5
 Ž
 ^src/main/java/com/gametags/gametags/application/comment/create_comment/CreateCommentInput.java,7\6\76c6b94b2b85c02eb4aedc0c902403be72b89c17
 ~
@@ -173,8 +167,6 @@ Ssrc/main/java/com/gametags/gametags/infrastructure/repositories/UserRepository.
 Nsrc/main/java/com/gametags/gametags/infrastructure/daos/ClassificationDAO.java,b\d\bd2f739b6b59e178d9742bdf938a0027f55e7972
 t
 Dsrc/main/java/com/gametags/gametags/domain/model/Classification.java,5\9\594c1f35b867726cacc5bae152d1a41c7becc3c4
-”
-dsrc/main/java/com/gametags/gametags/application/videogame/create_videogame/CreateVideoGameInput.java,9\d\9dce337b47e6e6fc1304034e6060312a80a9447c
 
 Osrc/main/java/com/gametags/gametags/infrastructure/mappers/VideoGameMapper.java,4\7\4756d601b9459681d75aa90d18323050eae5047f
 „
@@ -185,3 +177,11 @@ Nsrc/main/java/com/gametags/gametags/domain/services/ClassificationService.java
 Vsrc/main/java/com/gametags/gametags/infrastructure/adapters/ClassificationAdapter.java,7\0\700d4ce9a17ce4de9a24a63fec5cfefe47075b9c
 £
 ssrc/main/java/com/gametags/gametags/application/classification/create_classification/CreateClassificationInput.java,a\f\af8d5552ace047fd43a38854d70c7ab938b274d1
+¡
+qsrc/main/java/com/gametags/gametags/application/videogame/add_new_classification/AddNewClassificationUseCase.java,7\0\7085f683bffab1c205cf37e20c6a556689099943
+™
+isrc/main/java/com/gametags/gametags/application/videogame/filter_videogames/FilterByDeveloperUseCase.java,f\e\fe2ed47db7f9ad3db1da1d0b67a97f8790063c24
+
+]src/main/java/com/gametags/gametags/infrastructure/repositories/ClassificationRepository.java,2\8\28f147f65ae541fbbb5abe7b424d6fc581edc362
+m
+=src/main/java/com/gametags/gametags/domain/model/Comment.java,a\f\aff0e79a249cf9e665a49ea25d79b11344b42f8e
