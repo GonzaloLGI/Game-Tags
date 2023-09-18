@@ -27,7 +27,7 @@ public class VideoGame {
 
   private List<Classification> classifications;
 
-  private UUID uploadUser;
+  private String uploadUser;
 
   private List<Comment> comments;
 }

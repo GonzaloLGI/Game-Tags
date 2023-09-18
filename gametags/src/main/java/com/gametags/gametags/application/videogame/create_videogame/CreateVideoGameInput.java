@@ -29,7 +29,7 @@ public class CreateVideoGameInput {
 
   private List<ClassificationDTO> classifications;
 
-  private UUID uploadUser;
+  private String uploadUser;
 
   private List<CommentDTO> comments;
 }

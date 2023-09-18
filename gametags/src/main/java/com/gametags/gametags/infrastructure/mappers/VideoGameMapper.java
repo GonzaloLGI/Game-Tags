@@ -1,5 +1,6 @@
 package com.gametags.gametags.infrastructure.mappers;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -15,8 +16,12 @@ import com.gametags.gametags.infrastructure.daos.VideoGameDAO;
 import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -37,7 +42,7 @@ public class VideoGameMapper {
         .platforms(input.getPlatforms())
         .uploadDateTime(LocalDateTime.now())
         .classifications(input.getClassifications())
-        .uploadUser(input.getUploadUser())
+        .uploadUser(SecurityContextHolder.getContext().getAuthentication().getName())
         .comments(input.getComments()==null? new ArrayList<CommentDTO>():input.getComments())
         .build();
   }
@@ -65,7 +70,7 @@ public class VideoGameMapper {
         .platforms(input.getPlatforms())
         .uploadDateTime(LocalDateTime.now())
         .classifications(input.getClassifications())
-        .uploadUser(input.getUploadUser())
+        .uploadUser(SecurityContextHolder.getContext().getAuthentication().getName())
         .comments(input.getComments()==null? new ArrayList<CommentDTO>():input.getComments())
         .build();
   }

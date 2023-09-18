@@ -1,0 +1,11 @@
+
+o
+java:S6204W"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8æ„›´£1
+m
+java:S1858w"K"category" is already a string, there's no need to call "toString()" on it.(¬îˆüúÿÿÿÿ8ë„›´£1
+m
+java:S1858}"K"severity" is already a string, there's no need to call "toString()" on it.(Úû«Šÿÿÿÿÿ8í„›´£1
+i
+java:S1858‹"K"category" is already a string, there's no need to call "toString()" on it.(ŞÆ¼8ğ„›´£1
+n
+java:S1858‘"K"severity" is already a string, there's no need to call "toString()" on it.(¬€²£ûÿÿÿÿ8ò„›´£1

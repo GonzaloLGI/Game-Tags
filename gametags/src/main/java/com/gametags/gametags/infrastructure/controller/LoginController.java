@@ -4,11 +4,14 @@ import com.gametags.gametags.application.authentication.LoginDTO;
 import com.gametags.gametags.application.authentication.LoginUserUseCase;
 import com.gametags.gametags.application.authentication.RegisterDTO;
 import com.gametags.gametags.application.authentication.RegisterUserUseCase;
+import com.gametags.gametags.infrastructure.JWTGenerator;
+import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import com.gametags.gametags.infrastructure.mappers.AuthenticationMapper;
 import com.gametags.gametags.infrastructure.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +33,8 @@ public class LoginController {
   @Autowired
   private UserMapper userMapper;
 
-  @PostMapping("/login")
-  public ResponseEntity<Object> loginUser(@RequestBody LoginDTO dto) {
+  @GetMapping("/login")
+  public ResponseEntity<AuthResponseDTO> loginUser(@RequestBody LoginDTO dto) {
     return new ResponseEntity<>(loginUserUseCase.loginUser(authenticationMapper.fromLoginDtoToInput(dto)), HttpStatus.OK);
   }
 

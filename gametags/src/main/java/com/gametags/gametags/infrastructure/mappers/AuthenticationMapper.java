@@ -7,6 +7,7 @@ import com.gametags.gametags.domain.model.RegisterInput;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class AuthenticationMapper {
 
   @Autowired
-  private BCryptPasswordEncoder passwordEncoder;
+  private PasswordEncoder passwordEncoder;
 
   public RegisterInput fromRegisterDtoToInput(RegisterDTO dto) {
     return RegisterInput.builder()

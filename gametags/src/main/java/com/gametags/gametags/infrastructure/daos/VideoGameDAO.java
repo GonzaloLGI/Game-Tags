@@ -34,7 +34,7 @@ public class VideoGameDAO {
 
   private List<ClassificationDAO> classifications;
 
-  private UUID uploadUser;
+  private String uploadUser;
 
   private List<CommentDAO> comments;
 }

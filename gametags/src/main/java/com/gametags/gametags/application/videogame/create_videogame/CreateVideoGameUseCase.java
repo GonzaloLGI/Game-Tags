@@ -6,11 +6,15 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.gametags.gametags.domain.model.Classification;
+import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.domain.services.ClassificationService;
 import com.gametags.gametags.domain.services.VideoGameService;
+import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -32,12 +36,15 @@ public class CreateVideoGameUseCase {
       log.debug("[STOP] createVideoGame");
       return previous;
     }
-    System.out.println("[STOP] createVideoGame");
-    log.debug("[STOP] createVideoGame");
     List<Classification> updatedClassifications = videoGame.getClassifications().stream().map(classification -> checkAndAddNewClassifications(classification)).collect(
         Collectors.toList());
     videoGame.getClassifications().removeAll(videoGame.getClassifications());
     videoGame.getClassifications().addAll(updatedClassifications);
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    String id = auth.getName();
+    log.info("Created videogame by: "+id);
+    System.out.println("[STOP] createVideoGame");
+    log.info("[STOP] createVideoGame");
     return service.createVideoGame(videoGame);
   }
 
