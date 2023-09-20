@@ -1,0 +1,11 @@
+
+y
+java:S1192#"WDefine a constant instead of duplicating this literal "[STOP] createVideoGame" 4 times.(§š„¡şÿÿÿÿ8€ˆ¬¨1
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ÍÔ …ûÿÿÿÿ8”ˆ¬¨1
+Z	java:S106#"9Replace this use of System.out or System.err by a logger.(§š„¡şÿÿÿÿ8•ˆ¬¨1
+n
+java:S6204("RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¸ ãq8–ˆ¬¨1
+m
+java:S1612'"PReplace this lambda with method reference 'this::checkAndAddNewClassifications'.(ÉÌ³Ù8—ˆ¬¨1
+Z	java:S106."9Replace this use of System.out or System.err by a logger.(§š„¡şÿÿÿÿ8›µ‰¬¨1
+T	java:S1065"9Replace this use of System.out or System.err by a logger.(ùà®28ÁÖÕÌª1
