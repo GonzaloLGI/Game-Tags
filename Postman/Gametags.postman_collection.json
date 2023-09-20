@@ -1,0 +1,2749 @@
+{
+	"info": {
+		"_postman_id": "3ebb1d89-8a49-4d78-aae5-9e0cde317d28",
+		"name": "Gametags",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20186535"
+	},
+	"item": [
+		{
+			"name": "Clasificacion",
+			"item": [
+				{
+					"name": "01- Crear clasificacion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idClass1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"system\": \"PEGI\",\r\n    \"country\": \"Europe\",\r\n    \"tag\": \"12\",\r\n    \"url\": \"https://pegi.info/es\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02- Crear otra clasificacion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idClass2\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"system\": \"USK\",\r\n    \"country\": \"Europe\",\r\n    \"tag\": \"16\",\r\n    \"url\": \"https://pegi.info/es\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03- Pedir clasificacion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/classification/{{idClass1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								"{{idClass1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04- Pedir todas las clasificaciones",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05- Actualizar una de las clasificaciones",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{idClass1}}\",\r\n    \"system\": \"ESRB\",\r\n    \"country\": \"EEUU\",\r\n    \"tag\": \"T\",\r\n    \"url\": \"https://pegi.info/es\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06- Pedir todas las clasificaciones despues de haber cambiado una",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "07- Borrar clasificacion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/classification/{{idClass1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								"{{idClass1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "01- Crear usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idUser1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Diddy\",\r\n    \"email\": \"email@hot.com\",\r\n    \"password\": \"jhuhuwgd7678\",\r\n    \"country\": \"Alemania\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02- Crear otro usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idUser2\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Ginger\",\r\n    \"email\": \"email2@hot.com\",\r\n    \"password\": \"i8du8yhdn8j\",\r\n    \"country\": \"Australia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03- Pedir usuario por su id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/id/{{idUser1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"id",
+								"{{idUser1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04- Pedir usuario por su nombre",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/name/Ginger",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"name",
+								"Ginger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05- Pedir todos los usuarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06- Actualizar uno de los usuarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{idUser1}}\",\r\n    \"username\": \"Bigger\",\r\n    \"email\": \"newemail@hot.com\",\r\n    \"password\": \"i8du8yhdn8j\",\r\n    \"country\": \"Australia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "07- Pedir todos los usuarios despues de haber cambiado uno",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "08- Borrar usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/{{idUser1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"{{idUser1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Videojuegos",
+			"item": [
+				{
+					"name": "01- Crear videojuego",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idVideogame1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Grand Theft Auto 3\",\r\n    \"developer\": \"Rockstar North\",\r\n    \"platforms\": [\"PS2\",\"XBOX\",\"PC\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02- Crear otro videojuego",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idVideogame2\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Silent Hill 3\",\r\n    \"developer\": \"Team Silent\",\r\n    \"platforms\": [\"PS2\",\"XBOX\",\"PC\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03- Pedir videojuego por su id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/videogame/id/{{idVideogame1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"id",
+								"{{idVideogame1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04- Pedir todos los videojuegos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05- Actualizar uno de los videojuegos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{idVideogame1}}\",\r\n    \"name\": \"Grand Theft Auto 3\",\r\n    \"developer\":\"Rockstar North\",\r\n    \"platforms\": [\"PS2\",\"XBOX\",\"PC\",\"PS3\",\"XBOX 360\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06- Pedir todos los videojuegos despues de haber actualizado uno",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "07- Borrar videojuego",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/videogame/{{idVideogame1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"{{idVideogame1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comentarios",
+			"item": [
+				{
+					"name": "01- Crear comentario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idComment1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Hay decapitaciones\",\r\n    \"category\": \"Violence\",\r\n    \"severity\": \"Severe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02- Crear otro comentario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idComment2\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Una mujera da de amamantar a su bebe. Se ven sus senos pero no en un contexto sexual\",\r\n    \"category\": \"Sex and Nudity\",\r\n    \"severity\": \"Mild\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03- Pedir comentario por su id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comment/id/{{idComment1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"id",
+								"{{idComment1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04- Pedir todos los comentarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comment/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05- Actualizar uno de los comentarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{idComment1}}\",\r\n    \"text\": \"Hay decapitaciones pero solo contra personajes fantásticos\",\r\n    \"category\": \"Violence\",\r\n    \"severity\": \"Moderate\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06- Pedir todos los comentarios despues de haber actualizado uno",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comment/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "07- Borrar comentario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comment/{{idComment1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"{{idComment1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Creo un usuario, sube un videojuego y comenta sobre el",
+			"item": [
+				{
+					"name": "01- Crear usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idUser1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Diddy\",\r\n    \"email\": \"email@hot.com\",\r\n    \"password\": \"jhuhuwgd7678\",\r\n    \"country\": \"Alemania\",\r\n    \"comments\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02- Pedir usuario por su id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/id/{{idUser1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"id",
+								"{{idUser1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03- Crear clasificacion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idClass1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"system\": \"PEGI\",\r\n    \"country\": \"Europe\",\r\n    \"tag\": \"12\",\r\n    \"url\": \"https://pegi.info/es\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04- Pedir clasificacion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/classification/{{idClass1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								"{{idClass1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05- Crear videojuego",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idVideogame1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Grand Theft Auto 3\",\r\n    \"developer\": \"Rockstar North\",\r\n    \"platforms\": [\"PS2\",\"XBOX\",\"PC\"],\r\n    \"classifications\":[\r\n        {\r\n            \"id\": \"{{idClass1}}\",\r\n            \"system\": \"PEGI\",\r\n            \"country\": \"Europe\",\r\n            \"tag\": \"12\",\r\n            \"url\": \"https://pegi.info/es\"\r\n        }\r\n    ],\r\n    \"uploadUser\": \"{{idUser1}}\",\r\n    \"comments\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06- Pedir videojuego por su id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/videogame/id/{{idVideogame1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"id",
+								"{{idVideogame1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "07- Crear comentario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idComment1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Hay decapitaciones\",\r\n    \"category\": \"Violence\",\r\n    \"severity\": \"Severe\",\r\n    \"uploadUser\":\"{{idUser1}}\",\r\n    \"videogame\":\"{{idVideogame1}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "08- Pedir comentario por su id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comment/id/{{idComment1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"id",
+								"{{idComment1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "09- Pedir videojuego por su id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/videogame/id/{{idVideogame1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"id",
+								"{{idVideogame1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Registrar usuario y loggearte con el",
+			"item": [
+				{
+					"name": "01- Registrar usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"george\",\r\n    \"password\": \"skinnydickus\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02- Loggearte con un usuario existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"bearerToken\", jsonResponse.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"george\",\r\n    \"password\": \"skinnydickus\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03- No puedes loggearte con un usuario que no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"thomas\",\r\n    \"password\": \"obesey\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agregar varios juegos y filtrarlos por los campos",
+			"item": [
+				{
+					"name": "01_1- Crear clasificacion 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idClass1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"system\": \"PEGI\",\r\n    \"country\": \"Europe\",\r\n    \"tag\": \"18\",\r\n    \"url\": \"https://pegi.info/es\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "01_2- Crear clasificacion 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idClass2\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"system\": \"PEGI\",\r\n    \"country\": \"Europe\",\r\n    \"tag\": \"12\",\r\n    \"url\": \"https://pegi.info/es\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "01_3- Crear clasificacion 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idClass3\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"system\": \"ESRB\",\r\n    \"country\": \"EEUU\",\r\n    \"tag\": \"M\",\r\n    \"url\": \"https://www.esrb.org/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_1- Crear videojuego 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Grand Theft Auto 3\",\r\n    \"developer\": \"Rockstar North\",\r\n    \"platforms\": [\"PS2\",\"XBOX\",\"PC\"],\r\n    \"classifications\":[\r\n        {\r\n            \"system\": \"PEGI\",\r\n            \"country\": \"Europe\",\r\n            \"tag\": \"18\",\r\n            \"url\": \"https://pegi.info/es\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_2- Crear videojuego 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Grand Theft Auto Vice City\",\r\n    \"developer\": \"Rockstar North\",\r\n    \"platforms\": [\"PS2\",\"XBOX\",\"PC\"],\r\n    \"classifications\":[\r\n        {\r\n            \"system\": \"PEGI\",\r\n            \"country\": \"Europe\",\r\n            \"tag\": \"18\",\r\n            \"url\": \"https://pegi.info/es\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_3- Crear videojuego 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Grand Theft Auto San Andreas\",\r\n    \"developer\": \"Rockstar North\",\r\n    \"platforms\": [\"PS2\",\"XBOX\",\"PC\"],\r\n    \"classifications\":[\r\n        {\r\n            \"system\": \"PEGI\",\r\n            \"country\": \"Europe\",\r\n            \"tag\": \"18\",\r\n            \"url\": \"https://pegi.info/es\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_4- Crear videojuego 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Prince of Persia\",\r\n    \"developer\": \"Ubisoft Montreal\",\r\n    \"platforms\": [\"PS2\",\"XBOX\",\"PC\"],\r\n    \"classifications\":[\r\n        {\r\n            \"system\": \"PEGI\",\r\n            \"country\": \"Europe\",\r\n            \"tag\": \"12\",\r\n            \"url\": \"https://pegi.info/es\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_5- Crear videojuego 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gears Of War 2\",\r\n    \"developer\": \"Epic Games\",\r\n    \"platforms\": [\"XBOX 360\"],\r\n    \"classifications\":[\r\n        {\r\n            \"system\": \"ESRB\",\r\n            \"country\": \"EEUU\",\r\n            \"tag\": \"M\",\r\n            \"url\": \"https://www.esrb.org/\"\r\n        },\r\n        {\r\n            \"system\": \"PEGI\",\r\n            \"country\": \"Europe\",\r\n            \"tag\": \"18\",\r\n            \"url\": \"https://pegi.info/es\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_1- Pedir todos los videojuegos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_2- Buscar juegos desarrollados por Rockstar North",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Rockstar North",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/developer",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"developer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_3- Buscar juegos desarrollados por Ubisoft Montreal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Ubisoft Montreal",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/developer",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"developer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_4- Buscar juegos desarrollados para PS2 y XBOX",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\"PS2\",\"XBOX\"]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/platforms",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"platforms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_5- Buscar juegos desarrollados para XBOX 360",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\"XBOX 360\"]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/platforms",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"platforms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_6- Buscar juegos con PEGI 12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "12",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/tag",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_7- Buscar juegos con PEGI 18",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "18",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/tag",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_8- Buscar juegos clasificados por PEGI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "PEGI",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/system",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"system"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_9- Buscar juegos clasificados por ESRB",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "ESRB",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/system",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"system"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04_1- Añadir nueva clasificación a juego existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idClass3\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"system\": \"ACB\",\r\n    \"country\": \"Australia\",\r\n    \"tag\": \"MA+15\",\r\n    \"url\": \"https://www.classification.gov.au/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/classification/Gears%20Of%20War%202",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"classification",
+								"Gears%20Of%20War%202"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "No duplicar clasificacion a la hora de agregar una clasificacion a un videojuego existente",
+			"item": [
+				{
+					"name": "01_1- Crear clasificacion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idClass3\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"system\": \"ACB\",\r\n    \"country\": \"Australia\",\r\n    \"tag\": \"MA+15\",\r\n    \"url\": \"https://www.classification.gov.au/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_1- Crear videojuego",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gears Of War 2\",\r\n    \"developer\": \"Epic Games\",\r\n    \"platforms\": [\"XBOX 360\"],\r\n    \"classifications\":[\r\n        {\r\n            \"id\": \"{{idClass3}}\",\r\n            \"system\": \"ESRB\",\r\n            \"country\": \"EEUU\",\r\n            \"tag\": \"M\",\r\n            \"url\": \"https://www.esrb.org/\"\r\n        },\r\n        {\r\n            \"id\": \"{{idClass1}}\",\r\n            \"system\": \"PEGI\",\r\n            \"country\": \"Europe\",\r\n            \"tag\": \"18\",\r\n            \"url\": \"https://pegi.info/es\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_1- Pedir todas las clasificaciones Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04_1- Añadir nueva clasificación a juego existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idClass3\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"system\": \"ACB\",\r\n    \"country\": \"Australia\",\r\n    \"tag\": \"MA+15\",\r\n    \"url\": \"https://www.classification.gov.au/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/classification/Gears%20Of%20War%202",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"classification",
+								"Gears%20Of%20War%202"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_2- Pedir todas las clasificaciones",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/classification/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classification",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Creo  videojuego con comentarios y los filtro por sus campos",
+			"item": [
+				{
+					"name": "01_1- Crear videojuego",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idVideogame1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gears Of War 2\",\r\n    \"developer\": \"Epic Games\",\r\n    \"platforms\": [\"XBOX 360\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "01_2- Actualizar uno de los videojuegos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{idVideogame1}}\",\r\n    \"name\": \"Gears Of War 2\",\r\n    \"developer\":\"Epic Games\",\r\n    \"platforms\": [\"XBOX 360\"],\r\n    \"comments\":[\r\n        {\r\n            \"text\": \"Hay decapitaciones\",\r\n            \"category\": \"Violence\",\r\n            \"severity\": \"Severe\"\r\n        },\r\n        {\r\n            \"text\": \"Muchas veces se usa la palabra 'Joder'\",\r\n            \"category\": \"Language\",\r\n            \"severity\": \"Moderate\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_1-Pedir comentarios de violencia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Violence",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/category/videogame/{{idVideogame1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"category",
+								"videogame",
+								"{{idVideogame1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_2-Pedir comentarios de severidad moderada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Moderate",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/severity/videogame/{{idVideogame1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"severity",
+								"videogame",
+								"{{idVideogame1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "baseUrl2",
+			"value": "http://0.0.0.0:8080",
+			"type": "string"
+		},
+		{
+			"key": "idClass1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idClass2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idClass3",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idUser1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idUser2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idVideogame1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idVideogame2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idComment1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idComment2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bearerToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
