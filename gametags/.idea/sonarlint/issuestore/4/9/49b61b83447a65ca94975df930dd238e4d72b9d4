@@ -9,12 +9,12 @@ i
 java:S1858•"L"developer" is already a string, there's no need to call "toString()" on it.(íÓw8×Ô¨1
 p
 java:S6204›"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Æü¾‘8ÙÔ¨1
-V	java:S106¡"9Replace this use of System.out or System.err by a logger.(¬’—Î8àÔ¨1
+H	java:S106¡"+Replace this use of System.out by a logger.(¬’—Î8àÔ¨1
 d
 java:S1858¡"F"tag" is already a string, there's no need to call "toString()" on it.(¬’—Î8ÜÔ¨1
-[	java:S106¨"9Replace this use of System.out or System.err by a logger.(ÜËè•øÿÿÿÿ8ãÔ¨1
+M	java:S106¨"+Replace this use of System.out by a logger.(ÜËè•øÿÿÿÿ8ãÔ¨1
 l
 java:S1858¨"I"system" is already a string, there's no need to call "toString()" on it.(ÜËè•øÿÿÿÿ8áÔ¨1
-U	java:S106°"9Replace this use of System.out or System.err by a logger.(Æ¼m8ÀÚ•Ìª1
+G	java:S106°"+Replace this use of System.out by a logger.(Æ¼m8ÀÚ•Ìª1
 m
 java:S1858°"P"videoGameName" is already a string, there's no need to call "toString()" on it.(Æ¼m8åÔ¨1

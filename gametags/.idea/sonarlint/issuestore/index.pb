@@ -231,3 +231,7 @@ fsrc/main/java/com/gametags/gametags/application/videogame/create_videogame/Crea
 Vsrc/main/java/com/gametags/gametags/infrastructure/controller/VideoGameController.java,4\9\49b61b83447a65ca94975df930dd238e4d72b9d4
 Ñ
 Tsrc/main/java/com/gametags/gametags/application/authentication/LoginUserUseCase.java,e\6\e6c34d91e6c1c97765bad26ac6148908087348c9
+ç
+]src/main/java/com/gametags/gametags/application/user/update_password/UpdatePasswordInput.java,a\1\a132c8834ea8e45f1c2dac187b2578f0fcf7941a
+è
+_src/main/java/com/gametags/gametags/application/user/update_password/UpdatePasswordUseCase.java,a\a\aa3881b3635be4c7dc252cb49c90163365395a27

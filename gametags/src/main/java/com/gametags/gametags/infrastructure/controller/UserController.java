@@ -13,9 +13,12 @@ import com.gametags.gametags.application.user.FindUserByNameUseCase;
 import com.gametags.gametags.application.user.UpdateUserUseCase;
 import com.gametags.gametags.application.user.create_user.CreateUserInput;
 import com.gametags.gametags.application.user.create_user.CreateUserUseCase;
+import com.gametags.gametags.application.user.update_password.UpdatePasswordInput;
+import com.gametags.gametags.application.user.update_password.UpdatePasswordUseCase;
 import com.gametags.gametags.application.user.update_username.UpdateUsernameInput;
 import com.gametags.gametags.application.user.update_username.UpdateUsernameUseCase;
 import com.gametags.gametags.domain.model.User;
+import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import com.gametags.gametags.infrastructure.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +61,9 @@ public class UserController {
 
   @Autowired
   private UpdateUsernameUseCase updateUsernameUseCase;
+
+  @Autowired
+  private UpdatePasswordUseCase updatePasswordUseCase;
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
@@ -123,7 +129,13 @@ public class UserController {
 
   @PutMapping("/username")
   @ResponseStatus(HttpStatus.ACCEPTED)
-  public ResponseEntity<UserDTO> updateUsername(@RequestBody UpdateUsernameInput input, Principal principal){
-    return new ResponseEntity<>(mapper.toDto(updateUsernameUseCase.updateUsername(input.getNewUsername(), principal)), HttpStatus.ACCEPTED);
+  public ResponseEntity<AuthResponseDTO> updateUsername(@RequestBody UpdateUsernameInput input, Principal principal){
+    return new ResponseEntity<>(updateUsernameUseCase.updateUsername(input.getNewUsername(), input.getExistingPassword(), principal), HttpStatus.ACCEPTED);
+  }
+
+  @PutMapping("/password")
+  @ResponseStatus(HttpStatus.ACCEPTED)
+  public ResponseEntity<AuthResponseDTO> updatePassword(@RequestBody UpdatePasswordInput input){
+    return new ResponseEntity<>(updatePasswordUseCase.updatePassword(input), HttpStatus.ACCEPTED);
   }
 }

@@ -1,4 +1,4 @@
-package com.gametags.gametags.application.user.update_username;
+package com.gametags.gametags.application.user.update_password;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class UpdateUsernameInput {
+public class UpdatePasswordInput {
 
-  private String newUsername;
+    private String newPassword;
 
-  private String existingPassword;
+    private String existingPassword;
+
 }
