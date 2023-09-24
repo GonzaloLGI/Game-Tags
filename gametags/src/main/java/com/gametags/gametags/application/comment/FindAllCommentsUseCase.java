@@ -16,8 +16,8 @@ public class FindAllCommentsUseCase {
   private CommentService service;
 
   public List<Comment> findAllComments() {
-    System.out.println("[START] Searching all comments");
-    //    log.debug("[START] Searching all users");
+    log.info("[START] Searching all users");
+    log.info("[STOP] Searching all users");
     return service.findAllComments();
   }
 }

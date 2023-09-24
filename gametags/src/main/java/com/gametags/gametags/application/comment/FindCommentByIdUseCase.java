@@ -19,14 +19,12 @@ public class FindCommentByIdUseCase {
   private CommentService service;
 
   public Comment findOneComment(UUID id) {
-    System.out.println("[START] Searching comment with id: " + id);
-    //    log.debug("[START] Searching user with id: " + id);
+    log.info("[START] Searching user with id: " + id);
     Comment comment = service.findOneCommentById(id);
     if (Objects.isNull(comment.getId())) {
       throw new NoSuchElementException("The comment is not registered");
     }
-    System.out.println("[STOP] findOneComment");
-    //    log.debug("[STOP] findOneUser");
+    log.info("[STOP] findOneUser");
     return comment;
   }
 }

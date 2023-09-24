@@ -33,7 +33,6 @@ public class UpdateUsernameUseCase {
 
   public AuthResponseDTO updateUsername(String newUsername, String existingPassword, Principal principal) {
     String username = principal.getName();
-    System.out.println("EXISTING USERNAME: " + username);
     log.info("EXISTING USERNAME: " + username);
     User existingUser = service.findOneUserByUsername(username);
     User changedUser = User.builder()

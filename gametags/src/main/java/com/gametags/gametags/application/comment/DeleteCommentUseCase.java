@@ -18,12 +18,10 @@ public class DeleteCommentUseCase {
   private CommentService service;
 
   public Comment deleteComment(UUID id) {
-    System.out.println("[START] Deleting comment with id: " + id);
-    //    log.debug("[START] Deleting user with id: " + id);
+    log.info("[START] Deleting user with id: " + id);
     Comment comment = service.findOneCommentById(id);
     if (!Objects.isNull(comment.getId())) {
-      System.out.println("[STOP] Deleting comment with id: " + id);
-      //      log.debug("[STOP] Deleting user with id: " + id);
+      log.info("[STOP] Deleting user with id: " + id);
       return service.deleteComment(id);
     } else {
       throw new NoSuchElementException("Non existing comment");

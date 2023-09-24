@@ -1,5 +1,5 @@
 
-o
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ú´Ğğ8–àÖ¨1
-e
-java:S1612"HReplace this lambda with method reference 'SimpleGrantedAuthority::new'.(ú´Ğğ8—àÖ¨1
+h
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ú´Ğğ
+^
+java:S1612"HReplace this lambda with method reference 'SimpleGrantedAuthority::new'.(ú´Ğğ

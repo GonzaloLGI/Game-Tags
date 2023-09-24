@@ -16,10 +16,8 @@ public class FilterBySystemUseCase {
   private VideoGameService service;
 
   public List<VideoGame> videoGamesBySystem(String system) {
-    System.out.println("[START] filterBySystem");
-    System.out.println("[STOP] filterBySystem");
-    log.debug("[START] filterBySystem");
-    log.debug("[STOP] filterBySystem");
+    log.info("[START] filterBySystem: " + system);
+    log.info("[STOP] filterBySystem: " + system);
     return service.findAllVideoGamesBySystem(system);
   }
 }

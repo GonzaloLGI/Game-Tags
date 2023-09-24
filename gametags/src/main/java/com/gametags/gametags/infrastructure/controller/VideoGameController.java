@@ -158,14 +158,12 @@ public class VideoGameController {
   @GetMapping("/tag")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<VideoGameDTO>> filterByTag(@RequestBody String tag){
-    System.out.println("ARGUMENTO: " + tag.toString());
     return new ResponseEntity<>(filterByTagUseCase.videoGamesByTag(tag).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
   @GetMapping("/system")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<VideoGameDTO>> filterBySystem(@RequestBody String system){
-    System.out.println("ARGUMENTO: " + system.toString());
     return new ResponseEntity<>(filterBySystemUseCase.videoGamesBySystem(system).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
@@ -173,7 +171,6 @@ public class VideoGameController {
   @ResponseStatus(HttpStatus.CREATED)
   public ResponseEntity<VideoGameDTO> addNewClassificationToExistingVideoGame(@RequestBody CreateClassificationInput input, @PathVariable String videoGameName){
     try{
-      System.out.println("ARGUMENTO: " + videoGameName.toString());
       return new ResponseEntity<>(mapper
           .toDto(addNewClassificationUseCase.addClassification(classMapper.fromDtoToDomain(classMapper
               .fromInputToDto(input)), videoGameName)), HttpStatus.CREATED);

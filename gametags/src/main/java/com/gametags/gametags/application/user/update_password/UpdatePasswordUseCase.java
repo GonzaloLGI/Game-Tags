@@ -13,8 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.security.Principal;
-
 @Component
 @Slf4j
 public class UpdatePasswordUseCase {
@@ -34,16 +32,14 @@ public class UpdatePasswordUseCase {
     public AuthResponseDTO updatePassword(UpdatePasswordInput input) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = service.findOneUserByUsername(username);
-        System.out.println("EXISTING PASSWORD: " + user.getPassword());
         log.info("EXISTING PASSWORD: " + user.getPassword());
-        User existingUser = service.findOneUserByUsername(username);
         String newPasswordEncoded = passwordEncoder.encode(input.getNewPassword());
         User changedUser = User.builder()
-                .id(existingUser.getId())
-                .roles(existingUser.getRoles())
-                .email(existingUser.getEmail())
-                .country(existingUser.getCountry())
-                .username(existingUser.getUsername())
+                .id(user.getId())
+                .roles(user.getRoles())
+                .email(user.getEmail())
+                .country(user.getCountry())
+                .username(user.getUsername())
                 .password(newPasswordEncoded)
                 .build();
         if(passwordEncoder.matches(input.getExistingPassword(),user.getPassword())){

@@ -16,10 +16,8 @@ public class FilterByDeveloperUseCase {
   private VideoGameService service;
 
   public List<VideoGame> videoGamesByDeveloper(String developer) {
-    System.out.println("[START] filterByDeveloper");
-    log.debug("[START] filterByDeveloper");
-    System.out.println("[STOP] filterByDeveloper");
-    log.debug("[STOP] filterByDeveloper");
+    log.info("[START] filterByDeveloper");
+    log.info("[STOP] filterByDeveloper");
     return service.findAllVideoGamesByDeveloper(developer);
   }
 }

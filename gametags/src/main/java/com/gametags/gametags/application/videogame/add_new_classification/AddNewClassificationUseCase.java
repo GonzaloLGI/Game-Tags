@@ -24,16 +24,13 @@ public class AddNewClassificationUseCase {
   private ClassificationService classificationService;
 
   public VideoGame addClassification(Classification newClassification, String videoGameName) {
-    System.out.println("[START] addClassificationToVideoGame");
-    log.debug("[START] addClassificationToVideoGame");
+    log.info("[START] addClassificationToVideoGame: " + videoGameName);
     VideoGame videoGameToUpdate = videoGameService.findVideoGameByName(videoGameName);
     if (Objects.isNull(videoGameToUpdate.getId())) {
-      System.out.println("[STOP] addClassificationToVideoGame");
-      log.debug("[STOP] addClassificationToVideoGame");
+      log.info("[STOP] addClassificationToVideoGame: " + videoGameName);
       throw new NoSuchElementException("The videogame is not registered");
     }
-    System.out.println("[STOP] addClassificationToVideoGame");
-    log.debug("[STOP] addClassificationToVideoGame");
+    log.info("[STOP] addClassificationToVideoGame: " + videoGameName);
     Classification createdClassification = checkAndAddNewClassifications(newClassification);
     if(!videoGameToUpdate.getClassifications().contains(createdClassification)){
       videoGameToUpdate.getClassifications().add(createdClassification);
@@ -42,8 +39,7 @@ public class AddNewClassificationUseCase {
   }
 
   private Classification checkAndAddNewClassifications(Classification classification){
-    log.debug("CLASIFICACION: " + classification.toString());
-    System.out.println("CLASIFICACION: " + classification);
+    log.info("CLASIFICACION: " + classification.toString());
     Classification existingClassification = classificationService.findOneClassificationBySystemAndTag(classification.getSystem(), classification.getTag());
     if(Objects.isNull(existingClassification.getId())){
       return classificationService.createClassification(classification);

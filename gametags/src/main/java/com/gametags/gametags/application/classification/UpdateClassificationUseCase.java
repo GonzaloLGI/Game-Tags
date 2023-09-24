@@ -17,14 +17,12 @@ public class UpdateClassificationUseCase {
   private ClassificationService service;
 
   public Classification updateClassification(Classification classification) {
-    System.out.println("[START] updateClassification");
-    //    log.debug("[START] updateClassification");
+    log.info("[START] updateClassification");
     Classification foundClassification = service.findOneClassification(classification.getId());
     if (Objects.isNull(foundClassification.getId())) {
       throw new NoSuchElementException("The classification is not registered");
     }
-    System.out.println("[STOP] updateClassification");
-    //    log.debug("[STOP] updateClassification");
+    log.info("[STOP] updateClassification");
     return service.updateClassification(classification);
   }
 }

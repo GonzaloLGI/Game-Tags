@@ -4,7 +4,6 @@ import com.gametags.gametags.application.authentication.LoginDTO;
 import com.gametags.gametags.application.authentication.LoginUserUseCase;
 import com.gametags.gametags.application.authentication.RegisterDTO;
 import com.gametags.gametags.application.authentication.RegisterUserUseCase;
-import com.gametags.gametags.infrastructure.JWTGenerator;
 import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import com.gametags.gametags.infrastructure.mappers.AuthenticationMapper;
 import com.gametags.gametags.infrastructure.mappers.UserMapper;

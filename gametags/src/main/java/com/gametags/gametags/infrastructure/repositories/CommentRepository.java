@@ -8,11 +8,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface CommentRepository extends MongoRepository<CommentDAO, UUID> {
 
-  List<CommentDAO> findAllByCategory(String category);
+  List<CommentDAO> findAllByCategoryAndUploadUser(String category, UUID uploadUser);
 
-  List<CommentDAO> findAllBySeverity(String severity);
+  List<CommentDAO> findAllBySeverityAndUploadUser(String severity, UUID uploadUser);
 
-  List<CommentDAO> findAllByVideogame(UUID videogame);
+  List<CommentDAO> findAllByVideogameAndUploadUser(UUID videogame, UUID uploadUser);
 
   List<CommentDAO> findAllByCategoryAndVideogame(String category, UUID videogame);
 

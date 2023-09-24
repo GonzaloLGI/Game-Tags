@@ -111,8 +111,6 @@ public class CommentController {
     }
   }
 
-  //ESTOS PARA EL USUARIO EN SU PAGINA DE CONSULTAR COMENTARIOS
-  //HABRIA QUE AÑADIR LO DE LA SESION PARA SABER EL USUARIO
   @GetMapping("/category/user")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterByCategoryAndUser(@RequestBody String category){
@@ -131,8 +129,6 @@ public class CommentController {
     return new ResponseEntity<>(filterByVideoGameUseCase.commentsByVideoGameAndUser(videogame).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
-
-  //ESTOS PARA EL VIDEOJUEGO EN SU PAGINA DE CONSULTAR VIDEOJUEGO
   @GetMapping("/category/videogame/{id}")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterByCategoryAndVideoGame(@PathVariable UUID id, @RequestBody String category){

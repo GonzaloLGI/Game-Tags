@@ -48,7 +48,7 @@ public class VideoGameService {
 
   public List<VideoGame> findAllVideoGamesByPlatforms(List<String> platforms) {
     List<VideoGame> result = adapter.findAllByPlatforms(platforms);
-    System.out.println(result.toString());
+    log.debug(result.toString());
     return result;
   }
 

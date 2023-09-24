@@ -18,14 +18,12 @@ public class FindClassificationByIdUseCase {
   private ClassificationService service;
 
   public Classification findOneClassification(UUID id) {
-    System.out.println("[START] Searching classification with id: " + id);
-    //    log.debug("[START] Searching classification with id: " + id);
+    log.info("[START] Searching classification with id: " + id);
     Classification classification = service.findOneClassification(id);
     if (Objects.isNull(classification.getId())) {
       throw new NoSuchElementException("The classification is not registered");
     }
-    System.out.println("[STOP] findOneClassification");
-    //    log.debug("[STOP] findOneClassification");
+    log.info("[STOP] findOneClassification");
     return classification;
   }
 }

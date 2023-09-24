@@ -17,10 +17,8 @@ public class FilterByPlatformsUseCase {
   private VideoGameService service;
 
   public List<VideoGame> videoGamesByPlatforms(List<String> platforms) {
-    System.out.println("[START] filterByPlatforms");
-    log.debug("[START] filterByPlatforms");
-    System.out.println("[STOP] filterByPlatforms");
-    log.debug("[STOP] filterByPlatforms");
+    log.info("[START] filterByPlatforms");
+    log.info("[STOP] filterByPlatforms");
     return service.findAllVideoGamesByPlatforms(platforms);
   }
 }

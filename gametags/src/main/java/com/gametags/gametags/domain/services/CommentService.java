@@ -38,16 +38,16 @@ public class CommentService {
     return adapter.create(comment);
   }
 
-  public List<Comment> findAllCommentsByCategory(String category) {
-    return adapter.findAllByCategory(category);
+  public List<Comment> findAllCommentsByCategoryAndUploadUser(String category, UUID userId) {
+    return adapter.findAllByCategoryAndUploadUser(category, userId);
   }
 
-  public List<Comment> findAllCommentsBySeverity(String severity) {
-    return adapter.findAllBySeverity(severity);
+  public List<Comment> findAllCommentsBySeverityAndUploadUser(String severity, UUID userId) {
+    return adapter.findAllBySeverityAndUploadUser(severity, userId);
   }
 
-  public List<Comment> findAllCommentsByVideoGame(UUID videogame) {
-    return adapter.findAllByVideoGame(videogame);
+  public List<Comment> findAllCommentsByVideoGameAndUploadUser(UUID videogame, UUID userId) {
+    return adapter.findAllByVideoGameAndUploadUser(videogame, userId);
   }
 
   public List<Comment> findAllCommentsByCategoryAndVideoGame(String category, UUID videogame) {

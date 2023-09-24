@@ -16,7 +16,8 @@ public class FindAllVideoGamesUseCase {
   private VideoGameService service;
 
   public List<VideoGame> findAllVideoGames() {
-    System.out.println("[START] findAllVideoGames");
+    log.info("[START] findAllVideoGames");
+    log.info("[STOP] findAllVideoGames");
     return service.findAllVideoGames();
   }
 }

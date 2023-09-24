@@ -17,14 +17,12 @@ public class UpdateCommentUseCase {
   private CommentService service;
 
   public Comment updateComment(Comment comment) {
-    System.out.println("[START] updateComment");
-    //    log.debug("[START] updateUser");
+    log.info("[START] updateUser");
     Comment foundComment = service.findOneCommentById(comment.getId());
     if (Objects.isNull(foundComment.getId())) {
       throw new NoSuchElementException("The comment is not registered");
     }
-    System.out.println("[STOP] updateComment");
-    //    log.debug("[STOP] updateUser");
+    log.info("[STOP] updateUser");
     return service.updateComment(comment);
   }
 }

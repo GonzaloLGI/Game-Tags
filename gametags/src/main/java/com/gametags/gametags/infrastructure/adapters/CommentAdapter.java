@@ -47,16 +47,16 @@ public class CommentAdapter {
     return mapper.fromEntityToDomain(repo.save(mapper.toEntity(comment)));
   }
 
-  public List<Comment> findAllByCategory(String category) {
-    return repo.findAllByCategory(category).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+  public List<Comment> findAllByCategoryAndUploadUser(String category, UUID userId) {
+    return repo.findAllByCategoryAndUploadUser(category, userId).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
 
-  public List<Comment> findAllBySeverity(String severity) {
-    return repo.findAllBySeverity(severity).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+  public List<Comment> findAllBySeverityAndUploadUser(String severity, UUID userId) {
+    return repo.findAllBySeverityAndUploadUser(severity, userId).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
 
-  public List<Comment> findAllByVideoGame(UUID videogame) {
-    return repo.findAllByVideogame(videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+  public List<Comment> findAllByVideoGameAndUploadUser(UUID videogame, UUID userId) {
+    return repo.findAllByVideogameAndUploadUser(videogame, userId).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
 
   public List<Comment> findAllByCategoryAndVideoGame(String category, UUID videogame) {

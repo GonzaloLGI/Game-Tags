@@ -1,6 +1,3 @@
 
-V
-java:S1854."9Remove this useless assignment to local variable "token".(ø¯éû8¬Ïê«1
-L	java:S106"+Replace this use of System.out by a logger.(¨ÕÊôûÿÿÿÿ8ñÍ«1
-G
-java:S1481."*Remove this unused "token" local variable.(ø¯éû8¯Ïê«1
+g	java:S1128"FDefine and throw a dedicated exception instead of using a generic one.(€Öşÿÿÿÿ8Şú†È«1
+L	java:S106$"+Replace this use of System.out by a logger.(ú¢“°úÿÿÿÿ8ãú†È«1

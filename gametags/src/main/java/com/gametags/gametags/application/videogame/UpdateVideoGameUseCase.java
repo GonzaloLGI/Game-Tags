@@ -25,22 +25,21 @@ public class UpdateVideoGameUseCase {
   private CommentService commentService;
 
   public VideoGame updateVideoGame(VideoGame videogame) {
-    System.out.println("[START] updateVideoGame");
+    log.info("[START] updateVideoGame");
     VideoGame toUpdate = service.findOneVideoGame(videogame.getId());
     if (Objects.isNull(toUpdate.getId())) {
-      System.out.println("[STOP] updateVideoGame");
+      log.info("[STOP] updateVideoGame");
       throw new NoSuchElementException("The videogame is not registered");
     }
-    System.out.println("[STOP] updatedVideoGame");
     List<Comment> updatedComments =  videogame.getComments().stream().map(comment -> addNewComment(comment,videogame.getId())).collect(Collectors.toList());
     videogame.getComments().removeAll(videogame.getComments());
     videogame.getComments().addAll(updatedComments);
+    log.info("[STOP] updateVideoGame");
     return service.updateVideoGame(videogame);
   }
 
   private Comment addNewComment(Comment comment, UUID videogame){
-    System.out.println("COMMENT: " + comment.getText());
-    log.debug("COMMENT: " + comment.getText());
+    log.info("COMMENT: " + comment.getText());
     Comment newComment = Comment.builder()
         .id(UUID.randomUUID())
         .videogame(videogame)

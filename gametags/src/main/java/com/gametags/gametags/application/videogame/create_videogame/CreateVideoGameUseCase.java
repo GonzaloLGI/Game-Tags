@@ -28,12 +28,10 @@ public class CreateVideoGameUseCase {
   private ClassificationService classificationService;
 
   public VideoGame createVideoGame(VideoGame videoGame) {
-    System.out.println("[START] createVideoGame");
-    log.debug("[START] createVideoGame");
+    log.info("[START] createVideoGame");
     VideoGame previous = service.findVideoGameByName(videoGame.getName());
     if (!Objects.isNull(previous.getId())) {
-      System.out.println("[STOP] createVideoGame");
-      log.debug("[STOP] createVideoGame");
+      log.info("[STOP] createVideoGame");
       return previous;
     }
     List<Classification> updatedClassifications = videoGame.getClassifications().stream().map(classification -> checkAndAddNewClassifications(classification)).collect(
@@ -43,14 +41,12 @@ public class CreateVideoGameUseCase {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     String id = auth.getName();
     log.info("Created videogame by: "+id);
-    System.out.println("[STOP] createVideoGame");
     log.info("[STOP] createVideoGame");
     return service.createVideoGame(videoGame);
   }
 
   private Classification checkAndAddNewClassifications(Classification classification){
-    log.debug("CLASIFICACION: " + classification.getId());
-    System.out.println("CLASIFICACION: " + classification.getId());
+    log.info("CLASIFICACION: " + classification.getId());
     Classification existingClassification = classificationService.findOneClassificationBySystemAndTag(classification.getSystem(), classification.getTag());
     if(Objects.isNull(existingClassification.getId())){
       Classification newClassification = Classification.builder()

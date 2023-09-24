@@ -16,10 +16,8 @@ public class FilterByTagUseCase {
   private VideoGameService service;
 
   public List<VideoGame> videoGamesByTag(String tag) {
-    System.out.println("[START] filterByTag");
-    System.out.println("[STOP] filterByTag");
-    log.debug("[START] filterByTag");
-    log.debug("[STOP] filterByTag");
+    log.info("[START] filterByTag: " + tag);
+    log.info("[STOP] filterByTag: " + tag);
     return service.findAllVideoGamesByTag(tag);
   }
 }
