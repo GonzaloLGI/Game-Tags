@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Component
@@ -33,7 +35,7 @@ public class LoginUserUseCase {
     User user = userService.findOneUserByUsername(input.getUserName());
     if(ObjectUtils.isNotEmpty(user)){
       Authentication authentication = authenticationManager
-              .authenticate(new UsernamePasswordAuthenticationToken(input.getUserName(), input.getPassword()));
+              .authenticate(new UsernamePasswordAuthenticationToken(input.getUserName(), input.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_USER"))));
       SecurityContextHolder.getContext().setAuthentication(authentication);
       log.info("User logged" + SecurityContextHolder.getContext().getAuthentication().getName());
       String token = jwtGenerator.generateToken(authentication);
@@ -41,6 +43,5 @@ public class LoginUserUseCase {
     }else{
       throw new NoSuchElementException("The user doesn't exist");
     }
-
   }
 }

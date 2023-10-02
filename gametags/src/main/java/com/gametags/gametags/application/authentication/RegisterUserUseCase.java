@@ -27,7 +27,7 @@ public class RegisterUserUseCase {
         .password(input.getPassword())
         .username(input.getUserName())
         .country(input.getCountry())
-        .roles(List.of("USER"))
+        .roles(List.of("ROLE_USER"))
         .build());
   }
 }

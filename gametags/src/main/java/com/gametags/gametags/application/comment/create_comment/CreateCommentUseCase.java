@@ -5,6 +5,7 @@ import com.gametags.gametags.domain.model.User;
 import com.gametags.gametags.domain.services.CommentService;
 import com.gametags.gametags.domain.services.UserService;
 import com.gametags.gametags.infrastructure.JWTGenerator;
+import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class CreateCommentUseCase {
   @Autowired
   private AuthenticationManager authenticationManager;
 
-  public Comment createComment(Comment comment) {
+  public AuthResponseDTO createComment(Comment comment) {
     log.info("[START] Creating comment with data: " + comment.getId() + " " + comment.getCategory() + " " + comment.getSeverity());
     User actualUser = userService.findOneUserById(comment.getUploadUser());
     if(ObjectUtils.isNotEmpty(actualUser)){
@@ -49,8 +50,13 @@ public class CreateCommentUseCase {
               .comments(oldComments)
               .build();
       userService.updateUser(updatedUser);
+      Authentication authentication = new UsernamePasswordAuthenticationToken(actualUser.getUsername(), actualUser.getPassword());
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+      authenticationManager.authenticate(authentication);
+      String token = jwtGenerator.generateToken(authentication);
+      service.createComment(comment);
       log.info("[STOP] Creating comment with data: " + comment.getId() + " " + comment.getCategory() + " " + comment.getSeverity());
-      return service.createComment(comment);
+      return new AuthResponseDTO(token);
     }else{
       throw new NoSuchElementException("User doesn't exist");
     }

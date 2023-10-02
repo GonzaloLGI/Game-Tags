@@ -25,4 +25,6 @@ public class CreateCommentInput {
   private UUID uploadUser;
 
   private UUID videogame;
+
+  private String password;
 }

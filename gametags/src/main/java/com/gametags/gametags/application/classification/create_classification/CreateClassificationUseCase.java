@@ -18,13 +18,9 @@ public class CreateClassificationUseCase {
   private ClassificationService service;
 
   public Classification createClassification(Classification classification) {
-    //PUEDE QUE YA ESTE SOLUCIONADO
-    //ESTO NO TIENE MUCHO SENTIDO YA QUE PODRIA HABER VARIAS CLASIFICACIONES IGUALES PERO CON DISTINTO ID
-    //SE DEBERIA COMPROBAR CONSULTANDO SI YA EXISTE UNA CLASIFICACION DE LA MISMA ENTIDAD EN EL VIDEOJUEGO
-
-    log.info("[START] Creating classification with data: " + classification.getId() + classification.getSystem() + classification.getCountry());
-    Classification previous = service.findOneClassification(classification.getId());
-    if (Objects.isNull(previous.getId()) && ObjectUtils.isEmpty(service.findOneClassificationBySystemAndTag(classification.getSystem(), classification.getTag()))) {
+    log.info("[START] Creating classification with data: " + classification.getId() + " " + classification.getSystem() + " " + classification.getCountry());
+    if (Objects.isNull(service.findOneClassification(classification.getId()).getId()) &&
+            Objects.isNull(service.findOneClassificationBySystemAndTag(classification.getSystem(), classification.getTag()).getId())) {
       log.info("[STOP] createClassification");
       return service.createClassification(classification);
     }else{

@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug=true)
 public class SecurityConfig {
 
   @Autowired
@@ -26,10 +26,6 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    /*return http.authorizeHttpRequests(auth -> {
-          auth.anyRequest().authenticated();
-        }).formLogin(Customizer.withDefaults())
-        .build();*/
     http
         .csrf().disable()
         .exceptionHandling()
@@ -39,10 +35,17 @@ public class SecurityConfig {
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authorizeHttpRequests()
-        .requestMatchers(HttpMethod.GET).permitAll()
-        .requestMatchers(HttpMethod.POST).permitAll()
-            .requestMatchers(HttpMethod.PUT).permitAll()
-//        .requestMatchers("/auth/**").permitAll()
+        .requestMatchers("/auth/**").permitAll()
+            .requestMatchers("/user/**").hasAuthority("ROLE_USER")
+            .requestMatchers("/comment").hasAuthority("ROLE_USER")
+            .requestMatchers("/comment/{id}").hasAuthority("ROLE_USER")
+            .requestMatchers("/comment/videogame/user").hasAuthority("ROLE_USER")
+            .requestMatchers("/comment/severity/user").hasAuthority("ROLE_USER")
+            .requestMatchers("/comment/category/user").hasAuthority("ROLE_USER")
+            .requestMatchers("/videogame/classification/{videoGameName}").hasAuthority("ROLE_USER")
+            .requestMatchers("/videogame/{id}").hasAuthority("ROLE_USER")
+            .requestMatchers("/videogame").hasAuthority("ROLE_USER")
+            .requestMatchers("/classification/**").hasAuthority("ROLE_USER")
         .anyRequest().authenticated()
         .and()
         .httpBasic();

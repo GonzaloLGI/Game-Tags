@@ -32,7 +32,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
       String username = tokenGenerator.getUsernameFromJWT(token);
       logger.info("USUARIO: " + username);
       UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
-      UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getAuthorities());
+      logger.info("AUTORIDADES: " + userDetails.getAuthorities().toString());
+      UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
       authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
       SecurityContextHolder.getContext().setAuthentication(authenticationToken);
       session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());

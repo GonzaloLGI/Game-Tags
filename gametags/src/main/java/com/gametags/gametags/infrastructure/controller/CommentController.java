@@ -15,6 +15,7 @@ import com.gametags.gametags.application.comment.filter_comments.FilterByCategor
 import com.gametags.gametags.application.comment.filter_comments.FilterBySeverityUseCase;
 import com.gametags.gametags.application.comment.filter_comments.FilterByVideoGameUseCase;
 import com.gametags.gametags.domain.model.Comment;
+import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
 import com.gametags.gametags.infrastructure.mappers.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,11 +63,10 @@ public class CommentController {
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<CommentDTO> createComment(@RequestBody CreateCommentInput input) {
-    return new ResponseEntity<>(mapper
-        .toDto(createUseCase.createComment(mapper
+  public ResponseEntity<AuthResponseDTO> createComment(@RequestBody CreateCommentInput input) {
+    return new ResponseEntity<>(createUseCase.createComment(mapper
             .fromDtoToDomain(mapper
-                .fromInputToDto(input)))), HttpStatus.CREATED);
+                .fromInputToDto(input))), HttpStatus.CREATED);
   }
 
   @GetMapping("/id/{id}")
