@@ -26,7 +26,6 @@ public class UserMapper {
     return UserDTO.builder()
         .id(UUID.randomUUID())
         .username(input.getUsername())
-        .comments(input.getComments())
         .country(input.getCountry())
         .email(input.getEmail())
         .password(input.getPassword())
@@ -38,7 +37,6 @@ public class UserMapper {
     return User.builder()
         .id(dto.getId())
         .country(dto.getCountry())
-        .comments(dto.getComments() == null? new ArrayList<Comment>():dto.getComments().stream().map(commentDTO -> commentMapper.fromDtoToDomain(commentDTO)).collect(Collectors.toList()))
         .username(dto.getUsername())
         .email(dto.getEmail())
         .password(dto.getPassword())
@@ -53,7 +51,6 @@ public class UserMapper {
         .password(input.getPassword())
         .email(input.getEmail())
         .country(input.getCountry())
-        .comments(input.getComments())
         .roles(input.getRoles())
         .build();
   }
@@ -61,7 +58,6 @@ public class UserMapper {
   public UserDTO toDto(User user) {
     return UserDTO.builder()
         .id(user.getId())
-        .comments(user.getComments() == null? new ArrayList<CommentDTO>():user.getComments().stream().map(comment -> commentMapper.toDto(comment)).collect(Collectors.toList()))
         .country(user.getCountry())
         .email(user.getEmail())
         .password(user.getPassword())
@@ -73,7 +69,6 @@ public class UserMapper {
   public UserDAO toEntity(User user) {
     return UserDAO.builder()
         .id(user.getId())
-        .comments(user.getComments() == null? new ArrayList<CommentDAO>():user.getComments().stream().map(comment -> commentMapper.toEntity(comment)).collect(Collectors.toList()))
         .country(user.getCountry())
         .email(user.getEmail())
         .password(user.getPassword())
@@ -89,7 +84,6 @@ public class UserMapper {
         .password(dao.getPassword())
         .email(dao.getEmail())
         .username(dao.getUsername())
-        .comments(dao.getComments() == null? new ArrayList<Comment>():dao.getComments().stream().map(commentDAO -> commentMapper.fromEntityToDomain(commentDAO)).collect(Collectors.toList()))
         .roles(dao.getRoles())
         .build();
   }

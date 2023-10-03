@@ -22,8 +22,6 @@ public class UserDTO {
 
   private String password;
 
-  private List<CommentDTO> comments;
-
   private String country;
 
   private List<String> roles;

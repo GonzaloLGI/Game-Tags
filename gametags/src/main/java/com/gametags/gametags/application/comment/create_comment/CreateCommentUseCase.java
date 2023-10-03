@@ -34,29 +34,12 @@ public class CreateCommentUseCase {
   @Autowired
   private AuthenticationManager authenticationManager;
 
-  public AuthResponseDTO createComment(Comment comment) {
+  public Comment createComment(Comment comment) {
     log.info("[START] Creating comment with data: " + comment.getId() + " " + comment.getCategory() + " " + comment.getSeverity());
     User actualUser = userService.findOneUserById(comment.getUploadUser());
     if(ObjectUtils.isNotEmpty(actualUser)){
-      List<Comment> oldComments = actualUser.getComments();
-      oldComments.add(comment);
-      User updatedUser = User.builder()
-              .id(actualUser.getId())
-              .roles(actualUser.getRoles())
-              .email(actualUser.getEmail())
-              .country(actualUser.getCountry())
-              .password(actualUser.getPassword())
-              .username(actualUser.getUsername())
-              .comments(oldComments)
-              .build();
-      userService.updateUser(updatedUser);
-      Authentication authentication = new UsernamePasswordAuthenticationToken(actualUser.getUsername(), actualUser.getPassword());
-      SecurityContextHolder.getContext().setAuthentication(authentication);
-      authenticationManager.authenticate(authentication);
-      String token = jwtGenerator.generateToken(authentication);
-      service.createComment(comment);
       log.info("[STOP] Creating comment with data: " + comment.getId() + " " + comment.getCategory() + " " + comment.getSeverity());
-      return new AuthResponseDTO(token);
+      return service.createComment(comment);
     }else{
       throw new NoSuchElementException("User doesn't exist");
     }

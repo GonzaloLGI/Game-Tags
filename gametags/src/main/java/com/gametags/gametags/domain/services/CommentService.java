@@ -57,4 +57,8 @@ public class CommentService {
   public List<Comment> findAllCommentsBySeverityAndVideoGame(String severity, UUID videogame) {
     return adapter.findAllBySeverityAndVideoGame(severity, videogame);
   }
+
+    public List<Comment> findAllCommentsOfUser(UUID userid) {
+      return adapter.findAllOfUser(userid);
+    }
 }

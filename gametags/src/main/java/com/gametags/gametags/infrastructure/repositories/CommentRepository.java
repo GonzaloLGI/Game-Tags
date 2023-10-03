@@ -17,4 +17,6 @@ public interface CommentRepository extends MongoRepository<CommentDAO, UUID> {
   List<CommentDAO> findAllByCategoryAndVideogame(String category, UUID videogame);
 
   List<CommentDAO> findAllBySeverityAndVideogame(String severity, UUID videogame);
+
+  List<CommentDAO> findAllByUploadUser(UUID userId);
 }

@@ -1,9 +1,12 @@
 
-t
-java:S6204)"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¾ØÔ’ıÿÿÿÿ8Å¯ŠûŠ1
-o
-java:S6204@"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¼šĞú8Ì¯ŠûŠ1
-n
-java:S6204L"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ÑÙ‘8Ğ¯ŠûŠ1
-t
-java:S6204\"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Àğùÿÿÿÿ8Õ¯ŠûŠ1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8·¬¯1
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8·¬¯1
+d
+java:S1128"GRemove this unused import 'com.gametags.gametags.domain.model.Comment'.(äñŒ8·¬¯1
+s
+java:S1128
+"QRemove this unused import 'com.gametags.gametags.infrastructure.daos.CommentDAO'.(ºŠ…ÿÿÿÿÿ8Ù™¯1
+s
+java:S1128"QRemove this unused import 'com.gametags.gametags.infrastructure.dtos.CommentDTO'.(’Óö¯øÿÿÿÿ8Ù™¯1

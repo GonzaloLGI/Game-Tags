@@ -22,8 +22,6 @@ public class User {
 
   private String password;
 
-  private List<Comment> comments;
-
   private String country;
 
   private List<String> roles;

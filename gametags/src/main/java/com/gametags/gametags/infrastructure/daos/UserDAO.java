@@ -26,8 +26,6 @@ public class UserDAO {
 
   private String password;
 
-  private List<CommentDAO> comments;
-
   private String country;
 
   private List<String> roles;

@@ -11,6 +11,7 @@ import com.gametags.gametags.application.comment.create_comment.CreateCommentUse
 import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.domain.services.CommentService;
 import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
+import com.gametags.gametags.infrastructure.dtos.CommentDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -39,7 +40,7 @@ public class CreateCommentUseCaseTest {
     when(service.createComment(any(Comment.class))).thenReturn(comment);
 
     //WHEN
-    AuthResponseDTO returnedComment = useCase.createComment(comment);
+    Comment returnedComment = useCase.createComment(comment);
 
     //THEN
     assertEquals(comment, returnedComment);

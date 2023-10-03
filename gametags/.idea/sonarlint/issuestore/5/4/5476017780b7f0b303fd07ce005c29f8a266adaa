@@ -1,4 +1,5 @@
 
+h
+java:S1192'"KDefine a constant instead of duplicating this literal "ROLE_USER" 10 times.(ÎÚ¦¿8Æ¼Œ¯1
 w
 java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(€µ×ê8§£•­1
-X	java:S125"<This block of commented-out lines of code should be removed.(ë¯Á¨8ª£•­1

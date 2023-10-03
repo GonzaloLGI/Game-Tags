@@ -66,4 +66,8 @@ public class CommentAdapter {
   public List<Comment> findAllBySeverityAndVideoGame(String severity, UUID videogame) {
     return repo.findAllBySeverityAndVideogame(severity, videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
+
+  public List<Comment> findAllOfUser(UUID userid) {
+    return repo.findAllByUploadUser(userid).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+  }
 }

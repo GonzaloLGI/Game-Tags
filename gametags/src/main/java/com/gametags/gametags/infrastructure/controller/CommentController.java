@@ -63,10 +63,10 @@ public class CommentController {
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<AuthResponseDTO> createComment(@RequestBody CreateCommentInput input) {
-    return new ResponseEntity<>(createUseCase.createComment(mapper
+  public ResponseEntity<CommentDTO> createComment(@RequestBody CreateCommentInput input) {
+    return new ResponseEntity<>(mapper.toDto(createUseCase.createComment(mapper
             .fromDtoToDomain(mapper
-                .fromInputToDto(input))), HttpStatus.CREATED);
+                    .fromInputToDto(input)))), HttpStatus.CREATED);
   }
 
   @GetMapping("/id/{id}")
@@ -109,6 +109,14 @@ public class CommentController {
     } catch (NoSuchElementException e) {
       throw new NoSuchElementException("El usuario a eliminar no existe. Prueba con otro");
     }
+  }
+
+  //AÑADIR ENDPOINT DE SOLICITUD DE COMENTARIOS POR USUARIO
+  @GetMapping("/{userId}")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<CommentDTO>> getAllCommentsOfUser(@PathVariable UUID userId) {
+    List<Comment> list = findAllUseCase.findAllCommentsOfUser(userId);
+    return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
   @GetMapping("/category/user")
