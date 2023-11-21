@@ -15,6 +15,8 @@ public interface VideoGameRepository extends MongoRepository<VideoGameDAO, UUID>
 
   List<VideoGameDAO> findAllByPlatformsIn(List<String> platforms);
 
+  List<VideoGameDAO> findFirst3ByOrderByUploadDateTimeDesc();
+
   @Query(value = "{ 'classifications.tag' : ?0 }")
   List<VideoGameDAO> findVideogamesByClassificationsTag(String tag);
 

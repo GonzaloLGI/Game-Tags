@@ -7,11 +7,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
-import com.gametags.gametags.application.videogame.DeleteVideoGameUseCase;
-import com.gametags.gametags.application.videogame.FindAllVideoGamesUseCase;
-import com.gametags.gametags.application.videogame.FindVideoGameByIdUseCase;
-import com.gametags.gametags.application.videogame.FindVideoGameByNameUseCase;
-import com.gametags.gametags.application.videogame.UpdateVideoGameUseCase;
+import com.gametags.gametags.application.videogame.*;
 import com.gametags.gametags.application.videogame.add_new_classification.AddNewClassificationUseCase;
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameInput;
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameUseCase;
@@ -29,15 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/videogame/")
@@ -78,6 +66,9 @@ public class VideoGameController {
 
   @Autowired
   private FilterBySystemUseCase filterBySystemUseCase;
+
+  @Autowired
+  private LatestVideogamesUseCase latestVideogamesUseCase;
 
   @Autowired
   private AddNewClassificationUseCase addNewClassificationUseCase;
@@ -143,27 +134,27 @@ public class VideoGameController {
 
   }
 
-  @GetMapping("/developer")
+  @GetMapping("/developer/{developer}")
   @ResponseStatus(HttpStatus.FOUND)
-  public ResponseEntity<List<VideoGameDTO>> filterByDeveloper(@RequestBody String developer){
+  public ResponseEntity<List<VideoGameDTO>> filterByDeveloper(@PathVariable String developer){
     return new ResponseEntity<>(filterByDeveloperUseCase.videoGamesByDeveloper(developer.toString()).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
-  @GetMapping("/platforms")
+  @PostMapping("/platforms")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<VideoGameDTO>> filterByPlatforms(@RequestBody List<String> platforms){
     return new ResponseEntity<>(filterByPlatformsUseCase.videoGamesByPlatforms(platforms).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
-  @GetMapping("/tag")
+  @GetMapping("/tag/{tag}")
   @ResponseStatus(HttpStatus.FOUND)
-  public ResponseEntity<List<VideoGameDTO>> filterByTag(@RequestBody String tag){
+  public ResponseEntity<List<VideoGameDTO>> filterByTag(@PathVariable String tag){
     return new ResponseEntity<>(filterByTagUseCase.videoGamesByTag(tag).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
-  @GetMapping("/system")
+  @GetMapping("/system/{system}")
   @ResponseStatus(HttpStatus.FOUND)
-  public ResponseEntity<List<VideoGameDTO>> filterBySystem(@RequestBody String system){
+  public ResponseEntity<List<VideoGameDTO>> filterBySystem(@PathVariable String system){
     return new ResponseEntity<>(filterBySystemUseCase.videoGamesBySystem(system).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
@@ -177,5 +168,12 @@ public class VideoGameController {
     } catch (NoSuchElementException e){
       throw new NoSuchElementException("El videojuego a actualizar no se encuentra registrado en la base de datos. Prueba con otro nombre");
     }
+  }
+
+  @GetMapping("/latest")
+  @ResponseStatus(HttpStatus.FOUND)
+  public ResponseEntity<List<VideoGameDTO>> getThreeLatestAddedVideogames(){
+    return new ResponseEntity<>(latestVideogamesUseCase.threeLatestVideogames().stream()
+            .map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 }

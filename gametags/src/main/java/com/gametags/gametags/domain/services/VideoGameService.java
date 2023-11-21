@@ -59,4 +59,8 @@ public class VideoGameService {
   public List<VideoGame> findAllVideoGamesBySystem(String system) {
     return adapter.findAllBySystem(system);
   }
+
+  public List<VideoGame> findThreeLatestVideogames() {
+    return adapter.findThreeLatestVideogames();
+  }
 }

@@ -23,6 +23,14 @@ services:
             - common
         volumes:
             - mongo:/data/db
+    ##frontend:
+    ##    container_name: frontend
+    ##    build: ../gametags-frontend/front-gametags/
+    ##    restart: always
+    ##    ports:
+    ##        - 3000:3000
+    ##    networks:
+    ##        - common
     
 networks:
     common:

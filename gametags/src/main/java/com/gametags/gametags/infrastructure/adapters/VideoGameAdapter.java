@@ -66,4 +66,8 @@ public class VideoGameAdapter {
   public List<VideoGame> findAllBySystem(String system) {
     return repo.findVideogamesByClassificationsSystem(system).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
+
+    public List<VideoGame> findThreeLatestVideogames() {
+    return repo.findFirst3ByOrderByUploadDateTimeDesc().stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    }
 }
