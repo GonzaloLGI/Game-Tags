@@ -237,3 +237,5 @@ Fsrc/main/java/com/gametags/gametags/infrastructure/SecurityConfig.java,5\4\547
 _src/main/java/com/gametags/gametags/application/user/update_password/UpdatePasswordUseCase.java,a\a\aa3881b3635be4c7dc252cb49c90163365395a27
 r
 Bsrc/main/java/com/gametags/gametags/infrastructure/CorsConfig.java,0\4\0488b5e824266c133a451cba7c78c66d56d143d8
+†
+Vsrc/main/java/com/gametags/gametags/application/videogame/LatestVideogamesUseCase.java,c\0\c0cf3482b6f087d3e0afd13296f474d948120cc9

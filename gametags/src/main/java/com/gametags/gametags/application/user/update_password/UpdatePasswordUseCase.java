@@ -49,7 +49,7 @@ public class UpdatePasswordUseCase {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             authenticationManager.authenticate(authentication);
             String token = jwtGenerator.generateToken(authentication);
-            return new AuthResponseDTO(token);
+            return new AuthResponseDTO(token, changedUser.getUsername());
         }else{
             throw new RuntimeException("Password is not correct");
         }

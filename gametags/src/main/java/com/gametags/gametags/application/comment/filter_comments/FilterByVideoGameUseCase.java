@@ -26,11 +26,11 @@ public class FilterByVideoGameUseCase {
   private UserService userService;
 
   public List<Comment> commentsByVideoGameAndUser(UUID videogame) {
-    log.info("[START] filterByVideoGame");
+    log.info("[START] filterByVideoGame " + videogame);
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userService.findOneUserByUsername(username);
     if(ObjectUtils.isNotEmpty(user)){
-      log.info("[STOP] filterByVideoGame");
+      log.info("[STOP] filterByVideoGame " + user.getId());
       return service.findAllCommentsByVideoGameAndUploadUser(videogame, user.getId());
     }else{
       throw new NoSuchElementException("The user doesn't exist");

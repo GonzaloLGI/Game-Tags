@@ -32,7 +32,7 @@ public class LoginController {
   @Autowired
   private UserMapper userMapper;
 
-  @GetMapping("/login")
+  @PostMapping("/login")
   public ResponseEntity<AuthResponseDTO> loginUser(@RequestBody LoginDTO dto) {
     return new ResponseEntity<>(loginUserUseCase.loginUser(authenticationMapper.fromLoginDtoToInput(dto)), HttpStatus.OK);
   }

@@ -103,7 +103,6 @@ public class CommentController {
     }
   }
 
-  //AÑADIR ENDPOINT DE SOLICITUD DE COMENTARIOS POR USUARIO
   @GetMapping("/{userId}")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> getAllCommentsOfUser(@PathVariable UUID userId) {
@@ -111,19 +110,19 @@ public class CommentController {
     return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
-  @GetMapping("/category/user")
+  @PostMapping("/category/user")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterByCategoryAndUser(@RequestBody String category){
     return new ResponseEntity<>(filterByCategoryUseCase.commentsByCategoryAndUser(category.toString()).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
-  @GetMapping("/severity/user")
+  @PostMapping("/severity/user")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterBySeverityAndUser(@RequestBody String severity){
     return new ResponseEntity<>(filterBySeverityUseCase.commentsBySeverityAndUser(severity.toString()).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
-  @GetMapping("/videogame/user")
+  @PostMapping("/videogame/user")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterByVideoGameAndUser(@RequestBody UUID videogame){
     return new ResponseEntity<>(filterByVideoGameUseCase.commentsByVideoGameAndUser(videogame).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);

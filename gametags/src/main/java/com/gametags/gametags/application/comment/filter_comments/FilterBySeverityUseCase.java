@@ -25,11 +25,14 @@ public class FilterBySeverityUseCase {
   private UserService userService;
 
   public List<Comment> commentsBySeverityAndUser(String severity) {
-    log.info("[START] filterBySeverity");
+    if(severity.endsWith("=")){
+      severity = severity.substring(0, severity.length() - 1);
+    }
+    log.info("[START] filterBySeverity " + severity);
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userService.findOneUserByUsername(username);
     if(ObjectUtils.isNotEmpty(user)){
-      log.info("[STOP] filterBySeverity");
+      log.info("[STOP] filterBySeverity " + user.getId());
       return service.findAllCommentsBySeverityAndUploadUser(severity, user.getId());
     }else{
       throw new NoSuchElementException("The user doesn't exist");

@@ -37,9 +37,9 @@ public class LoginUserUseCase {
       Authentication authentication = authenticationManager
               .authenticate(new UsernamePasswordAuthenticationToken(input.getUserName(), input.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_USER"))));
       SecurityContextHolder.getContext().setAuthentication(authentication);
-      log.info("User logged" + SecurityContextHolder.getContext().getAuthentication().getName());
+      log.info("User logged " + SecurityContextHolder.getContext().getAuthentication().getName());
       String token = jwtGenerator.generateToken(authentication);
-      return new AuthResponseDTO(token);
+      return new AuthResponseDTO(token, user.getUsername());
     }else{
       throw new NoSuchElementException("The user doesn't exist");
     }

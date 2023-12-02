@@ -1,5 +1,5 @@
 
 t
-java:S6204!"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(“³ªªüÿÿÿÿ8õÌÇÇž1
+java:S6204!"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(“³ªªüÿÿÿÿ8í–Ö—¿1
 o
-java:S62047"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¾Š³¢8ýÌÇÇž1
+java:S62047"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¾Š³¢8ñ–Ö—¿1

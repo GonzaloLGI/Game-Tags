@@ -25,11 +25,14 @@ public class FilterByCategoryUseCase {
   private UserService userService;
 
   public List<Comment> commentsByCategoryAndUser(String category) {
-    log.info("[START] filterByCategory");
+    if(category.endsWith("=")){
+      category = category.substring(0, category.length() - 1);
+    }
+    log.info("[START] filterByCategory " + category);
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userService.findOneUserByUsername(username);
     if(ObjectUtils.isNotEmpty(user)){
-      log.info("[STOP] filterByCategory");
+      log.info("[STOP] filterByCategory " + user.getId());
       return service.findAllCommentsByCategoryAndUploadUser(category, user.getId());
     }else{
       throw new NoSuchElementException("The user doesn't exist");
