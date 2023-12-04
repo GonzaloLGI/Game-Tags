@@ -37,6 +37,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
       authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
       SecurityContextHolder.getContext().setAuthentication(authenticationToken);
       session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+    }else{
+      logger.info("NO HAY TOKEN");
     }
     filterChain.doFilter(request,response);
   }
