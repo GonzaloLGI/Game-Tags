@@ -7,8 +7,10 @@ import java.util.UUID;
 
 import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.domain.model.User;
+import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.domain.services.CommentService;
 import com.gametags.gametags.domain.services.UserService;
+import com.gametags.gametags.domain.services.VideoGameService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +27,17 @@ public class FilterByVideoGameUseCase {
   @Autowired
   private UserService userService;
 
-  public List<Comment> commentsByVideoGameAndUser(UUID videogame) {
-    log.info("[START] filterByVideoGame " + videogame);
+  @Autowired
+  private VideoGameService videogameService;
+
+  public List<Comment> commentsByVideoGameAndUser(String videogameName) {
+    log.info("[START] filterByVideoGame " + videogameName);
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userService.findOneUserByUsername(username);
-    if(ObjectUtils.isNotEmpty(user)){
+    VideoGame videoGame = videogameService.findVideoGameByName(videogameName);
+    if(ObjectUtils.isNotEmpty(user) && ObjectUtils.isNotEmpty(videoGame)){
       log.info("[STOP] filterByVideoGame " + user.getId());
-      return service.findAllCommentsByVideoGameAndUploadUser(videogame, user.getId());
+      return service.findAllCommentsByVideoGameAndUploadUser(videoGame.getId(), user.getId());
     }else{
       throw new NoSuchElementException("The user doesn't exist");
     }

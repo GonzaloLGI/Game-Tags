@@ -14,6 +14,7 @@ import com.gametags.gametags.application.comment.UpdateCommentUseCase;
 import com.gametags.gametags.application.comment.filter_comments.FilterByCategoryUseCase;
 import com.gametags.gametags.application.comment.filter_comments.FilterBySeverityUseCase;
 import com.gametags.gametags.application.comment.filter_comments.FilterByVideoGameUseCase;
+import com.gametags.gametags.application.comment.filter_comments.FilterByVideogameInput;
 import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
@@ -124,8 +125,8 @@ public class CommentController {
 
   @PostMapping("/videogame/user")
   @ResponseStatus(HttpStatus.FOUND)
-  public ResponseEntity<List<CommentDTO>> filterByVideoGameAndUser(@RequestBody UUID videogame){
-    return new ResponseEntity<>(filterByVideoGameUseCase.commentsByVideoGameAndUser(videogame).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+  public ResponseEntity<List<CommentDTO>> filterByVideoGameAndUser(@RequestBody FilterByVideogameInput videogame){
+    return new ResponseEntity<>(filterByVideoGameUseCase.commentsByVideoGameAndUser(mapper.fromFilterVideogameInputToString(videogame)).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
   @GetMapping("/category/videogame/{id}")

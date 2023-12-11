@@ -1,13 +1,13 @@
 
 o
-java:S6204O"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8ß¢§¯1
+java:S6204P"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8ß¢§¯1
 o
-java:S6204n"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8‰Ö¡µ¯1
+java:S6204o"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8‰Ö¡µ¯1
 m
-java:S1858t"K"category" is already a string, there's no need to call "toString()" on it.(¬îˆüúÿÿÿÿ8â¢§¯1
+java:S1858u"K"category" is already a string, there's no need to call "toString()" on it.(¬îˆüúÿÿÿÿ8â¢§¯1
 m
-java:S1858z"K"severity" is already a string, there's no need to call "toString()" on it.(Úû«Šÿÿÿÿÿ8â¢§¯1
+java:S1858{"K"severity" is already a string, there's no need to call "toString()" on it.(Úû«Šÿÿÿÿÿ8â¢§¯1
 i
-java:S1858†"K"category" is already a string, there's no need to call "toString()" on it.(ŞÆ¼8ä¢§¯1
+java:S1858‡"K"category" is already a string, there's no need to call "toString()" on it.(ŞÆ¼8ä¢§¯1
 n
-java:S1858Œ"K"severity" is already a string, there's no need to call "toString()" on it.(¬€²£ûÿÿÿÿ8å¢§¯1
+java:S1858"K"severity" is already a string, there's no need to call "toString()" on it.(¬€²£ûÿÿÿÿ8å¢§¯1

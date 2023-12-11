@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.gametags.gametags.application.comment.create_comment.CreateCommentInput;
+import com.gametags.gametags.application.comment.filter_comments.FilterByVideogameInput;
 import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.infrastructure.daos.CommentDAO;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
@@ -84,5 +85,9 @@ public class CommentMapper {
         .uploadUser(dao.getUploadUser())
         .videogame(dao.getVideogame())
         .build();
+  }
+
+  public String fromFilterVideogameInputToString(FilterByVideogameInput input){
+    return input.getVideogame();
   }
 }

@@ -239,3 +239,5 @@ r
 Bsrc/main/java/com/gametags/gametags/infrastructure/CorsConfig.java,0\4\0488b5e824266c133a451cba7c78c66d56d143d8
 †
 Vsrc/main/java/com/gametags/gametags/application/videogame/LatestVideogamesUseCase.java,c\0\c0cf3482b6f087d3e0afd13296f474d948120cc9
+“
+csrc/main/java/com/gametags/gametags/application/comment/filter_comments/FilterByVideogameInput.java,9\3\933c64e740518c0dc2c7eb9accd80c211cfc0af3
