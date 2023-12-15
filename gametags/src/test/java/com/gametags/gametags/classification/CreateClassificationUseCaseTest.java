@@ -36,6 +36,7 @@ public class CreateClassificationUseCaseTest {
         .build();
     when(service.createClassification(any(Classification.class))).thenReturn(classification);
     when(service.findOneClassification(any())).thenReturn(Classification.builder().build());
+    when(service.findOneClassificationBySystemAndTag(any(), any())).thenReturn(Classification.builder().build());
 
     //WHEN
     Classification returnedClassification = useCase.createClassification(classification);

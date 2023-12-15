@@ -60,7 +60,6 @@ public class UpdateUserUseCaseTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of(comment1, comment2))
         .build();
     User newUser = User.builder()
         .id(UUID.randomUUID())
@@ -68,7 +67,6 @@ public class UpdateUserUseCaseTest {
         .email("newEmail")
         .password("newPassword")
         .country("newCountry")
-        .comments(List.of(comment1, comment2))
         .build();
     when(service.updateUser(newUser)).thenReturn(newUser);
     when(service.findOneUserById(any())).thenReturn(oldUser);

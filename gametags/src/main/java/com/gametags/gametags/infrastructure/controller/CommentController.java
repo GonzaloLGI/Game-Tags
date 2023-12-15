@@ -104,10 +104,10 @@ public class CommentController {
     }
   }
 
-  @GetMapping("/{userId}")
+  @GetMapping("/{userName}")
   @ResponseStatus(HttpStatus.FOUND)
-  public ResponseEntity<List<CommentDTO>> getAllCommentsOfUser(@PathVariable UUID userId) {
-    List<Comment> list = findAllUseCase.findAllCommentsOfUser(userId);
+  public ResponseEntity<List<CommentDTO>> getAllCommentsOfUser(@PathVariable String userName) {
+    List<Comment> list = findAllUseCase.findAllCommentsOfUser(userName);
     return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
@@ -131,13 +131,13 @@ public class CommentController {
 
   @GetMapping("/category/videogame/{id}")
   @ResponseStatus(HttpStatus.FOUND)
-  public ResponseEntity<List<CommentDTO>> filterByCategoryAndVideoGame(@PathVariable UUID id, @RequestBody String category){
-    return new ResponseEntity<>(filterByCategoryUseCase.commentsByCategoryAndVideoGame(category.toString(), id).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+  public ResponseEntity<List<CommentDTO>> filterByCategoryAndVideoGame(@PathVariable String videogameName, @RequestBody String category){
+    return new ResponseEntity<>(filterByCategoryUseCase.commentsByCategoryAndVideoGame(category.toString(), videogameName).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
   @GetMapping("/severity/videogame/{id}")
   @ResponseStatus(HttpStatus.FOUND)
-  public ResponseEntity<List<CommentDTO>> filterBySeverityAndVideoGame(@PathVariable UUID id, @RequestBody String severity){
-    return new ResponseEntity<>(filterBySeverityUseCase.commentsBySeverityAndVideoGame(severity.toString(), id).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+  public ResponseEntity<List<CommentDTO>> filterBySeverityAndVideoGame(@PathVariable String videogameName, @RequestBody String severity){
+    return new ResponseEntity<>(filterBySeverityUseCase.commentsBySeverityAndVideoGame(severity.toString(), videogameName).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 }

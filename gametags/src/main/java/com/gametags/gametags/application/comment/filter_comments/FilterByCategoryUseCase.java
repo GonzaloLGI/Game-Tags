@@ -33,13 +33,13 @@ public class FilterByCategoryUseCase {
     User user = userService.findOneUserByUsername(username);
     if(ObjectUtils.isNotEmpty(user)){
       log.info("[STOP] filterByCategory " + user.getId());
-      return service.findAllCommentsByCategoryAndUploadUser(category, user.getId());
+      return service.findAllCommentsByCategoryAndUploadUser(category, user.getUsername());
     }else{
       throw new NoSuchElementException("The user doesn't exist");
     }
   }
 
-  public List<Comment> commentsByCategoryAndVideoGame(String category, UUID videogame) {
+  public List<Comment> commentsByCategoryAndVideoGame(String category, String videogame) {
     log.info("[START] filterByCategoryAndVideoGame");
     log.info("[STOP] filterByCategoryAndVideoGame");
     return service.findAllCommentsByCategoryAndVideoGame(category, videogame);

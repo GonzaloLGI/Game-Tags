@@ -60,7 +60,6 @@ public class CreateUserUseCaseTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of(comment1, comment2))
         .build();
     when(service.createUser(any(User.class))).thenReturn(user);
     when(service.findOneUserByUsername(any(String.class))).thenReturn(User.builder().build());

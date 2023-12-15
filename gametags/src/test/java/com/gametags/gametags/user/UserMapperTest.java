@@ -37,7 +37,6 @@ public class UserMapperTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of())
         .build();
 
 
@@ -57,7 +56,6 @@ public class UserMapperTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of())
         .build();
 
     //WHEN

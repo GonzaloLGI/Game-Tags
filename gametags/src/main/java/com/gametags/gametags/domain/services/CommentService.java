@@ -38,27 +38,27 @@ public class CommentService {
     return adapter.create(comment);
   }
 
-  public List<Comment> findAllCommentsByCategoryAndUploadUser(String category, UUID userId) {
-    return adapter.findAllByCategoryAndUploadUser(category, userId);
+  public List<Comment> findAllCommentsByCategoryAndUploadUser(String category, String userName) {
+    return adapter.findAllByCategoryAndUploadUser(category, userName);
   }
 
-  public List<Comment> findAllCommentsBySeverityAndUploadUser(String severity, UUID userId) {
-    return adapter.findAllBySeverityAndUploadUser(severity, userId);
+  public List<Comment> findAllCommentsBySeverityAndUploadUser(String severity, String userName) {
+    return adapter.findAllBySeverityAndUploadUser(severity, userName);
   }
 
-  public List<Comment> findAllCommentsByVideoGameAndUploadUser(UUID videogame, UUID userId) {
-    return adapter.findAllByVideoGameAndUploadUser(videogame, userId);
+  public List<Comment> findAllCommentsByVideoGameAndUploadUser(String videogame, String userName) {
+    return adapter.findAllByVideoGameAndUploadUser(videogame, userName);
   }
 
-  public List<Comment> findAllCommentsByCategoryAndVideoGame(String category, UUID videogame) {
+  public List<Comment> findAllCommentsByCategoryAndVideoGame(String category, String videogame) {
     return adapter.findAllByCategoryAndVideoGame(category, videogame);
   }
 
-  public List<Comment> findAllCommentsBySeverityAndVideoGame(String severity, UUID videogame) {
+  public List<Comment> findAllCommentsBySeverityAndVideoGame(String severity, String videogame) {
     return adapter.findAllBySeverityAndVideoGame(severity, videogame);
   }
 
-    public List<Comment> findAllCommentsOfUser(UUID userid) {
-      return adapter.findAllOfUser(userid);
+    public List<Comment> findAllCommentsOfUser(String userName) {
+      return adapter.findAllOfUser(userName);
     }
 }

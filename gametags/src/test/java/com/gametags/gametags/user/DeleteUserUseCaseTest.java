@@ -62,7 +62,6 @@ public class DeleteUserUseCaseTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of(comment1, comment2))
         .build();
     when(service.findOneUserById(user.getId())).thenReturn(user);
     when(service.deleteUser(user.getId())).thenReturn(user);

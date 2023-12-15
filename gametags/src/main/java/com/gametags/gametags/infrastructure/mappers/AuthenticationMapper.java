@@ -22,6 +22,7 @@ public class AuthenticationMapper {
         .userName(dto.getUsername())
         .password(passwordEncoder.encode(dto.getPassword()))
         .country(dto.getCountry())
+            .email(dto.getEmail())
         .build();
   }
 

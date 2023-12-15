@@ -22,9 +22,9 @@ public class FindAllCommentsUseCase {
     return service.findAllComments();
   }
 
-  public List<Comment> findAllCommentsOfUser(UUID userid) {
-    log.info("[START] Searching all comments of user: " + userid);
-    log.info("[STOP] Searching all comments of user: " + userid);
-    return service.findAllCommentsOfUser(userid);
+  public List<Comment> findAllCommentsOfUser(String userName) {
+    log.info("[START] Searching all comments of user: " + userName);
+    log.info("[STOP] Searching all comments of user: " + userName);
+    return service.findAllCommentsOfUser(userName);
   }
 }

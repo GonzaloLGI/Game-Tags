@@ -58,7 +58,6 @@ public class FindAllUsersUseCaseTest {
         .email("email1")
         .password("password1")
         .country("country1")
-        .comments(List.of(comment1, comment2))
         .build();
     User user2 = User.builder()
         .id(UUID.randomUUID())
@@ -66,7 +65,6 @@ public class FindAllUsersUseCaseTest {
         .email("email2")
         .password("password2")
         .country("country2")
-        .comments(List.of(comment1, comment2))
         .build();
     List<User> list = List.of(user1, user2);
     when(useCase.findAllUsers()).thenReturn(list);

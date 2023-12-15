@@ -4,3 +4,5 @@ Backend for Game Tags classification webpage
 For building containers: docker-compose up --build
 
 For deleting containers: docker-compose down -v or docker rm -f backend mongodb
+
+For running frontend: npm run dev in frontend root directory

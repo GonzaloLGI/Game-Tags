@@ -16,4 +16,6 @@ public class RegisterInput {
   private String userName;
 
   private String country;
+
+  private String email;
 }

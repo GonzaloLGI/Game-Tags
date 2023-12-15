@@ -61,7 +61,6 @@ public class FindUserByUsernameUseCaseTest {
         .email("email")
         .password("password")
         .country("country")
-        .comments(List.of(comment1, comment2))
         .build();
     when(service.findOneUserByUsername(any())).thenReturn(user);
 

@@ -22,9 +22,9 @@ public class CreateCommentInput {
 
   private String severity;
 
-  private UUID uploadUser;
+  private String uploadUser;
 
-  private UUID videogame;
+  private String videogame;
 
   private String password;
 }

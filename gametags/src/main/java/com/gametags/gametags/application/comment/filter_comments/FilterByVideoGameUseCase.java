@@ -37,7 +37,7 @@ public class FilterByVideoGameUseCase {
     VideoGame videoGame = videogameService.findVideoGameByName(videogameName);
     if(ObjectUtils.isNotEmpty(user) && ObjectUtils.isNotEmpty(videoGame)){
       log.info("[STOP] filterByVideoGame " + user.getId());
-      return service.findAllCommentsByVideoGameAndUploadUser(videoGame.getId(), user.getId());
+      return service.findAllCommentsByVideoGameAndUploadUser(videoGame.getName(), user.getUsername());
     }else{
       throw new NoSuchElementException("The user doesn't exist");
     }

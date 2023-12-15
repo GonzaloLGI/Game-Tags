@@ -31,14 +31,14 @@ public class UpdateVideoGameUseCase {
       log.info("[STOP] updateVideoGame");
       throw new NoSuchElementException("The videogame is not registered");
     }
-    List<Comment> updatedComments =  videogame.getComments().stream().map(comment -> addNewComment(comment,videogame.getId())).collect(Collectors.toList());
+    List<Comment> updatedComments =  videogame.getComments().stream().map(comment -> addNewComment(comment,videogame.getName())).collect(Collectors.toList());
     videogame.getComments().removeAll(videogame.getComments());
     videogame.getComments().addAll(updatedComments);
     log.info("[STOP] updateVideoGame");
     return service.updateVideoGame(videogame);
   }
 
-  private Comment addNewComment(Comment comment, UUID videogame){
+  private Comment addNewComment(Comment comment, String videogame){
     log.info("COMMENT: " + comment.getText());
     Comment newComment = Comment.builder()
         .id(UUID.randomUUID())

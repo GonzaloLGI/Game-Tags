@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.gametags.gametags.application.videogame.create_videogame.CreateVideoGameUseCase;
+import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.domain.services.VideoGameService;
 import org.junit.jupiter.api.Test;
@@ -36,14 +37,22 @@ class CreateVideoGameUseCaseTest {
         .platforms(List.of("platform1", "platform2"))
         .uploadDateTime(LocalDateTime.now())
         .build();
+    VideoGame existingVideogame = VideoGame.builder()
+            .id(UUID.randomUUID())
+            .name("name")
+            .developer("developer")
+            .platforms(List.of("platform1", "platform2"))
+            .uploadDateTime(LocalDateTime.now())
+            .classifications(List.of(Classification.builder().build(), Classification.builder().build()))
+            .build();
     when(service.createVideoGame(any(VideoGame.class))).thenReturn(videogame);
-    when(service.findVideoGameByName(any())).thenReturn(VideoGame.builder().build());
+    when(service.findVideoGameByName(any())).thenReturn(existingVideogame);
 
     //WHEN
     VideoGame returnedClassification = useCase.createVideoGame(videogame);
 
     //THEN
-    assertEquals(videogame, returnedClassification);
+    assertEquals(videogame.getId(), returnedClassification.getId());
 
   }
 }
