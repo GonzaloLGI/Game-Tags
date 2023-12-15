@@ -28,6 +28,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -430,6 +440,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1458,11 +1478,8 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1550,6 +1567,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -2547,6 +2574,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -2590,6 +2627,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -2656,6 +2703,981 @@
 								"severity",
 								"videogame",
 								"{{idVideogame1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cambiar nombre de usuario y contraseña",
+			"item": [
+				{
+					"name": "01- Registrar usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"george\",\r\n    \"password\": \"skinnydickus\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02- Loggearte con un usuario existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"bearerToken\", jsonResponse.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"george\",\r\n    \"password\": \"skinnydickus\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03- Cambiar nombre de usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"bearerToken\", jsonResponse.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newUsername\":\"mondongo\",\r\n    \"existingPassword\":\"skinnydickus\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/username",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"username"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04- Pedir todos los usuarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05- Cambiar contraseña",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"bearerToken\", jsonResponse.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\":\"gibiri\",\r\n    \"existingPassword\":\"skinnydickus\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06- Pedir todos los usuarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Filtrar comentarios de usuario",
+			"item": [
+				{
+					"name": "01_1- Registrar usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idUser1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"george\",\r\n    \"password\": \"skinnydickus\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "01_2- Loggearte con un usuario existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"bearerToken\", jsonResponse.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"george\",\r\n    \"password\": \"skinnydickus\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_1- Crear videojuego",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idVideogame1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gears Of War 2\",\r\n    \"developer\": \"Epic Games\",\r\n    \"platforms\": [\"XBOX 360\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_2- Crear comentario 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idComment1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Hay decapitaciones\",\r\n    \"category\": \"Violence\",\r\n    \"severity\": \"Severe\",\r\n    \"uploadUser\":\"{{idUser1}}\",\r\n    \"videogame\":\"{{idVideogame1}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_3- Pedir todos los comentarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comment/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_4- Crear comentario 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idComment1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Un poco de lenguaje malsonante\",\r\n    \"category\": \"Language\",\r\n    \"severity\": \"Mild\",\r\n    \"uploadUser\":\"{{idUser1}}\",\r\n    \"videogame\":\"{{idVideogame1}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_5- Pedir todos los comentarios del usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comment/{{idUser1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"{{idUser1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_1- Filtrar por comentarios de violencia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Violence",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/category/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"category",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_2- Filtrar por comentarios de severidad leve",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Mild",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/severity/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"severity",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03_3- Filtrar por comentarios de videojuego",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"{{idVideogame1}}\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comment/videogame/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comment",
+								"videogame",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Coger los ultimos 3 juegos añadidos",
+			"item": [
+				{
+					"name": "01_1- Crear videojuego 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idVideogame1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gears Of War 2\",\r\n    \"developer\": \"Epic Games\",\r\n    \"platforms\": [\"XBOX 360\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "01_2- Crear videojuego 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idVideogame1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fallout 3\",\r\n    \"developer\": \"Bethesda\",\r\n    \"platforms\": [\"XBOX 360\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "01_3- Crear videojuego 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idVideogame1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Far Cry 2\",\r\n    \"developer\": \"Ubisoft\",\r\n    \"platforms\": [\"XBOX 360\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "01_4- Crear videojuego 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.collectionVariables.set(\"idVideogame1\", jsonResponse.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Bayonetta\",\r\n    \"developer\": \"Platinum Games\",\r\n    \"platforms\": [\"XBOX 360\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "01_5- Pedir todos los videojuegos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 302\", function () {\r",
+									"    pm.response.to.have.status(302);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/videogame/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02_1- Coger los ultimos 3 videojuegos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/videogame/latest",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"videogame",
+								"latest"
 							]
 						}
 					},
