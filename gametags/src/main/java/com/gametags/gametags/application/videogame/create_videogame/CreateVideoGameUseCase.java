@@ -12,6 +12,7 @@ import com.gametags.gametags.domain.services.ClassificationService;
 import com.gametags.gametags.domain.services.VideoGameService;
 import com.gametags.gametags.infrastructure.dtos.UserDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,9 +39,13 @@ public class CreateVideoGameUseCase {
         Collectors.toList());
     videoGame.getClassifications().removeAll(videoGame.getClassifications());
     videoGame.getClassifications().addAll(updatedClassifications);
+    //ESTO SE PODRIA ELIMINAR
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    String id = auth.getName();
-    log.info("Created videogame by: "+id);
+    if(!ObjectUtils.isEmpty(auth)){
+      String id = auth.getName();
+      log.info("Created videogame by: "+id);
+    }
+    //
     log.info("[STOP] createVideoGame");
     return service.createVideoGame(videoGame);
   }

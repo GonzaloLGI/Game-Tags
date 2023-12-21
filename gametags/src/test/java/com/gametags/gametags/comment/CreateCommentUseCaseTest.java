@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,7 +51,7 @@ public class CreateCommentUseCaseTest {
         .build();
     when(service.createComment(any(Comment.class))).thenReturn(comment);
     when(userService.findOneUserByUsername(any())).thenReturn(User.builder().build());
-    when(videogameService.findVideoGameByName(any())).thenReturn(VideoGame.builder().comments(List.of()).build());
+    when(videogameService.findVideoGameByName(any())).thenReturn(VideoGame.builder().comments(new ArrayList<>(List.of())).build());
 
     //WHEN
     Comment returnedComment = useCase.createComment(comment);

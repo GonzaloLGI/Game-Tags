@@ -1,5 +1,5 @@
 
 n
-java:S6204&"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(∏†„q8ñùà¨®1
+java:S6204'"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(∏†„q8†úﬂ∆«1
 m
-java:S1612%"PReplace this lambda with method reference 'this::checkAndAddNewClassifications'.(…Ã≥Ÿ8óùà¨®1
+java:S1612&"PReplace this lambda with method reference 'this::checkAndAddNewClassifications'.(…Ã≥Ÿ8§úﬂ∆«1
