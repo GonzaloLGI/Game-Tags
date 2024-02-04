@@ -14,7 +14,7 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization", "Access-Control-Allow-Origin")
+                .allowedHeaders("Origin", "X-Requested-With", "Content-Type", "Form-Data", "Accept", "Authorization", "Access-Control-Allow-Origin")
                 .maxAge(3600); // Max age of the preflight request in seconds
     }
 }

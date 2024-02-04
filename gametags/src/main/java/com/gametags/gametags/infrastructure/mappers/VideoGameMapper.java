@@ -1,5 +1,6 @@
 package com.gametags.gametags.infrastructure.mappers;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,10 +20,13 @@ import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.Builder;
+import org.bson.BsonBinarySubType;
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 @Builder
@@ -59,6 +63,7 @@ public class VideoGameMapper {
         .uploadUser(dto.getUploadUser())
         .comments(dto.getComments() == null? new ArrayList<Comment>():
             dto.getComments().stream().map(commentDTO -> commentMapper.fromDtoToDomain(commentDTO)).collect(Collectors.toList()))
+            .imageData(dto.getImageData())
         .build();
   }
 
@@ -87,6 +92,7 @@ public class VideoGameMapper {
         .uploadUser(videogame.getUploadUser())
         .comments(videogame.getComments() == null? new ArrayList<CommentDTO>():
             videogame.getComments().stream().map(comment -> commentMapper.toDto(comment)).collect(Collectors.toList()))
+            .imageData(videogame.getImageData())
         .build();
   }
 
@@ -102,6 +108,7 @@ public class VideoGameMapper {
         .uploadUser(videogame.getUploadUser())
         .comments(videogame.getComments() == null? new ArrayList<CommentDAO>():
             videogame.getComments().stream().map(commentDAO -> commentMapper.toEntity(commentDAO)).collect(Collectors.toList()))
+            .imageData(videogame.getImageData())
         .build();
   }
 
@@ -117,6 +124,7 @@ public class VideoGameMapper {
         .uploadUser(dao.getUploadUser())
         .comments(dao.getComments() == null? new ArrayList<Comment>():
             dao.getComments().stream().map(commentDAO -> commentMapper.fromEntityToDomain(commentDAO)).collect(Collectors.toList()))
+            .imageData(dao.getImageData())
         .build();
   }
 }

@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -37,4 +38,7 @@ public class VideoGameDAO {
   private String uploadUser;
 
   private List<CommentDAO> comments;
+
+  private Binary imageData;
+
 }

@@ -4,10 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.bson.types.Binary;
 
 @Builder
 @AllArgsConstructor
@@ -30,4 +28,7 @@ public class VideoGame {
   private String uploadUser;
 
   private List<Comment> comments;
+
+  @Setter
+  private Binary imageData;
 }

@@ -2,10 +2,8 @@ package com.gametags.gametags.infrastructure.dtos;
 
 import java.util.UUID;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.bson.types.Binary;
 
 @Builder
 @NoArgsConstructor
@@ -22,4 +20,6 @@ public class ClassificationDTO {
   private String tag;
 
   private String url;
+
+  private Binary imageData;
 }

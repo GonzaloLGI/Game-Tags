@@ -237,3 +237,5 @@ y
 Isrc/main/java/com/gametags/gametags/domain/services/VideoGameService.java,8\1\81edc7db57cd153164403688dca16625dde9b417
 “
 csrc/main/java/com/gametags/gametags/application/videogame/filter_videogames/FilterByTagUseCase.java,d\a\da09589095c5e2154353fd14c1daebd1296c9a2b
+~
+Nsrc/main/java/com/gametags/gametags/application/videogame/AddImageUseCase.java,7\d\7d949bbb51d4cd3fa5e08a1d5548f8a31cc34bd3

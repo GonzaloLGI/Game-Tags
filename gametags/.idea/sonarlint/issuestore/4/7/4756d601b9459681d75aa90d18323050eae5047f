@@ -1,17 +1,17 @@
 
 o
-java:S6204:"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Òë°¾8´ÂÂÌª1
+java:S6204>"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Òë°¾8”æÉ”Ó1
 n
-java:S6204="RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(´ïµ%8·ÂÂÌª1
+java:S6204A"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(´ïµ%8–æÉ”Ó1
 t
-java:S6204V"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(²ñáµùÿÿÿÿ8½ÂÂÌª1
+java:S6204["RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(²ñáµùÿÿÿÿ8šæÉ”Ó1
 o
-java:S6204Y"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(÷æÊ›8¾ÂÂÌª1
+java:S6204^"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(÷æÊ›8›æÉ”Ó1
 t
-java:S6204e"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Î·ŠÀıÿÿÿÿ8ÃÂÂÌª1
+java:S6204k"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Î·ŠÀıÿÿÿÿ8æÉ”Ó1
 t
-java:S6204h"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(áì‰ şÿÿÿÿ8ÉÂÂÌª1
+java:S6204n"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(áì‰ şÿÿÿÿ8æÉ”Ó1
 t
-java:S6204t"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(„ÈÙ•şÿÿÿÿ8ÎÂÂÌª1
+java:S6204{"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(„ÈÙ•şÿÿÿÿ8 æÉ”Ó1
 o
-java:S6204w"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª·ˆ¯8ĞÂÂÌª1
+java:S6204~"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª·ˆ¯8¡æÉ”Ó1

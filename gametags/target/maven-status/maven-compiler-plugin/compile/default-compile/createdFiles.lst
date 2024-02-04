@@ -117,10 +117,12 @@ com\gametags\gametags\infrastructure\dtos\VideoGameDTO$VideoGameDTOBuilder.class
 com\gametags\gametags\infrastructure\mappers\VideoGameMapper.class
 com\gametags\gametags\application\classification\create_classification\CreateClassificationInput.class
 com\gametags\gametags\infrastructure\mappers\CommentMapper.class
+com\gametags\gametags\application\videogame\AddImageUseCase.class
 com\gametags\gametags\application\videogame\create_videogame\CreateVideoGameInput$CreateVideoGameInputBuilder.class
 com\gametags\gametags\application\user\update_username\UpdateUsernameInput.class
 com\gametags\gametags\application\classification\create_classification\CreateClassificationUseCase.class
 com\gametags\gametags\application\classification\create_classification\CreateClassificationInput$CreateClassificationInputBuilder.class
 com\gametags\gametags\application\user\update_password\UpdatePasswordInput$UpdatePasswordInputBuilder.class
+com\gametags\gametags\application\classification\AddTagImageUseCase.class
 com\gametags\gametags\domain\model\Comment.class
 com\gametags\gametags\infrastructure\dtos\CommentDTO.class

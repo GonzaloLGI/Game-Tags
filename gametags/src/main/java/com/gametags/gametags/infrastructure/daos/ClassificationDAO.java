@@ -2,10 +2,8 @@ package com.gametags.gametags.infrastructure.daos;
 
 import java.util.UUID;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -26,4 +24,6 @@ public class ClassificationDAO {
   private String tag;
 
   private String url;
+
+  private Binary imageData;
 }

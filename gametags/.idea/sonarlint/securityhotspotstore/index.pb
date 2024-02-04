@@ -237,3 +237,5 @@ Isrc/main/java/com/gametags/gametags/domain/services/VideoGameService.java,8\1\
 Qsrc/main/java/com/gametags/gametags/infrastructure/adapters/VideoGameAdapter.java,3\b\3be2f33af51d66f74b42882ce6872c109ce5c47b
 ˆ
 Xsrc/main/java/com/gametags/gametags/infrastructure/repositories/VideoGameRepository.java,e\e\ee6a0cb023d0633e740b12a28932b77e9144e944
+~
+Nsrc/main/java/com/gametags/gametags/application/videogame/AddImageUseCase.java,7\d\7d949bbb51d4cd3fa5e08a1d5548f8a31cc34bd3

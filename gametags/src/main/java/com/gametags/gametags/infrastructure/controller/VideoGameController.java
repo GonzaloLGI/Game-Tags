@@ -1,5 +1,6 @@
 package com.gametags.gametags.infrastructure.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -19,13 +20,18 @@ import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;
+import jakarta.servlet.MultipartConfigElement;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartResolver;
 
 @RestController
 @RequestMapping("/videogame/")
@@ -73,13 +79,23 @@ public class VideoGameController {
   @Autowired
   private AddNewClassificationUseCase addNewClassificationUseCase;
 
-  @PostMapping("/")
+  @Autowired
+  private AddImageUseCase addImageUseCase;
+
+  @PostMapping(value = "/")
   @ResponseStatus(HttpStatus.CREATED)
   public ResponseEntity<VideoGameDTO> createVideoGame(@RequestBody CreateVideoGameInput input) {
     return new ResponseEntity<>(mapper
         .toDto(createUseCase.createVideoGame(mapper
             .fromDtoToDomain(mapper
                 .fromInputToDto(input)))), HttpStatus.CREATED);
+  }
+
+  @PostMapping(value = "/{id}/image")
+  @ResponseStatus(HttpStatus.CREATED)
+  public ResponseEntity<VideoGameDTO> addCover(@RequestPart(name="image") MultipartFile image, @PathVariable UUID id) throws IOException {
+    return new ResponseEntity<>(mapper
+            .toDto(addImageUseCase.addImage(image, id)), HttpStatus.CREATED);
   }
 
   @GetMapping("/id/{id}")

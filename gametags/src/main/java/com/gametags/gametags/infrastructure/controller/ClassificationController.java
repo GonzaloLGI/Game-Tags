@@ -1,23 +1,23 @@
 package com.gametags.gametags.infrastructure.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.gametags.gametags.application.classification.DeleteClassificationUseCase;
-import com.gametags.gametags.application.classification.FindAllClassificationsUseCase;
-import com.gametags.gametags.application.classification.FindClassificationByIdUseCase;
-import com.gametags.gametags.application.classification.UpdateClassificationUseCase;
+import com.gametags.gametags.application.classification.*;
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationUseCase;
 import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
+import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/classification/")
@@ -40,6 +40,9 @@ public class ClassificationController {
 
   @Autowired
   private UpdateClassificationUseCase updateUseCase;
+
+  @Autowired
+  private AddTagImageUseCase addTagImageUseCase;
 
   @PostMapping("/")
   @ResponseStatus(HttpStatus.CREATED)
@@ -90,5 +93,12 @@ public class ClassificationController {
     } catch (NoSuchElementException e) {
       throw new NoSuchElementException("La clasificación a borrar no existe. Prueba con otra");
     }
+  }
+
+  @PostMapping(value = "/{id}/image/{gameId}")
+  @ResponseStatus(HttpStatus.CREATED)
+  public ResponseEntity<ClassificationDTO> addCover(@RequestPart(name="image") MultipartFile image, @PathVariable UUID id, @PathVariable UUID gameId) throws IOException {
+    return new ResponseEntity<>(mapper
+            .toDto(addTagImageUseCase.addImage(image, id, gameId)), HttpStatus.CREATED);
   }
 }

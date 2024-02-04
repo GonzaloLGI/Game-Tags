@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.bson.types.Binary;
 
 @Builder
 @AllArgsConstructor
@@ -33,4 +34,7 @@ public class VideoGameDTO {
   private String uploadUser;
 
   private List<CommentDTO> comments;
+
+  private Binary imageData;
+
 }

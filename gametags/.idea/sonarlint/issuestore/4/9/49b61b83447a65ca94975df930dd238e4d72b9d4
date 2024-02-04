@@ -1,23 +1,15 @@
 
 o
-java:S6204c"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8×Æã•µ1
+java:S6204s"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8ÿÉ´Õ1
 o
-java:S6204Œ"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(íÓw8ÛÆã•µ1
+java:S6204œ"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(íÓw8ƒÉ´Õ1
 i
-java:S1858Œ"L"developer" is already a string, there's no need to call "toString()" on it.(íÓw8ÜÆã•µ1
+java:S1858œ"L"developer" is already a string, there's no need to call "toString()" on it.(íÓw8ƒÉ´Õ1
 p
-java:S6204’"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Æü¾‘8İÆã•µ1
+java:S6204¢"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Æü¾‘8„É´Õ1
 p
-java:S6204˜"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¤’á™8¢íÇÇ1
+java:S6204¨"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¤’á™8…É´Õ1
 u
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ü¼™©ûÿÿÿÿ8°íÇÇ1
+java:S6204®"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ü¼™©ûÿÿÿÿ8‡É´Õ1
 o
-java:S6204±"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¸Ö½%8¾íÇÇ1
-P
-java:S1128"4Remove this unused import 'java.security.Principal'.(’ÛŞ[8ÀíÇÇ1
-`
-java:S1128"DRemove this unused import 'jakarta.servlet.http.HttpServletRequest'.(õ38ÀíÇÇ1
-~
-java:S1128"aRemove this unused import 'org.springframework.security.core.annotation.AuthenticationPrincipal'.(Øù¢8ÀíÇÇ1
-s
-java:S1128"VRemove this unused import 'org.springframework.security.core.userdetails.UserDetails'.(ÊÁ¥8ÀíÇÇ1
+java:S6204Á"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¸Ö½%8ˆÉ´Õ1

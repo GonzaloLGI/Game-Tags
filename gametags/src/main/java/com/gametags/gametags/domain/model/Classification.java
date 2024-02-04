@@ -2,10 +2,8 @@ package com.gametags.gametags.domain.model;
 
 import java.util.UUID;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.bson.types.Binary;
 
 @Builder
 @AllArgsConstructor
@@ -22,4 +20,7 @@ public class Classification {
   private String tag;
 
   private String url;
+
+  @Setter
+  private Binary imageData;
 }

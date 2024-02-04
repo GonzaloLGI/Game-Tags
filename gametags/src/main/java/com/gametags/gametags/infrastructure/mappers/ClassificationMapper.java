@@ -20,7 +20,8 @@ public class ClassificationMapper {
         .country(domain.getCountry())
         .tag(domain.getTag())
         .url(domain.getUrl())
-        .build();
+            .imageData(domain.getImageData())
+            .build();
   }
 
   public Classification fromDtoToDomain(ClassificationDTO dto) {
@@ -30,7 +31,8 @@ public class ClassificationMapper {
         .country(dto.getCountry())
         .tag(dto.getTag())
         .url(dto.getUrl())
-        .build();
+            .imageData(dto.getImageData())
+            .build();
   }
 
   public Classification fromEntityToDomain(ClassificationDAO dao) {
@@ -40,7 +42,8 @@ public class ClassificationMapper {
         .country(dao.getCountry())
         .tag(dao.getTag())
         .url(dao.getUrl())
-        .build();
+            .imageData(dao.getImageData())
+            .build();
   }
 
   public ClassificationDTO toDto(Classification classification) {
@@ -50,7 +53,8 @@ public class ClassificationMapper {
         .country(classification.getCountry())
         .tag(classification.getTag())
         .url(classification.getUrl())
-        .build();
+            .imageData(classification.getImageData())
+            .build();
   }
 
   public ClassificationDTO fromInputToDto(CreateClassificationInput input) {
