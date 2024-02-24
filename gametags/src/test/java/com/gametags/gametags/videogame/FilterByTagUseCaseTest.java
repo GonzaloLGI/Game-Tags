@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,7 +50,7 @@ public class FilterByTagUseCaseTest {
         .build();
     List<VideoGame> list = List.of(videogame2);
 
-    when(service.findAllVideoGamesByTag("12")).thenReturn(list);
+    when(service.findAllVideoGamesByTag(Arrays.asList("12","T","M","12","12","C"))).thenReturn(list);
     //WHEN
     List<VideoGame> returned = filterByTagUseCase.videoGamesByTag("12");
     //THEN

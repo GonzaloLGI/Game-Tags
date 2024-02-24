@@ -239,3 +239,17 @@ Isrc/main/java/com/gametags/gametags/domain/services/VideoGameService.java,8\1\
 csrc/main/java/com/gametags/gametags/application/videogame/filter_videogames/FilterByTagUseCase.java,d\a\da09589095c5e2154353fd14c1daebd1296c9a2b
 ~
 Nsrc/main/java/com/gametags/gametags/application/videogame/AddImageUseCase.java,7\d\7d949bbb51d4cd3fa5e08a1d5548f8a31cc34bd3
+Ü
+Vsrc/main/java/com/gametags/gametags/application/classification/AddTagImageUseCase.java,3\9\390b489e26244f9e37010f1d35a3073e9770486a
+Ä
+Psrc/main/java/com/gametags/gametags/application/user/AddProfileImageUseCase.java,8\8\88584c68bc5fcd8ac2ed3aee3b1343743f1706b5
+î
+dsrc/main/java/com/gametags/gametags/application/comment/filter_comments/FilterBySeverityUseCase.java,d\0\d04f98eebfab69edaaac807511140d7c571d0661
+î
+dsrc/main/java/com/gametags/gametags/application/comment/filter_comments/FilterByCategoryUseCase.java,4\3\4346baa25e3252c9d0817fdedd5678fc8f3b7fcd
+ï
+esrc/main/java/com/gametags/gametags/application/comment/filter_comments/FilterByVideoGameUseCase.java,e\0\e029b1b378ef6afb850fcdb5b9d501f9ea8cd94e
+y
+Isrc/test/java/com/gametags/gametags/videogame/FilterByTagUseCaseTest.java,a\c\ac028ffd624051a27c8c24b82f49a08ad44a0725
+è
+_src/main/java/com/gametags/gametags/application/user/update_password/UpdatePasswordUseCase.java,a\a\aa3881b3635be4c7dc252cb49c90163365395a27

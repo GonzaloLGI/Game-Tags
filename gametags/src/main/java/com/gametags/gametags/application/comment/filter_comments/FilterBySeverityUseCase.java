@@ -25,9 +25,8 @@ public class FilterBySeverityUseCase {
   private UserService userService;
 
   public List<Comment> commentsBySeverityAndUser(String severity) {
-    if(severity.endsWith("=")){
-      severity = severity.substring(0, severity.length() - 1);
-    }
+    log.info("Severity: " + severity);
+    severity = severity.substring(1, severity.length() - 1);
     log.info("[START] filterBySeverity " + severity);
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userService.findOneUserByUsername(username);

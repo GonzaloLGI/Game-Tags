@@ -1,25 +1,23 @@
 
 o
-java:S6204P"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8ß¢§¯1
+java:S6204S"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8ß¢§¯1
 o
-java:S6204o"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8‰Ö¡µ¯1
+java:S6204s"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8‰Ö¡µ¯1
 t
-java:S6204u"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¬îˆüúÿÿÿÿ8‹×óÆÇ1
+java:S6204y"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¬îˆüúÿÿÿÿ8‹×óÆÇ1
 m
-java:S1858u"K"category" is already a string, there's no need to call "toString()" on it.(¬îˆüúÿÿÿÿ8â¢§¯1
+java:S1858y"K"category" is already a string, there's no need to call "toString()" on it.(¬îˆüúÿÿÿÿ8â¢§¯1
 t
-java:S6204{"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Úû«Šÿÿÿÿÿ8×óÆÇ1
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Úû«Šÿÿÿÿÿ8×óÆÇ1
 m
-java:S1858{"K"severity" is already a string, there's no need to call "toString()" on it.(Úû«Šÿÿÿÿÿ8â¢§¯1
+java:S1858"K"severity" is already a string, there's no need to call "toString()" on it.(Úû«Šÿÿÿÿÿ8â¢§¯1
 p
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(èÑü¢8“×óÆÇ1
+java:S6204…"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(èÑü¢8“×óÆÇ1
 p
-java:S6204‡"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(µà­‰8•×óÆÇ1
+java:S6204‹"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(µà­‰8•×óÆÇ1
 i
-java:S1858‡"K"category" is already a string, there's no need to call "toString()" on it.(µà­‰8ä¢§¯1
+java:S1858‹"K"category" is already a string, there's no need to call "toString()" on it.(µà­‰8ä¢§¯1
 p
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(á¶Û8™×óÆÇ1
+java:S6204‘"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(á¶Û8™×óÆÇ1
 i
-java:S1858"K"severity" is already a string, there's no need to call "toString()" on it.(á¶Û8å¢§¯1
-s
-java:S1128"VRemove this unused import 'com.gametags.gametags.infrastructure.dtos.AuthResponseDTO'.(Òè’÷8¹ØóÆÇ1
+java:S1858‘"K"severity" is already a string, there's no need to call "toString()" on it.(á¶Û8å¢§¯1

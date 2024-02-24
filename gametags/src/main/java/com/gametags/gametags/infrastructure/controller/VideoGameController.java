@@ -5,6 +5,7 @@ import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
@@ -22,6 +23,7 @@ import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;
 import jakarta.servlet.MultipartConfigElement;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -35,6 +37,7 @@ import org.springframework.web.multipart.MultipartResolver;
 
 @RestController
 @RequestMapping("/videogame/")
+@Slf4j
 public class VideoGameController {
 
   @Autowired
@@ -104,7 +107,8 @@ public class VideoGameController {
     try {
       return new ResponseEntity<>(mapper.toDto(findByIdUseCase.findOneVideoGame(id)), HttpStatus.FOUND);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException("El videojuego a buscar no se encuentra registrado en la base de datos. Prueba con otro Id");
+      log.info("El videojuego a buscar no se encuentra registrado en la base de datos. Prueba con otro Id");
+      return new ResponseEntity<>(VideoGameDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
   }
 
@@ -124,8 +128,8 @@ public class VideoGameController {
               .fromDtoToDomain(mapper
                   .fromUpdateInputToDto(input)))), HttpStatus.ACCEPTED);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException(
-          "El videojuego a actualizar no se encuentra registrado en la base de datos. Prueba con otro o registra el actual");
+      log.info("El videojuego a actualizar no se encuentra registrado en la base de datos. Prueba con otro o registra el actual");
+      return new ResponseEntity<>(VideoGameDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
   }
 
@@ -135,7 +139,8 @@ public class VideoGameController {
     try {
       return new ResponseEntity<>(mapper.toDto(deleteUseCase.deleteVideoGame(id)), HttpStatus.ACCEPTED);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException("El videojuego a eliminar no existe. Prueba con otro");
+      log.info("El videojuego a eliminar no existe. Prueba con otro");
+      return new ResponseEntity<>(VideoGameDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
   }
 
@@ -145,7 +150,8 @@ public class VideoGameController {
     try {
       return new ResponseEntity<>(mapper.toDto(findByNameUseCase.findByName(name)), HttpStatus.FOUND);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException("El videojuego a buscar no se encuentra registrado en la base de datos. Prueba con otro nombre");
+      log.info("El videojuego a buscar no se encuentra registrado en la base de datos. Prueba con otro nombre");
+      return new ResponseEntity<>(VideoGameDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
 
   }
@@ -174,7 +180,7 @@ public class VideoGameController {
     return new ResponseEntity<>(filterBySystemUseCase.videoGamesBySystem(system).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
-  @PutMapping("/classification/{videoGameName}")
+  @PostMapping("/classification/{videoGameName}")
   @ResponseStatus(HttpStatus.CREATED)
   public ResponseEntity<VideoGameDTO> addNewClassificationToExistingVideoGame(@RequestBody CreateClassificationInput input, @PathVariable String videoGameName){
     try{
@@ -182,7 +188,8 @@ public class VideoGameController {
           .toDto(addNewClassificationUseCase.addClassification(classMapper.fromDtoToDomain(classMapper
               .fromInputToDto(input)), videoGameName)), HttpStatus.CREATED);
     } catch (NoSuchElementException e){
-      throw new NoSuchElementException("El videojuego a actualizar no se encuentra registrado en la base de datos. Prueba con otro nombre");
+      log.info("El videojuego a actualizar no se encuentra registrado en la base de datos. Prueba con otro nombre");
+      return new ResponseEntity<>(VideoGameDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
   }
 

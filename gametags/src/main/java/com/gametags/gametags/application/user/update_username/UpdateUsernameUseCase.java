@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.webjars.NotFoundException;
 
 @Component
 @Slf4j
@@ -35,6 +36,8 @@ public class UpdateUsernameUseCase {
     String username = principal.getName();
     log.info("EXISTING USERNAME: " + username);
     User existingUser = service.findOneUserByUsername(username);
+    log.info("EXISTING PASSWORD: " + existingPassword);
+    log.info("USER SAVED PASSWORD: " + existingUser.getPassword());
     User changedUser = User.builder()
                     .id(existingUser.getId())
                             .roles(existingUser.getRoles())
@@ -52,7 +55,7 @@ public class UpdateUsernameUseCase {
       String token = jwtGenerator.generateToken(authentication);
       return new AuthResponseDTO(token, changedUser.getUsername());
     }else{
-      throw new RuntimeException("Password is not correct");
+      throw new NotFoundException("Password is not correct");
     }
   }
 }

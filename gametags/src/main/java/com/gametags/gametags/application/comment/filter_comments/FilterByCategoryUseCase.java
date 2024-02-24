@@ -25,9 +25,7 @@ public class FilterByCategoryUseCase {
   private UserService userService;
 
   public List<Comment> commentsByCategoryAndUser(String category) {
-    if(category.endsWith("=")){
-      category = category.substring(0, category.length() - 1);
-    }
+    category = category.substring(1, category.length() - 1);
     log.info("[START] filterByCategory " + category);
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userService.findOneUserByUsername(username);

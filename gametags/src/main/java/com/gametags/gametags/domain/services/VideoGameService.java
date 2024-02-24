@@ -52,7 +52,7 @@ public class VideoGameService {
     return result;
   }
 
-  public List<VideoGame> findAllVideoGamesByTag(String tag) {
+  public List<VideoGame> findAllVideoGamesByTag(List<String> tag) {
     return adapter.findAllByTag(tag);
   }
 

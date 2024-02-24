@@ -41,6 +41,7 @@ public class UserMapper {
         .email(dto.getEmail())
         .password(dto.getPassword())
         .roles(dto.getRoles())
+            .profileImageData(dto.getProfileImageData())
         .build();
   }
 
@@ -63,6 +64,7 @@ public class UserMapper {
         .password(user.getPassword())
         .username(user.getUsername())
         .roles(user.getRoles())
+            .profileImageData(user.getProfileImageData())
         .build();
   }
 
@@ -74,6 +76,7 @@ public class UserMapper {
         .password(user.getPassword())
         .username(user.getUsername())
         .roles(user.getRoles())
+            .profileImageData(user.getProfileImageData())
         .build();
   }
 
@@ -85,6 +88,7 @@ public class UserMapper {
         .email(dao.getEmail())
         .username(dao.getUsername())
         .roles(dao.getRoles())
+            .profileImageData(dao.getProfileImageData())
         .build();
   }
 }

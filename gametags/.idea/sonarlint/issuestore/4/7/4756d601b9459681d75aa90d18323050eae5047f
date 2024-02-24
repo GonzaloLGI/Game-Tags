@@ -15,3 +15,19 @@ t
 java:S6204{"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(„ÈÙ•şÿÿÿÿ8 æÉ”Ó1
 o
 java:S6204~"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª·ˆ¯8¡æÉ”Ó1
+R
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8Éû»ş×1
+P
+java:S1128"4Remove this unused import 'java.security.Principal'.(’ÛŞ[8Éû»ş×1
+`
+java:S1128"DRemove this unused import 'jakarta.servlet.http.HttpServletRequest'.(õ38Éû»ş×1
+Y
+java:S1128"=Remove this unused import 'jakarta.servlet.http.HttpSession'.(Çê°8Éû»ş×1
+T
+java:S1128"7Remove this unused import 'org.bson.BsonBinarySubType'.(Í…ú¨8Êû»ş×1
+T
+java:S1128"2Remove this unused import 'org.bson.types.Binary'.(›ñÔÏøÿÿÿÿ8Êû»ş×1
+s
+java:S1128"VRemove this unused import 'org.springframework.security.core.userdetails.UserDetails'.(ÊÁ¥8Êû»ş×1
+n
+java:S1128"LRemove this unused import 'org.springframework.web.multipart.MultipartFile'.(ôŸœÿÿÿÿÿ8Êû»ş×1

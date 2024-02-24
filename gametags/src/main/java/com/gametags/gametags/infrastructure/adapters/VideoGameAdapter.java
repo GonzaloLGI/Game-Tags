@@ -59,8 +59,8 @@ public class VideoGameAdapter {
     return repo.findAllByPlatformsIn(platforms).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
 
-  public List<VideoGame> findAllByTag(String tag) {
-    return repo.findVideogamesByClassificationsTag(tag).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+  public List<VideoGame> findAllByTag(List<String> tag) {
+    return repo.findAllVideogamesByClassificationsTagIn(tag).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
   }
 
   public List<VideoGame> findAllBySystem(String system) {

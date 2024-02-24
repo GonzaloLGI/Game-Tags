@@ -13,6 +13,7 @@ import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/classification/")
+@Slf4j
 public class ClassificationController {
 
   @Autowired
@@ -59,7 +61,8 @@ public class ClassificationController {
     try {
       return new ResponseEntity<>(mapper.toDto(findByIdUseCase.findOneClassification(id)), HttpStatus.FOUND);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException("La clasificacion a buscar no se encuentra guardada en la base de datos. Prueba con otra");
+      log.info("La clasificacion a buscar no se encuentra guardada en la base de datos. Prueba con otra");
+      return new ResponseEntity<>(ClassificationDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
 
   }
@@ -80,8 +83,8 @@ public class ClassificationController {
               .fromDtoToDomain(mapper
                   .fromUpdateInputToDto(input)))), HttpStatus.ACCEPTED);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException(
-          "La clasificacion a actualizar no se encuentra guardada en la base de datos. Prueba con otra o guarda la actual");
+      log.info("La clasificacion a actualizar no se encuentra guardada en la base de datos. Prueba con otra o guarda la actual");
+      return new ResponseEntity<>(ClassificationDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
   }
 
@@ -91,7 +94,8 @@ public class ClassificationController {
     try {
       return new ResponseEntity<>(mapper.toDto(deleteUseCase.deleteClassification(id)), HttpStatus.ACCEPTED);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException("La clasificación a borrar no existe. Prueba con otra");
+      log.info("La clasificación a borrar no existe. Prueba con otra");
+      return new ResponseEntity<>(ClassificationDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
   }
 

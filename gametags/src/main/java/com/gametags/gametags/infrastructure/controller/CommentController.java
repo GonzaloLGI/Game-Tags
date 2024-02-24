@@ -19,6 +19,7 @@ import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
 import com.gametags.gametags.infrastructure.mappers.CommentMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/comment/")
+@Slf4j
 public class CommentController {
   @Autowired
   private CommentMapper mapper;
@@ -68,7 +70,8 @@ public class CommentController {
     try {
       return new ResponseEntity<>(mapper.toDto(findByIdUseCase.findOneComment(id)), HttpStatus.FOUND);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException("El comentario a buscar no se encuentra registrado en la base de datos. Prueba con otro Id");
+      log.info("El comentario a buscar no se encuentra registrado en la base de datos. Prueba con otro Id");
+      return new ResponseEntity<>(CommentDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
 
   }
@@ -89,8 +92,8 @@ public class CommentController {
               .fromDtoToDomain(mapper
                   .fromUpdateInputToDto(input)))), HttpStatus.ACCEPTED);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException(
-          "El comentario a actualizar no se encuentra registrado en la base de datos. Prueba con otro o registra el actual");
+      log.info("El comentario a actualizar no se encuentra registrado en la base de datos. Prueba con otro o registra el actual");
+      return new ResponseEntity<>(CommentDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
   }
 
@@ -100,7 +103,8 @@ public class CommentController {
     try {
       return new ResponseEntity<>(mapper.toDto(deleteUseCase.deleteComment(id)), HttpStatus.ACCEPTED);
     } catch (NoSuchElementException e) {
-      throw new NoSuchElementException("El usuario a eliminar no existe. Prueba con otro");
+      log.info("El usuario a eliminar no existe. Prueba con otro");
+      return new ResponseEntity<>(CommentDTO.builder().build(),HttpStatus.NOT_FOUND);
     }
   }
 
