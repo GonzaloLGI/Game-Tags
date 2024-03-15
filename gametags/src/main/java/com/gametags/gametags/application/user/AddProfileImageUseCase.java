@@ -31,9 +31,9 @@ public class AddProfileImageUseCase {
             return existing;
         }
         log.info("Image name: " + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename())));
-        Binary profileIimage = new Binary(BsonBinarySubType.BINARY, image.getBytes());
-        log.info("Image cover data size: " + profileIimage.length());
-        existing.setProfileImageData(profileIimage);
+        Binary profileImage = new Binary(BsonBinarySubType.BINARY, image.getBytes());
+        log.info("Image cover data size: " + profileImage.length());
+        existing.setProfileImageData(profileImage);
         log.info("[STOP] Add Profile Image");
         return service.updateUser(existing);
     }

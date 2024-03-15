@@ -40,7 +40,7 @@ public class FilterByTagUseCase {
         log.info("Invalid age tag");
         break;
     }
-    log.info("[STOP] filterByTag: " + tagsToFind.toString());
+    log.info("[STOP] filterByTag: " + tagsToFind);
     return service.findAllVideoGamesByTag(tagsToFind);
   }
 }

@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -38,20 +39,20 @@ public class FindVideoGameByNameUseCaseTest {
         .platforms(List.of("platform1", "platform2"))
         .uploadDateTime(LocalDateTime.now())
         .build();
-    when(service.findVideoGameByName(any())).thenReturn(videogame);
+    when(service.findVideoGameLikeName(any())).thenReturn(List.of(videogame));
 
     //WHEN
-    VideoGame result = useCase.findByName("name");
+    List<VideoGame> result = useCase.findByName("name");
 
     //THEN
-    assertEquals(result, videogame);
+    assertEquals(result, List.of(videogame));
 
   }
 
   @Test
   public void cantFindVideoGameBecauseDoesntExist() {
     //GIVEN
-    when(service.findVideoGameByName(any())).thenReturn(VideoGame.builder().build());
+    when(service.findVideoGameLikeName(any())).thenReturn(List.of());
 
     //WHEN
     assertThrows(NoSuchElementException.class, () -> useCase.findByName("name"));

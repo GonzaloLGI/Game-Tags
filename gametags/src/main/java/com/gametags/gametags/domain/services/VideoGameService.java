@@ -38,6 +38,10 @@ public class VideoGameService {
     return adapter.delete(id);
   }
 
+  public List<VideoGame> findVideoGameLikeName(String name){
+    return adapter.findLikeName(name);
+  }
+
   public VideoGame findVideoGameByName(String name){
     return adapter.findByName(name);
   }
@@ -62,5 +66,9 @@ public class VideoGameService {
 
   public List<VideoGame> findThreeLatestVideogames() {
     return adapter.findThreeLatestVideogames();
+  }
+
+  public List<VideoGame> findAllVideoGamesByUser(String username){
+    return adapter.findAllVideoGamesByUser(username);
   }
 }

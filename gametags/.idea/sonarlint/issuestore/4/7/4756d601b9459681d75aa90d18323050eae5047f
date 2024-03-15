@@ -1,33 +1,18 @@
 
+X	java:S125:"<This block of commented-out lines of code should be removed.(õ¤Üå8ÜÀÕ€á1
 o
-java:S6204>"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Òë°¾8”æÉ”Ó1
+java:S6204B"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Òë°¾8½Á—©à1
 n
-java:S6204A"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(´ïµ%8–æÉ”Ó1
+java:S6204E"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(´ïµ%8í«®©à1
 t
-java:S6204["RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(²ñáµùÿÿÿÿ8šæÉ”Ó1
+java:S6204_"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(²ñáµùÿÿÿÿ8×™¯©à1
 o
-java:S6204^"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(÷æÊ›8›æÉ”Ó1
+java:S6204b"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(÷æÊ›8áÓ¯©à1
 t
-java:S6204k"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Î·ŠÀıÿÿÿÿ8æÉ”Ó1
+java:S6204o"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Î·ŠÀıÿÿÿÿ8Ïğ¹©à1
 t
-java:S6204n"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(áì‰ şÿÿÿÿ8æÉ”Ó1
+java:S6204r"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(áì‰ şÿÿÿÿ8Æ§º©à1
 t
-java:S6204{"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(„ÈÙ•şÿÿÿÿ8 æÉ”Ó1
-o
-java:S6204~"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª·ˆ¯8¡æÉ”Ó1
-R
-java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8Éû»ş×1
-P
-java:S1128"4Remove this unused import 'java.security.Principal'.(’ÛŞ[8Éû»ş×1
-`
-java:S1128"DRemove this unused import 'jakarta.servlet.http.HttpServletRequest'.(õ38Éû»ş×1
-Y
-java:S1128"=Remove this unused import 'jakarta.servlet.http.HttpSession'.(Çê°8Éû»ş×1
-T
-java:S1128"7Remove this unused import 'org.bson.BsonBinarySubType'.(Í…ú¨8Êû»ş×1
-T
-java:S1128"2Remove this unused import 'org.bson.types.Binary'.(›ñÔÏøÿÿÿÿ8Êû»ş×1
-s
-java:S1128"VRemove this unused import 'org.springframework.security.core.userdetails.UserDetails'.(ÊÁ¥8Êû»ş×1
-n
-java:S1128"LRemove this unused import 'org.springframework.web.multipart.MultipartFile'.(ôŸœÿÿÿÿÿ8Êû»ş×1
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(„ÈÙ•şÿÿÿÿ8Ùòº©à1
+p
+java:S6204‚"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª·ˆ¯8ş§»©à1

@@ -25,6 +25,7 @@ public class VideoGame {
 
   private List<Classification> classifications;
 
+  @Setter
   private String uploadUser;
 
   private List<Comment> comments;

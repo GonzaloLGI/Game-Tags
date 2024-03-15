@@ -1,15 +1,13 @@
 
 o
-java:S6204w"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8­ÐáÞÝ1
-o
-java:S6204¢"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ížÓw8±ÐáÞÝ1
-i
-java:S1858¢"L"developer" is already a string, there's no need to call "toString()" on it.(ížÓw8²ÐáÞÝ1
+java:S6204u"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8õªº€á1
 p
-java:S6204¨"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Æü¾‘8²ÐáÞÝ1
+java:S6204•"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(é”Åø8õõûšá1
 p
-java:S6204®"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¤’á™8³ÐáÞÝ1
+java:S6204 "RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(‹ÝøÀ8ùªº€á1
+p
+java:S6204¦"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Æü¾‘8úªº€á1
+p
+java:S6204¬"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¤’á™8úªº€á1
 u
-java:S6204´"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ü¼™©ûÿÿÿÿ8´ÐáÞÝ1
-o
-java:S6204È"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¸Ö½%8¶ÐáÞÝ1
+java:S6204²"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ü¼™©ûÿÿÿÿ8ûªº€á1

@@ -80,7 +80,7 @@ public class CommentController {
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> getAllComments() {
     List<Comment> list = findAllUseCase.findAllComments();
-    return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).toList(), HttpStatus.FOUND);
   }
 
   @PutMapping("/")
@@ -112,36 +112,36 @@ public class CommentController {
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> getAllCommentsOfUser(@PathVariable String userName) {
     List<Comment> list = findAllUseCase.findAllCommentsOfUser(userName);
-    return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).toList(), HttpStatus.FOUND);
   }
 
   @PostMapping("/category/user")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterByCategoryAndUser(@RequestBody String category){
-    return new ResponseEntity<>(filterByCategoryUseCase.commentsByCategoryAndUser(category.toString()).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(filterByCategoryUseCase.commentsByCategoryAndUser(category).stream().map(comment -> mapper.toDto(comment)).toList(), HttpStatus.FOUND);
   }
 
   @PostMapping("/severity/user")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterBySeverityAndUser(@RequestBody String severity){
-    return new ResponseEntity<>(filterBySeverityUseCase.commentsBySeverityAndUser(severity.toString()).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(filterBySeverityUseCase.commentsBySeverityAndUser(severity).stream().map(comment -> mapper.toDto(comment)).toList(), HttpStatus.FOUND);
   }
 
   @PostMapping("/videogame/user")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterByVideoGameAndUser(@RequestBody FilterByVideogameInput videogame){
-    return new ResponseEntity<>(filterByVideoGameUseCase.commentsByVideoGameAndUser(mapper.fromFilterVideogameInputToString(videogame)).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(filterByVideoGameUseCase.commentsByVideoGameAndUser(mapper.fromFilterVideogameInputToString(videogame)).stream().map(comment -> mapper.toDto(comment)).toList(), HttpStatus.FOUND);
   }
 
   @GetMapping("/category/videogame/{id}")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterByCategoryAndVideoGame(@PathVariable String videogameName, @RequestBody String category){
-    return new ResponseEntity<>(filterByCategoryUseCase.commentsByCategoryAndVideoGame(category.toString(), videogameName).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(filterByCategoryUseCase.commentsByCategoryAndVideoGame(category, videogameName).stream().map(comment -> mapper.toDto(comment)).toList(), HttpStatus.FOUND);
   }
 
   @GetMapping("/severity/videogame/{id}")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<CommentDTO>> filterBySeverityAndVideoGame(@PathVariable String videogameName, @RequestBody String severity){
-    return new ResponseEntity<>(filterBySeverityUseCase.commentsBySeverityAndVideoGame(severity.toString(), videogameName).stream().map(comment -> mapper.toDto(comment)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(filterBySeverityUseCase.commentsBySeverityAndVideoGame(severity, videogameName).stream().map(comment -> mapper.toDto(comment)).toList(), HttpStatus.FOUND);
   }
 }

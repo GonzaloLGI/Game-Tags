@@ -30,7 +30,7 @@ public class UserAdapter {
   }
 
   public List<User> findAll() {
-    return repo.findAll().stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAll().stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public User findById(UUID id) {

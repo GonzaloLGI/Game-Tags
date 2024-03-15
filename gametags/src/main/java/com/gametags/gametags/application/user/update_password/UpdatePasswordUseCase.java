@@ -42,6 +42,7 @@ public class UpdatePasswordUseCase {
                 .country(user.getCountry())
                 .username(user.getUsername())
                 .password(newPasswordEncoded)
+                .profileImageData(user.getProfileImageData())
                 .build();
         if(passwordEncoder.matches(input.getExistingPassword(),user.getPassword())){
             log.info("New password: " + newPasswordEncoded);

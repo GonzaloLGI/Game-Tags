@@ -26,7 +26,7 @@ public class MongoConfig {
   }
 
   @Bean
-  public MongoTemplate mongoTemplate() throws Exception {
+  public MongoTemplate mongoTemplate() {
     return new MongoTemplate(mongo(), "gametags");
   }
 }

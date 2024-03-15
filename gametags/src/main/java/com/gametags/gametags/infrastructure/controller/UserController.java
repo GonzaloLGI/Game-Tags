@@ -100,7 +100,7 @@ public class UserController {
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<UserDTO>> getAllUsers() {
     List<User> list = findAllUseCase.findAllUsers();
-    return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).toList(), HttpStatus.FOUND);
   }
 
   @PutMapping("/")

@@ -20,6 +20,7 @@ import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 @Builder
+@Slf4j
 public class VideoGameMapper {
 
   @Autowired
@@ -39,6 +41,7 @@ public class VideoGameMapper {
   private CommentMapper commentMapper;
 
   public VideoGameDTO fromInputToDto(CreateVideoGameInput input) {
+    log.info(String.valueOf(input.getClassifications().get(0).getId()));
     return VideoGameDTO.builder()
         .id(UUID.randomUUID())
         .name(input.getName())
@@ -47,21 +50,22 @@ public class VideoGameMapper {
         .uploadDateTime(LocalDateTime.now())
         .classifications(input.getClassifications())
         .uploadUser(SecurityContextHolder.getContext().getAuthentication().getName())
-        .comments(input.getComments()==null? new ArrayList<CommentDTO>():input.getComments())
+        .comments(input.getComments()==null? new ArrayList<>():input.getComments())
         .build();
   }
 
   public VideoGame fromDtoToDomain(VideoGameDTO dto) {
+    //log.info(String.valueOf(dto.getClassifications().get(0).getId()));
     return VideoGame.builder()
         .id(dto.getId())
         .developer(dto.getDeveloper())
         .name(dto.getName())
         .platforms(dto.getPlatforms())
         .uploadDateTime(dto.getUploadDateTime())
-        .classifications(dto.getClassifications() == null? new ArrayList<Classification>():
+        .classifications(dto.getClassifications() == null? new ArrayList<>():
             dto.getClassifications().stream().map(classificationDTO -> classificationMapper.fromDtoToDomain(classificationDTO)).collect(Collectors.toList()))
         .uploadUser(dto.getUploadUser())
-        .comments(dto.getComments() == null? new ArrayList<Comment>():
+        .comments(dto.getComments() == null? new ArrayList<>():
             dto.getComments().stream().map(commentDTO -> commentMapper.fromDtoToDomain(commentDTO)).collect(Collectors.toList()))
             .imageData(dto.getImageData())
         .build();
@@ -76,7 +80,7 @@ public class VideoGameMapper {
         .uploadDateTime(LocalDateTime.now())
         .classifications(input.getClassifications())
         .uploadUser(SecurityContextHolder.getContext().getAuthentication().getName())
-        .comments(input.getComments()==null? new ArrayList<CommentDTO>():input.getComments())
+        .comments(input.getComments()==null? new ArrayList<>():input.getComments())
         .build();
   }
 
@@ -87,10 +91,10 @@ public class VideoGameMapper {
         .name(videogame.getName())
         .platforms(videogame.getPlatforms())
         .uploadDateTime(videogame.getUploadDateTime())
-        .classifications(videogame.getClassifications() == null? new ArrayList<ClassificationDTO>():
+        .classifications(videogame.getClassifications() == null? new ArrayList<>():
             videogame.getClassifications().stream().map(classification -> classificationMapper.toDto(classification)).collect(Collectors.toList()))
         .uploadUser(videogame.getUploadUser())
-        .comments(videogame.getComments() == null? new ArrayList<CommentDTO>():
+        .comments(videogame.getComments() == null? new ArrayList<>():
             videogame.getComments().stream().map(comment -> commentMapper.toDto(comment)).collect(Collectors.toList()))
             .imageData(videogame.getImageData())
         .build();
@@ -103,10 +107,10 @@ public class VideoGameMapper {
         .name(videogame.getName())
         .platforms(videogame.getPlatforms())
         .uploadDateTime(videogame.getUploadDateTime())
-        .classifications(videogame.getClassifications() == null? new ArrayList<ClassificationDAO>():
+        .classifications(videogame.getClassifications() == null? new ArrayList<>():
             videogame.getClassifications().stream().map(classificationDAO -> classificationMapper.toEntity(classificationDAO)).collect(Collectors.toList()))
         .uploadUser(videogame.getUploadUser())
-        .comments(videogame.getComments() == null? new ArrayList<CommentDAO>():
+        .comments(videogame.getComments() == null? new ArrayList<>():
             videogame.getComments().stream().map(commentDAO -> commentMapper.toEntity(commentDAO)).collect(Collectors.toList()))
             .imageData(videogame.getImageData())
         .build();
@@ -119,10 +123,10 @@ public class VideoGameMapper {
         .developer(dao.getDeveloper())
         .uploadDateTime(dao.getUploadDateTime())
         .platforms(dao.getPlatforms())
-        .classifications(dao.getClassifications() == null? new ArrayList<Classification>():
+        .classifications(dao.getClassifications() == null? new ArrayList<>():
             dao.getClassifications().stream().map(classificationDAO -> classificationMapper.fromEntityToDomain(classificationDAO)).collect(Collectors.toList()))
         .uploadUser(dao.getUploadUser())
-        .comments(dao.getComments() == null? new ArrayList<Comment>():
+        .comments(dao.getComments() == null? new ArrayList<>():
             dao.getComments().stream().map(commentDAO -> commentMapper.fromEntityToDomain(commentDAO)).collect(Collectors.toList()))
             .imageData(dao.getImageData())
         .build();

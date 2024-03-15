@@ -47,27 +47,35 @@ public class VideoGameAdapter {
     return mapper.fromEntityToDomain(repo.save(mapper.toEntity(videogame)));
   }
 
+  public List<VideoGame> findLikeName(String name) {
+    return repo.findByNameLike(name).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
+  }
+
   public VideoGame findByName(String name) {
     return mapper.fromEntityToDomain(repo.findByName(name).orElseGet(() -> VideoGameDAO.builder().build()));
   }
 
   public List<VideoGame> findAllByDeveloper(String developer) {
-    return repo.findAllByDeveloper(developer).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllByDeveloperLike(developer).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public List<VideoGame> findAllByPlatforms(List<String> platforms) {
-    return repo.findAllByPlatformsIn(platforms).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllByPlatformsIn(platforms).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public List<VideoGame> findAllByTag(List<String> tag) {
-    return repo.findAllVideogamesByClassificationsTagIn(tag).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllVideogamesByClassificationsTagIn(tag).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public List<VideoGame> findAllBySystem(String system) {
-    return repo.findVideogamesByClassificationsSystem(system).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findVideogamesByClassificationsSystem(system).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
     public List<VideoGame> findThreeLatestVideogames() {
-    return repo.findFirst3ByOrderByUploadDateTimeDesc().stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findFirst3ByOrderByUploadDateTimeDesc().stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
+    }
+
+    public List<VideoGame> findAllVideoGamesByUser(String username) {
+    return repo.findAllVideogamesByUploadUser(username).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
     }
 }

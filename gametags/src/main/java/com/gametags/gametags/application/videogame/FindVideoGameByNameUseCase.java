@@ -1,5 +1,6 @@
 package com.gametags.gametags.application.videogame;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
@@ -16,10 +17,10 @@ public class FindVideoGameByNameUseCase {
   @Autowired
   private VideoGameService service;
 
-  public VideoGame findByName(String name) {
+  public List<VideoGame> findByName(String name) {
     log.info("[START] findVideoGameByName");
-    VideoGame result = service.findVideoGameByName(name);
-    if (Objects.isNull(result.getId())) {
+    List<VideoGame> result = service.findVideoGameLikeName(name);
+    if (result.isEmpty()) {
       log.info("[STOP] findVideoGameByName");
       throw new NoSuchElementException("The videogame is not registered");
     }

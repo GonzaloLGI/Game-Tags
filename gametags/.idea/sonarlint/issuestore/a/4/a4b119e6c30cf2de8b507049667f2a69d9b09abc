@@ -1,0 +1,5 @@
+
+o
+java:S6204V"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ÿ°¾Å8³Ø¿Õà1
+>
+java:S3864V"!Remove this use of "Stream.peek".(Ÿ°¾Å8´Ø¿Õà1

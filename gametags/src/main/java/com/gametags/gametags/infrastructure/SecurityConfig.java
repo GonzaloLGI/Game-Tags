@@ -24,6 +24,8 @@ public class SecurityConfig {
   @Autowired
   private CustomUserDetailsService customUserDetailsService;
 
+  private final String ROLE_USER = "ROLE_USER";
+
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
@@ -37,19 +39,18 @@ public class SecurityConfig {
         .authorizeHttpRequests()
         .requestMatchers("/auth/**").permitAll()
             .requestMatchers("/videogame/latest").permitAll()
-            .requestMatchers("/user/**").hasAuthority("ROLE_USER")
-            .requestMatchers(HttpMethod.POST,"/comment").hasAuthority("ROLE_USER")
-            .requestMatchers(HttpMethod.DELETE,"/comment/{id}").hasAuthority("ROLE_USER")
-            .requestMatchers("/comment/videogame/user").hasAuthority("ROLE_USER")
-            .requestMatchers("/comment/severity/user").hasAuthority("ROLE_USER")
-            .requestMatchers("/comment/category/user").hasAuthority("ROLE_USER")
-            .requestMatchers("/videogame/classification/{videoGameName}").hasAuthority("ROLE_USER")
-            .requestMatchers(HttpMethod.DELETE,"/videogame/{id}").hasAuthority("ROLE_USER")
-            .requestMatchers(HttpMethod.POST,"/videogame").hasAuthority("ROLE_USER")
-            .requestMatchers(HttpMethod.PUT,"/videogame").hasAuthority("ROLE_USER")
-            .requestMatchers(HttpMethod.DELETE,"/classification/{id}").hasAuthority("ROLE_USER")
+            .requestMatchers("/user/**").hasAuthority(ROLE_USER)
+            .requestMatchers(HttpMethod.POST,"/comment").hasAuthority(ROLE_USER)
+            .requestMatchers(HttpMethod.DELETE,"/comment/{id}").hasAuthority(ROLE_USER)
+            .requestMatchers("/comment/videogame/user").hasAuthority(ROLE_USER)
+            .requestMatchers("/comment/severity/user").hasAuthority(ROLE_USER)
+            .requestMatchers("/comment/category/user").hasAuthority(ROLE_USER)
+            .requestMatchers("/videogame/classification/{videoGameName}").hasAuthority(ROLE_USER)
+            .requestMatchers(HttpMethod.DELETE,"/videogame/{id}").hasAuthority(ROLE_USER)
+            .requestMatchers(HttpMethod.POST,"/videogame").hasAuthority(ROLE_USER)
+            .requestMatchers(HttpMethod.PUT,"/videogame").hasAuthority(ROLE_USER)
+            .requestMatchers(HttpMethod.DELETE,"/classification/{id}").hasAuthority(ROLE_USER)
             .requestMatchers(HttpMethod.POST,"/videogame/platforms").permitAll()
-//        .anyRequest().authenticated()
         .anyRequest().permitAll()
         .and()
         .httpBasic();

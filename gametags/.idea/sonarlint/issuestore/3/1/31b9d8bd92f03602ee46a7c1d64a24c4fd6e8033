@@ -1,5 +1,6 @@
 
-h
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ú´Ðð
-^
-java:S1612"HReplace this lambda with method reference 'SimpleGrantedAuthority::new'.(ú´Ðð
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8Â£ø§à1
+l
+java:S1128
+"ORemove this unused import 'org.springframework.security.core.GrantedAuthority'.(½Á±ÿ8Ã£ø§à1

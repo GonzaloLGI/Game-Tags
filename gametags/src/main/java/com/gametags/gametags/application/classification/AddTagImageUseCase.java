@@ -28,11 +28,13 @@ public class AddTagImageUseCase {
     @Autowired
     private VideoGameService videoGameService;
 
+    private static final String STOP = "[STOP] AddTagImage";
+
     public Classification addImage(MultipartFile image, UUID id, UUID gameId) throws IOException {
         log.info("[START] AddTagImage");
         Classification previous = service.findOneClassification(id);
         if (Objects.isNull(previous.getId())) {
-            log.info("[STOP] AddTagImage");
+            log.info(STOP);
             return previous;
         }
         log.info("Image name: " + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename())));
@@ -41,15 +43,15 @@ public class AddTagImageUseCase {
         previous.setImageData(imageTag);
         VideoGame gameToUpdate = videoGameService.findOneVideoGame(gameId);
         if (Objects.isNull(gameToUpdate.getId())) {
-            log.info("[STOP] AddTagImage");
+            log.info(STOP);
             return previous;
         }
-        List<Classification> updatedClassifications = gameToUpdate.getClassifications().stream().map(classification -> addTagImage(classification, id, imageTag)).collect(
-                Collectors.toList());
+        List<Classification> updatedClassifications = gameToUpdate.getClassifications().stream()
+                .map(classification -> addTagImage(classification, id, imageTag)).toList();
         gameToUpdate.getClassifications().removeAll(gameToUpdate.getClassifications());
         gameToUpdate.getClassifications().addAll(updatedClassifications);
         videoGameService.updateVideoGame(gameToUpdate);
-        log.info("[STOP] AddTagImage");
+        log.info(STOP);
         return service.updateClassification(previous);
     }
 

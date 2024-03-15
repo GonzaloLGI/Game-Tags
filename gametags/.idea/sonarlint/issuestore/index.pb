@@ -253,3 +253,5 @@ y
 Isrc/test/java/com/gametags/gametags/videogame/FilterByTagUseCaseTest.java,a\c\ac028ffd624051a27c8c24b82f49a08ad44a0725
 è
 _src/main/java/com/gametags/gametags/application/user/update_password/UpdatePasswordUseCase.java,a\a\aa3881b3635be4c7dc252cb49c90163365395a27
+É
+Ssrc/main/java/com/gametags/gametags/application/comment/FindAllCommentsUseCase.java,0\8\080106a9dcefea7d37cec57b123deb4d2b583197

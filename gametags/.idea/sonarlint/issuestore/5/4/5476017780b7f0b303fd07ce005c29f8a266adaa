@@ -1,5 +1,6 @@
 
-h
-java:S1192("KDefine a constant instead of duplicating this literal "ROLE_USER" 11 times.(ÎÚ¦¿8ð§•ÒÅ1
+u	java:S116"TRename this field "ROLE_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šê…»ùÿÿÿÿ8°á€¨à1
+C
+java:S1170"!Make this final field static too.(šê…»ùÿÿÿÿ8±á€¨à1
 w
 java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(€µ×ê8ö§•ÒÅ1

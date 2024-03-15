@@ -2,9 +2,7 @@ package com.gametags.gametags.infrastructure.controller;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -146,12 +144,12 @@ public class VideoGameController {
 
   @GetMapping("/name/{name}")
   @ResponseStatus(HttpStatus.FOUND)
-  public ResponseEntity<VideoGameDTO> getOneVideoGameByName(@PathVariable String name) {
+  public ResponseEntity<List<VideoGameDTO>> getVideoGameByName(@PathVariable String name) {
     try {
-      return new ResponseEntity<>(mapper.toDto(findByNameUseCase.findByName(name)), HttpStatus.FOUND);
+      return new ResponseEntity<>(findByNameUseCase.findByName(name).stream().map(videoGame -> mapper.toDto(videoGame)).collect(Collectors.toList()), HttpStatus.FOUND);
     } catch (NoSuchElementException e) {
       log.info("El videojuego a buscar no se encuentra registrado en la base de datos. Prueba con otro nombre");
-      return new ResponseEntity<>(VideoGameDTO.builder().build(),HttpStatus.NOT_FOUND);
+      return new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
 
   }
@@ -159,7 +157,7 @@ public class VideoGameController {
   @GetMapping("/developer/{developer}")
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<VideoGameDTO>> filterByDeveloper(@PathVariable String developer){
-    return new ResponseEntity<>(filterByDeveloperUseCase.videoGamesByDeveloper(developer.toString()).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(filterByDeveloperUseCase.videoGamesByDeveloper(developer).stream().map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
   }
 
   @PostMapping("/platforms")
@@ -197,6 +195,6 @@ public class VideoGameController {
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<VideoGameDTO>> getThreeLatestAddedVideogames(){
     return new ResponseEntity<>(latestVideogamesUseCase.threeLatestVideogames().stream()
-            .map(videogame -> mapper.toDto(videogame)).collect(Collectors.toList()), HttpStatus.FOUND);
+            .map(videogame -> mapper.toDto(videogame)).toList(), HttpStatus.FOUND);
   }
 }

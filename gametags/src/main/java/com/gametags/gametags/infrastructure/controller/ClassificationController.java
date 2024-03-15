@@ -71,7 +71,7 @@ public class ClassificationController {
   @ResponseStatus(HttpStatus.FOUND)
   public ResponseEntity<List<ClassificationDTO>> getAllClassification() {
     List<Classification> list = findAllUseCase.findAllClassifications();
-    return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).collect(Collectors.toList()), HttpStatus.FOUND);
+    return new ResponseEntity<>(list.stream().map(dao -> mapper.toDto(dao)).toList(), HttpStatus.FOUND);
   }
 
   @PutMapping("/")

@@ -30,7 +30,7 @@ public class CommentAdapter {
   }
 
   public List<Comment> findAll() {
-    return repo.findAll().stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAll().stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public Comment findById(UUID id) {
@@ -48,26 +48,26 @@ public class CommentAdapter {
   }
 
   public List<Comment> findAllByCategoryAndUploadUser(String category, String userName) {
-    return repo.findAllByCategoryAndUploadUser(category, userName).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllByCategoryAndUploadUser(category, userName).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public List<Comment> findAllBySeverityAndUploadUser(String severity, String userName) {
-    return repo.findAllBySeverityAndUploadUser(severity, userName).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllBySeverityAndUploadUser(severity, userName).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public List<Comment> findAllByVideoGameAndUploadUser(String videogame, String userName) {
-    return repo.findAllByVideogameAndUploadUser(videogame, userName).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllByVideogameAndUploadUser(videogame, userName).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public List<Comment> findAllByCategoryAndVideoGame(String category, String videogame) {
-    return repo.findAllByCategoryAndVideogame(category, videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllByCategoryAndVideogame(category, videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public List<Comment> findAllBySeverityAndVideoGame(String severity, String videogame) {
-    return repo.findAllBySeverityAndVideogame(severity, videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllBySeverityAndVideogame(severity, videogame).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 
   public List<Comment> findAllOfUser(String userName) {
-    return repo.findAllByUploadUser(userName).stream().map(entity -> mapper.fromEntityToDomain(entity)).collect(Collectors.toList());
+    return repo.findAllByUploadUser(userName).stream().map(entity -> mapper.fromEntityToDomain(entity)).toList();
   }
 }

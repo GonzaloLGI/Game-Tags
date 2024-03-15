@@ -31,13 +31,13 @@ public class CreateVideoGameUseCase {
 
   public VideoGame createVideoGame(VideoGame videoGame) {
     log.info("[START] createVideoGame");
+    log.info(String.valueOf(videoGame.getClassifications().get(0).getId()));
     VideoGame previous = service.findVideoGameByName(videoGame.getName());
     if (!Objects.isNull(previous.getId())) {
       log.info("[STOP] createVideoGame");
       return previous;
     }
-    List<Classification> updatedClassifications = videoGame.getClassifications().stream().map(classification -> checkAndAddNewClassifications(classification)).collect(
-        Collectors.toList());
+    List<Classification> updatedClassifications = videoGame.getClassifications().stream().map(this::checkAndAddNewClassifications).toList();
     videoGame.getClassifications().removeAll(videoGame.getClassifications());
     videoGame.getClassifications().addAll(updatedClassifications);
     //ESTO SE PODRIA ELIMINAR

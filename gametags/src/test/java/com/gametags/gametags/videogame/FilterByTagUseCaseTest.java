@@ -50,7 +50,7 @@ public class FilterByTagUseCaseTest {
         .build();
     List<VideoGame> list = List.of(videogame2);
 
-    when(service.findAllVideoGamesByTag(Arrays.asList("12","T","M","12","12","C"))).thenReturn(list);
+    when(service.findAllVideoGamesByTag(Arrays.asList("12","T","M","C"))).thenReturn(list);
     //WHEN
     List<VideoGame> returned = filterByTagUseCase.videoGamesByTag("12");
     //THEN
