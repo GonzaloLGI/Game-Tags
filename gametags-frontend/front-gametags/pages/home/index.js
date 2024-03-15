@@ -1,5 +1,7 @@
 import Layout from '../../components/layout'
 import Link from 'next/link'
+import introJs from 'intro.js/intro.js';
+import 'intro.js/introjs.css';
 import { getRequest } from '../../service/backendService';
 import { useEffect, useCallback, useState } from 'react';
 
@@ -8,12 +10,13 @@ export default function Home() {
   const [videogames, setVideogame] = useState([]);
 
   useEffect(() => {
-    console.log("token: " + window.localStorage.getItem("token"))
+    document.title = "GameTags | Home Page"
     threeLatestAddedVideogames("/videogame/latest");
+    introJs().setOption("dontShowAgain", true).start();
   }, [])
 
   async function threeLatestAddedVideogames(URL) {
-    const videogame = await getRequest(URL,window.localStorage.getItem("token"), window.localStorage.getItem("token"));
+    const videogame = await getRequest(URL, window.localStorage.getItem("token"));
     if (videogame.constructor == Array) {
       setVideogame(videogame)
     } else {
@@ -24,23 +27,29 @@ export default function Home() {
   return (
     <Layout>
       <div>
-        <div>Ultimas incorporaciones</div>
-        <div>
+        <div data-title="Latest Incorporations" data-intro="Here you will see the 3 latest games added to the web">Latest incorporations</div>
+        <div class="grid">
           {
             videogames.map((videogame, key) => {
               const name = videogame.name;
+              let image = ""
+              if (videogame.imageData != undefined || videogame.imageData != null) {
+                image = 'data:image/*;base64,' + videogame.imageData.data;
+              }
               return (
-                <ul>
-                      <li>
-                      <Link href={{
-                        pathname:"/selectedVideogame",
-                        query: {
-                          name: name
-                        }
-                      }}
-                      >{videogame.name}</Link>
-                      </li>
-                    </ul>
+                <article>
+                  <div className="incorporation">
+                    <Link href={{
+                      pathname: "/selectedVideogame",
+                      query: {
+                        name: name
+                      }
+                    }}
+                    >
+                      <img decoding='async' id="image" src={image} width="300px"></img>
+                    </Link>
+                  </div>
+                </article>
               )
             })
           }
@@ -49,3 +58,5 @@ export default function Home() {
     </Layout>
   )
 }
+
+

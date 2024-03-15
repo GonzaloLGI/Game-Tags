@@ -1,67 +1,61 @@
 import Layout from '../../components/layout'
-import { getRequest, postRequest } from '../../service/backendService';
-import { useEffect, useCallback, useState } from 'react';
+import { postRequest } from '../../service/backendService';
+import { loadModal, unloadModal, showRating, fixDate } from '../../service/miscService';
+import { useEffect, useState } from 'react';
 import Link from 'next/link'
 
 export default function SearchUserComments() {
-
+  const username = window.localStorage.getItem('userName');
   const [comments, setComments] = useState([]);
 
+  useEffect(() => {
+    document.title= "GameTags | " + username + " - Search User Comments"
+  }, [])
 
-  async function searchBySeverity(severity) {
-    console.log("Severity: " + severity)
-    const comments = await postRequest("/comment/severity/user", severity,window.localStorage.getItem("token"));
-    console.log("Comments: " + comments)
+  async function searchBy(theme,filter){
+    let comments;
+    if(theme != "videogame"){
+      comments = await postRequest("/comment/"+theme+"/user", filter, window.localStorage.getItem("token"));
+    }else{
+      comments = await postRequest("/comment/"+theme+"/user", {videogame: filter}, window.localStorage.getItem("token"));
+    }
     setComments(comments)
-  }
-
-  async function searchByCategory(category) {
-    console.log("Category: " + category)
-    const comments = await postRequest("/comment/category/user", category,window.localStorage.getItem("token"));
-    console.log("Comments: " +  comments)
-    setComments(comments)
-  }
-
-  async function searchByVideogame(videogame) {
-    console.log("Videogame: " + videogame)
-    const comments = await postRequest("/comment/videogame/user", {videogame:videogame},window.localStorage.getItem("token"));
-    console.log("Comments: " + comments)
-    setComments(comments)
-  }
-
-  function showComments(comments){
-    if (comments != undefined) {
-      return comments.map((comment, key) => {
-          return (
-            <ul>
-              <li>
-                Severidad: {comment.severity}
-              </li>
-              <li>
-                Texto: {comment.text}
-              </li>
-              <li>
-                Categoria: {comment.category}
-              </li>
-              <li>
-                Fecha de subida: {comment.uploadDate}
-              </li>
-              <li>
-                Videojuego: <Link href={{
-                        pathname:"/selectedVideogame",
-                        query: {
-                          name: comment.videogame
-                        }
-                      }}
-                      >{comment.videogame}</Link>
-              </li>
-            </ul>
-          )
-        })
+    if(comments.length == 0){
+      loadModal("modalNotFound")
     }
   }
 
-
+  function showComments(comments) {
+    if (comments != undefined) {
+      return comments.map((comment, key) => {
+        return (
+          <article>
+            <div>
+              {showRating(comment.severity)}
+            </div>
+            <div>
+              {comment.text}
+            </div>
+            <div>
+              Category: {comment.category}
+            </div>
+            <div>
+              Upload date: {fixDate(comment.uploadDate)}
+            </div>
+            <div>
+              Video Game: <Link href={{
+                pathname: "/selectedVideogame",
+                query: {
+                  name: comment.videogame
+                }
+              }}
+              >{comment.videogame}</Link>
+            </div>
+          </article>
+        )
+      })
+    }
+  }
 
   return (
     <Layout>
@@ -73,7 +67,7 @@ export default function SearchUserComments() {
             <option value="Moderate">Moderate</option>
             <option value="Severe">Severe</option>
           </select>
-          <input type='button' value="Search" onClick={e => searchBySeverity(document.getElementById("severity").value)} />
+          <input type='button' value="Search" onClick={e => searchBy("severity",document.getElementById("severity").value)} />
 
           <label for="category">Filter by category:</label>
           <select name="category" id="category">
@@ -83,10 +77,10 @@ export default function SearchUserComments() {
             <option value="Sexuality">Sexuality</option>
             <option value="Misc">Misc</option>
           </select>
-          <input type='button' value="Search" onClick={e => searchByCategory(document.getElementById("category").value)} />
+          <input type='button' value="Search" onClick={e => searchBy("category",document.getElementById("category").value)} />
 
-          <input type='search' id='videogame' placeholder='Write videogame you want to look your comments off' />
-          <input type='button' value="Search" onClick={e => searchByVideogame(document.getElementById("videogame").value)} />
+          <input type='search' id='videogame' placeholder='Write video game you want to look your comments off' />
+          <input type='button' value="Search" onClick={e => searchBy("videogame",document.getElementById("videogame").value)} />
 
         </form>
       </div>
@@ -95,6 +89,17 @@ export default function SearchUserComments() {
           showComments(comments)
         }
       </div>
+      <dialog id="modalNotFound">
+        <article>
+          <h2>Not found any comment fullfilling the filter</h2>
+          <p>
+              Please, search using other filter
+          </p>
+          <footer>
+            <input type="button" value="Confirm" onClick={e => unloadModal("modalNotFound")}></input>
+          </footer>
+        </article>
+      </dialog>
     </Layout>
   )
 }

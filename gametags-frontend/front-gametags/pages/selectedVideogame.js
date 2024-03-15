@@ -1,178 +1,262 @@
 import { getRequest } from '../service/backendService';
 import Link from 'next/link'
 import Layout from '../components/layout'
-import { useEffect, useCallback, useState } from 'react';
+import introJs from 'intro.js/intro.js';
+import 'intro.js/introjs.css';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/router';
+import { showRating, fixDate, loadImage } from '../service/miscService'
 
 export default function selectedVideogame() {
   const URL = "/videogame/name/" + useSearchParams().get('name');
   const [videogames, setVideogame] = useState([]);
   const platforms = videogames.platforms;
 
+
   useEffect(() => {
     getVideogame(URL);
+    checkUserLogged()
+    introJs().setOption("dontShowAgain", true).start();
   }, [])
 
   async function getVideogame(URL) {
-    console.log(window.localStorage.getItem("name"))
     if (URL.endsWith("undefined") || URL.endsWith("null")) {
       URL = "/videogame/name/" + window.localStorage.getItem("name");
     }
-    const videogame = await getRequest(URL,window.localStorage.getItem("token"), window.localStorage.getItem("token"));
-    if (videogame.name != undefined) {
-      window.localStorage.setItem("name", videogame.name)
+    const videogame = await getRequest(URL, window.localStorage.getItem("token"));
+    if (videogame[0].name != undefined) {
+      window.localStorage.setItem("name", videogame[0].name)
+      document.title = "GameTags | " + videogame[0].name
     }
-    setVideogame(videogame)
+    setVideogame(videogame[0])
   }
-
-  function showClassifications(videogames) {
-    if (videogames != undefined && videogames.classifications != undefined) {
-      return videogames.classifications.map((element, key) => {
-        return (
-          <ul>
-            <li>
-              Entidad: {element.system}
-            </li>
-            <li>
-              Edad: {element.tag}
-            </li>
-            <li>
-              Pais: {element.country}
-            </li>
-            <li>
-              Enlace: {element.url}
-            </li>
-          </ul>
-        )
-      })
-    }
-  };
 
   function showPlatforms(videogames) {
     if (videogames != undefined && videogames.platforms != undefined) {
       return videogames.platforms.map((element, key) => {
         return (
-          <ul>
-            <li>{element}</li>
-          </ul>
+          <li>{element}</li>
         )
       })
     }
   }
 
-  function showComments(videogames,category){
-    if (videogames != undefined && videogames.platforms != undefined) {
+  function showComments(videogames, category) {
+    if (videogames != undefined && videogames.comments != undefined) {
       return videogames.comments.map((comment, key) => {
-        if(comment.category == category){
+        if (comment.category == category) {
           return (
-            <ul>
-              <li>
-                Severidad: {comment.severity}
-              </li>
-              <li>
-                Texto: {comment.text}
-              </li>
-              <li>
-                Usuario: {comment.uploadUser}
-              </li>
-              <li>
-                Fecha de escritura: {comment.uploadDate}
-              </li>
-            </ul>
+            <li>
+              <article>
+                {showRating(comment.severity)}
+                <ul>
+                  <li>
+                    {comment.text}
+                  </li>
+                  <li>
+                    Written by: {addProfileLink(comment.uploadUser)}
+                  </li>
+                  <li>
+                    Upload date: {fixDate(comment.uploadDate)}
+                  </li>
+                </ul>
+              </article>
+            </li>
           )
         }
       })
     }
   }
 
+  function addProfileLink(uploadUser) {
+    if (uploadUser && window.localStorage.getItem("userName") == uploadUser) {
+      return <Link href={{
+        pathname: "/profile/userProfile"
+      }}
+      >{uploadUser}</Link>
+    } else {
+      return uploadUser
+    }
+  }
+
+  function loadTagImages(classifications) {
+    var image = ""
+    if (classifications != undefined) {
+      return classifications.map((element, key) => {
+        if (element.imageData != undefined || element.imageData != null) {
+          image = 'data:image/*;base64,' + element.imageData.data;
+        }
+        return (
+          <div className="imageDisplay">
+            <Link href={{
+              pathname: element.url
+            }}>
+              <img decoding='async' id="cover" src={image} width="50px"></img>
+            </Link>
+          </div>
+        )
+      })
+    }
+  }
+
+  function calculateRating(category) {
+    if (videogames != undefined && videogames.comments != undefined) {
+      let mild = videogames.comments.filter(comment => ("Mild" == comment.severity && comment.category == category)).length
+      let moderate = videogames.comments.filter(comment => ("Moderate" == comment.severity && comment.category == category)).length
+      let severe = videogames.comments.filter(comment => ("Severe" == comment.severity && comment.category == category)).length
+      let selectedRating = Math.max(mild, moderate, severe)
+      if (selectedRating == 0) {
+        return <h6 className='unknown'>Unknown</h6>
+      } else if (selectedRating == mild) {
+        return <h6 className='mild'>Mild</h6>
+      } else if (selectedRating == moderate) {
+        return <h6 className='moderate'>Moderate</h6>
+      } else if (selectedRating == severe) {
+        return <h6 className='severe'>Severe</h6>
+      }
+    }
+  }
+
+  function checkUserLogged() {
+
+    let token = window.localStorage.getItem("token")
+    if (token == undefined || token == null) {
+      document.getElementById("newClassification").style.display = "none"
+      document.getElementById("newComment").style.display = "none"
+    } else {
+      document.getElementById("newClassification").style.display = "block"
+      document.getElementById("newComment").style.display = "block"
+    }
+  }
+
+  //AÑADIR COUNT DE COMENTARIOS DE CADA TIPO PARA MOSTRARLO JUNTO AL DROPDOWN
+  function countComments(theme) {
+    if (videogames != undefined && videogames.comments != undefined) {
+      let count = videogames.comments.filter(comment => (comment.category == theme)).length
+      return count
+    }
+  }
+
   return (
     <Layout>
-      <ul>
-        <li>
-          <Link href={{
-            pathname: "/newClassification",
-            query: {
-              id: videogames.id,
-              name: videogames.name
-            }
-          }}>Add new classification</Link>
-        </li>
-        <li>
-          <Link href={{
-            pathname: "/newComment",
-            query: {
-              id: videogames.id,
-              name: videogames.name
-            }
-          }}>Add new comment</Link>
-        </li>
-        <li>
-          total videogames: {videogames.length}
+      <div id='newClassification'>
+        <Link href={{
+          pathname: "/newClassification",
+          query: {
+            id: videogames.id,
+            name: videogames.name
+          }
+        }}>Add new classification</Link>
+      </div>
+      <div id='newComment'>
+        <Link href={{
+          pathname: "/newComment",
+          query: {
+            id: videogames.id,
+            name: videogames.name
+          }
+        }}>Add new comment</Link>
+      </div>
+      <article data-title="Video Game Sheet" data-intro="The information of the video game is displayed here, like the platforms where it has been released or when the game was uploaded to the page">
+        <div>
+          <h3>{videogames.name}</h3>
+        </div>
+        <div class="grid">
           <div>
-            <ul>
-              <li>
-                Nombre: {videogames.name}
-              </li>
-              <li>
-                Desarrollador: {videogames.developer}
-              </li>
-              <li>
-                Etiquetas de edad:
-                <div>
-                  {
-                    showClassifications(videogames)
-                  }
-                </div>
-              </li>
-              <li>
-                Plataformas:
-                <div>
-                  {
-                    showPlatforms(videogames)
-                  }
-                </div>
-              </li>
-              <li>
-                Fecha de subida: {videogames.uploadDateTime}
-              </li>
-              <li>
-                Agregado por: {videogames.uploadUser}
-              </li>
-              <li>
-                Comentarios de violencia:
-                {
-                  showComments(videogames, "Violence")
-                }
-              </li>
-              <li>
-                Comentarios de lenguaje:
-                {
-                  showComments(videogames, "Language")
-                }
-              </li>
-              <li>
-                Comentarios de sexualidad:
-                {
-                  showComments(videogames, "Sexuality")
-                }
-              </li>
-              <li>
-                Comentarios de drogas:
-                {
-                  showComments(videogames, "Drugs")
-                }
-              </li>
-              <li>
-                Comentarios de miscelanea:
-                {
-                  showComments(videogames, "Misc")
-                }
-              </li>
-            </ul>
+            <div>
+              <h4>{videogames.developer}</h4>
+            </div>
+            <div>
+              Platforms
+              <ul>
+                {showPlatforms(videogames)}
+              </ul>
+            </div>
+            <div>
+              Upload date: {fixDate(videogames.uploadDateTime)}
+            </div>
+            <div>
+              Upload by: {addProfileLink(videogames.uploadUser)}
+            </div>
+            <article>
+              <div>
+                Violence rating {calculateRating("Violence")}
+              </div>
+              <div>
+                Language rating {calculateRating("Language")}
+              </div>
+              <div>
+                Sexuality rating {calculateRating("Sexuality")}
+              </div>
+              <div>
+                Drugs rating {calculateRating("Drugs")}
+              </div>
+              <div>
+                Misc rating {calculateRating("Misc")}
+              </div>
+            </article>
           </div>
-        </li>
-      </ul>
+          <div>
+            <div>
+              {loadTagImages(videogames.classifications)}
+            </div>
+          </div>
+          <div>
+            {loadImage(videogames, "videogame")}
+          </div>
+        </div>
+      </article>
+      <article data-title="Comments" data-intro="The comments are separated in each thematic matter. The themes are violence, language, sexaulityt, drugs and miscellaneous">
+        <div>
+          <details className='dropdown'>
+            <summary>Violence Comments: {countComments("Violence")}</summary>
+            <ul>
+              {showComments(videogames, "Violence")}
+            </ul>
+          </details>
+        </div>
+      </article>
+      <article data-title="Comment's Information" data-intro="Each comment indicates the severity judge by the user, the comment itself about their opinion and who uploaded the comment">
+        <div>
+          <details className='dropdown'>
+            <summary>Language Comments: {countComments("Language")}</summary>
+            <ul>
+              {showComments(videogames, "Language")}
+            </ul>
+          </details>
+        </div>
+      </article>
+      <article>
+        <div>
+          <details className='dropdown'>
+            <summary>Sexuality Comments: {countComments("Sexuality")}</summary>
+            <ul>
+              {showComments(videogames, "Sexuality")}
+            </ul>
+          </details>
+        </div>
+      </article>
+      <article>
+        <div>
+          <details className='dropdown'>
+            <summary>Drug Comments: {countComments("Drugs")}</summary>
+            <ul>
+              {showComments(videogames, "Drugs")}
+            </ul>
+          </details>
+        </div>
+      </article>
+      <article>
+        <div>
+          <details className='dropdown'>
+            <summary>Misc Comments: {countComments("Misc")}</summary>
+            <ul>
+              {showComments(videogames, "Misc")}
+            </ul>
+          </details>
+        </div>
+      </article>
+
     </Layout>
   )
 }

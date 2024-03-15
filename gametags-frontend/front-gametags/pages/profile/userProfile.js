@@ -1,95 +1,153 @@
 import Link from 'next/link'
 import Layout from '../../components/layout'
-import { useEffect, useCallback, useState } from 'react';
-import { getRequest } from '../../service/backendService';
-import { deleteRequest } from '../../service/backendService';
- 
-function Profile() {
-  const URL = "/user/name/"
+import introJs from 'intro.js/intro.js';
+import 'intro.js/introjs.css';
+import { useEffect, useState } from 'react';
+import { deleteRequest, postRequest, getRequest } from '../../service/backendService';
+import { loadModal, unloadModal, loadImage } from '../../service/miscService';
+
+export default function Profile() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    if(window.localStorage.getItem("token") == null || window.localStorage.getItem("token") == undefined){
-      window.location="http://localhost:3000/home"
-      console.log("Sin credenciales")
+    if (window.localStorage.getItem("token") == null || window.localStorage.getItem("token") == undefined) {
+      window.location = "http://localhost:3000/home"
       return
     }
-    console.log("token: " + window.localStorage.getItem("token"))
-    getUser(URL);
+    getUser();
+    introJs().setOption("dontShowAgain", true).start();
   }, [])
 
-  async function getUser(URL) {
+  async function getUser() {
     const userName = window.localStorage.getItem("userName")
-    console.log(userName)
-    URL += userName
-    const user = await getRequest(URL,window.localStorage.getItem("token"), window.localStorage.getItem("token"));
+    let URL = "/user/name/" + userName
+    const user = await getRequest(URL, window.localStorage.getItem("token"));
     if (user.username != undefined) {
       window.localStorage.setItem("userName", user.username)
+      document.title = "GameTags | " + user.username + " - Profile"
     }
     setUser(user)
   }
 
   function showRoles(user) {
+    let role = ""
     if (user != undefined && user.roles != undefined) {
       return user.roles.map((element, key) => {
+        if (element == "ROLE_USER") {
+          role = "User"
+        } else if (element == "ROLE_ADMIN") {
+          role = "Admin"
+        }
         return (
           <ul>
-            <li>{element}</li>
+            <li>{role}</li>
           </ul>
         )
       })
     }
   }
 
-  async function deleteUser(user){
-    const deletedUser = await deleteRequest("/user/"+user.id,window.localStorage.getItem("token"),window.localStorage.getItem("token"))
-    if(deletedUser != undefined){
-      window.location="http://localhost:3000/home"
-      console.log("Deleted user: " + deletedUser.username)
-    }else{
-      console.log("El usuario no se pudo borrar: " + deletedUser)
+  async function deleteUser(user) {
+    const deletedUser = await deleteRequest("/user/" + user.id, window.localStorage.getItem("token"))
+    if (deletedUser != undefined) {
+      loadModal("modalUserDeleted")
+    } else {
+      loadModal("modalUserNotDeleted")
     }
+  }
+
+  async function uploadProfileImage(URL, image) {
+    if (image == null || image == undefined) {
+      loadModal("modalNotImage")
+      return
+    }
+    await postRequest(URL + user.id + "/image", image, window.localStorage.getItem("token"))
+    window.location = "http://localhost:3000/profile/userProfile"
   }
 
   return (
     <Layout>
-    <ul>
-      <li>
-        <div>Datos del usuario:
-          <ul>
-            <li>
-              Nombre de usuario: {user.username}
-            </li>
-            <li>
-              Pais de origen: {user.country}
-            </li>
-            <li>
-              Correo electronico: {user.email}
-            </li>
-            <li>
-              Roles: 
-              <div>
-                  {
-                    showRoles(user)
-                  }
-                </div>
-            </li>
-          </ul>
+      <article data-title="User Profile" data-intro="When you have succesfully registered a user and logged in, the information about you is shown here. From here you have multiple options
+      like changing you username or your password, uploading a profile picture or searching your comments">
+        <div className='imageDisplay'>
+          {loadImage(user, "profile")}
         </div>
-      </li>
-      <li>
-        <Link href="/profile/changeUsername">Change user's username</Link>
-      </li>
-      <li>
-        <Link href="/profile/changePassword">Change user's password</Link>
-      </li>
-      <li>
-        <Link href="/profile/searchUserComments">Search for user comments</Link>
-      </li>
-      <input type='button' value="Delete user" onClick={e => deleteUser(user)}/>
-    </ul>
+        <div>
+          {user.username}
+        </div>
+        <div>
+          Country origin: {user.country}
+        </div>
+        <div>
+          Email: {user.email}
+        </div>
+        <div>
+          Roles:
+          <div>
+            {
+              showRoles(user)
+            }
+          </div>
+        </div>
+      </article>
+      <div>
+        <div>Upload user profile picture</div>
+        <div>
+          <input type="file" id="profileImage" name="image" accept="image/*" />
+          <input type="button" value="Submit profile picture" onClick={e => uploadProfileImage("/user/", document.getElementById("profileImage").files[0])} />
+        </div>
+        <div>
+          <Link href="/profile/changeUsername">Change user's username</Link>
+        </div>
+        <div>
+          <Link href="/profile/changePassword">Change user's password</Link>
+        </div>
+        <div>
+          <Link href="/profile/searchUserComments">Search for user comments</Link>
+        </div>
+        <div>
+          <input type='button' value="Delete user" onClick={e => deleteUser(user)} />
+        </div>
+      </div>
+      <dialog id="modalNotImage">
+        <article>
+          <h2>There wasn't submitted any image</h2>
+          <p>
+            Please, submit a valid image
+          </p>
+          <footer>
+            <input type="button" value="Confirm" onClick={e => unloadModal("modalNotImage")}></input>
+          </footer>
+        </article>
+      </dialog>
+      <dialog id="modalUserDeleted">
+        <article>
+          <h2>User completely deleted</h2>
+          <p>
+            You will be redirected to Home page
+          </p>
+          <footer>
+            <input type="button" value="Confirm" onClick={e => {
+              unloadModal("modalUserDeleted");
+              window.localStorage.clear();
+              window.location = "http://localhost:3000/home";
+            }}></input>
+          </footer>
+        </article>
+      </dialog>
+      <dialog id="modalUserNotDeleted">
+        <article>
+          <h2>User couldn't be deleted</h2>
+          <p>
+            Please, try again
+          </p>
+          <footer>
+            <input type="button" value="Confirm" onClick={e => {
+              unloadModal("modalUserNotDeleted");
+            }}></input>
+          </footer>
+        </article>
+      </dialog>
     </Layout>
   )
 }
- 
-export default Profile
