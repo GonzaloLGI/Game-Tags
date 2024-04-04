@@ -30,7 +30,7 @@ public class FilterBySeverityUseCase {
     log.info("[START] filterBySeverity " + severity);
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userService.findOneUserByUsername(username);
-    if(ObjectUtils.isNotEmpty(user)){
+    if(ObjectUtils.isNotEmpty(user.getId())){
       log.info("[STOP] filterBySeverity " + user.getId());
       return service.findAllCommentsBySeverityAndUploadUser(severity, user.getUsername());
     }else{

@@ -1,10 +1,14 @@
 package com.gametags.gametags.comment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
+import com.gametags.gametags.application.comment.create_comment.CreateCommentInput;
+import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
 import com.gametags.gametags.infrastructure.mappers.CommentMapper;
 import org.junit.jupiter.api.Test;
@@ -50,5 +54,38 @@ public class CommentMapperTest {
 
     //THEN
     assertEquals(dto.getId(), mapped.getId());
+  }
+
+  @Test
+  public void mappingFromUpdateInputToDto() {
+    //GIVEN
+    CreateCommentInput input = CreateCommentInput.builder()
+            .id(UUID.randomUUID())
+            .text("text")
+            .category("category")
+            .severity("severity")
+            .build();
+
+    //WHEN
+    CommentDTO mapped = mapper.fromUpdateInputToDto(input);
+
+    //THEN
+    assertEquals(input.getId(), mapped.getId());
+  }
+
+  @Test
+  public void mappingFromInputToDto() {
+    //GIVEN
+    CreateCommentInput input = CreateCommentInput.builder()
+            .text("text")
+            .category("category")
+            .severity("severity")
+            .build();
+
+    //WHEN
+    CommentDTO mapped = mapper.fromInputToDto(input);
+
+    //THEN
+    assertNotNull(mapped.getId());
   }
 }

@@ -1,9 +1,9 @@
 
-@
-java:S5786"Remove this 'public' modifier.(Ž©â˜øÿÿÿÿ8“áµ½‡1
-@
-java:S57863"Remove this 'public' modifier.(Ç‰äÕùÿÿÿÿ8”áµ½‡1
-;
-java:S5786"Remove this 'public' modifier.(šßÃé8•áµ½‡1
-
-java:S57788"bRefactor the code of the lambda to have only one invocation possibly throwing a runtime exception.(¨¯û¸8 áµ½‡1
+f
+java:S5786"Remove this 'public' modifier.(Ž©â˜øÿÿÿÿ8“áµ½‡1J$c56dac0e-01b0-46ee-a3b3-1a306a49a36d
+f
+java:S57863"Remove this 'public' modifier.(Ç‰äÕùÿÿÿÿ8”áµ½‡1J$35b95809-d2d5-4856-ab5a-ba802d9eac38
+a
+java:S5786"Remove this 'public' modifier.(šßÃé8•áµ½‡1J$1612940b-a255-474b-abf6-a76b0dfaefe8
+ª
+java:S57788"bRefactor the code of the lambda to have only one invocation possibly throwing a runtime exception.(ìŠ§Üÿÿÿÿÿ8 áµ½‡1J$dfa6004b-23c0-46e8-acbf-763511bf387a

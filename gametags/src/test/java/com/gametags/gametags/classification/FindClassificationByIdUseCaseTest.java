@@ -52,6 +52,8 @@ public class FindClassificationByIdUseCaseTest {
     when(service.findOneClassification(any())).thenReturn(Classification.builder().build());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.findOneClassification(UUID.randomUUID()));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.findOneClassification(UUID.randomUUID()));
+
+    assertEquals("The classification is not registered",exception.getMessage());
   }
 }

@@ -1,11 +1,11 @@
 package com.gametags.gametags.comment;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import com.gametags.gametags.application.comment.UpdateCommentUseCase;
@@ -54,4 +54,25 @@ public class UpdateCommentUseCaseTest {
     assertEquals(newComment, returnedComment);
 
   }
+
+  @Test
+  public void cantUpdateBecauseCommentDoesntExist() {
+    //GIVEN
+    Comment newComment = Comment.builder()
+            .id(UUID.randomUUID())
+            .text("text")
+            .category("category")
+            .severity("severity")
+            .uploadDate(LocalDateTime.now())
+            .build();
+    when(service.findOneCommentById(any(UUID.class))).thenReturn(Comment.builder().build());
+
+    //WHEN
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.updateComment(newComment));
+
+    //THEN
+    assertEquals("The comment is not registered",exception.getMessage());
+
+  }
+
 }

@@ -53,9 +53,10 @@ public class DeleteCommentUseCaseTest {
     when(service.findOneCommentById(any())).thenReturn(Comment.builder().build());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.deleteComment(UUID.randomUUID()));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.deleteComment(UUID.randomUUID()));
 
     //THEN
+    assertEquals("Non existing comment",exception.getMessage());
 
   }
 }

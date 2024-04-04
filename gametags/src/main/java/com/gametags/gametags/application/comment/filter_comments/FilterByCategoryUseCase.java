@@ -29,7 +29,7 @@ public class FilterByCategoryUseCase {
     log.info("[START] filterByCategory " + category);
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userService.findOneUserByUsername(username);
-    if(ObjectUtils.isNotEmpty(user)){
+    if(ObjectUtils.isNotEmpty(user.getId())){
       log.info("[STOP] filterByCategory " + user.getId());
       return service.findAllCommentsByCategoryAndUploadUser(category, user.getUsername());
     }else{

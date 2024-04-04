@@ -54,6 +54,9 @@ class FindVideoGameByIdUseCaseTest {
     when(service.findOneVideoGame(any())).thenReturn(VideoGame.builder().build());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.findOneVideoGame(UUID.randomUUID()));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.findOneVideoGame(UUID.randomUUID()));
+
+    //THEN
+    assertEquals("The videogame is not registered",exception.getMessage());
   }
 }

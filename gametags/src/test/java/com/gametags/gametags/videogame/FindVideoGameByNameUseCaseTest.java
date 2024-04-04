@@ -55,6 +55,9 @@ public class FindVideoGameByNameUseCaseTest {
     when(service.findVideoGameLikeName(any())).thenReturn(List.of());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.findByName("name"));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.findByName("name"));
+
+    //THEN
+    assertEquals("The videogame is not registered",exception.getMessage());
   }
 }

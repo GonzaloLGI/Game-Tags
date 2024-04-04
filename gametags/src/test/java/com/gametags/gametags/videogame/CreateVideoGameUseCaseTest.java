@@ -58,4 +58,56 @@ class CreateVideoGameUseCaseTest {
     assertEquals(videogame.getName(), returnedClassification.getName());
 
   }
+
+  @Test
+  public void createVideoGameWithExistingClassification() {
+    //GIVEN
+    VideoGame videogame = VideoGame.builder()
+            .id(UUID.randomUUID())
+            .name("name")
+            .developer("developer")
+            .platforms(List.of("platform1", "platform2"))
+            .uploadDateTime(LocalDateTime.now())
+            .classifications(new ArrayList<>(List.of(Classification.builder().build())))
+            .build();
+    Classification existingClassification = Classification.builder()
+            .id(UUID.randomUUID())
+            .tag("tag")
+            .url("url")
+            .country("country")
+            .system("system")
+            .build();
+    when(service.createVideoGame(any(VideoGame.class))).thenReturn(videogame);
+    when(service.findVideoGameByName(any())).thenReturn(VideoGame.builder().build());
+    when(classificationService.findOneClassificationBySystemAndTag(any(),any())).thenReturn(existingClassification);
+
+    //WHEN
+    VideoGame returnedClassification = useCase.createVideoGame(videogame);
+
+    //THEN
+    assertEquals(videogame.getName(), returnedClassification.getName());
+
+  }
+
+  @Test
+  public void cantCreateVideoGameBecauseAlreadyExist() {
+    //GIVEN
+    VideoGame videogame = VideoGame.builder()
+            .id(UUID.randomUUID())
+            .name("name")
+            .developer("developer")
+            .platforms(List.of("platform1", "platform2"))
+            .uploadDateTime(LocalDateTime.now())
+            .classifications(new ArrayList<>(List.of(Classification.builder().build())))
+            .build();
+    when(service.findVideoGameByName(any())).thenReturn(videogame);
+
+    //WHEN
+    VideoGame returnedClassification = useCase.createVideoGame(videogame);
+
+    //THEN
+    assertEquals(videogame.getName(), returnedClassification.getName());
+
+  }
+
 }

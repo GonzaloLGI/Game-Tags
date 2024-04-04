@@ -79,8 +79,9 @@ public class DeleteUserUseCaseTest {
     when(service.findOneUserById(any())).thenReturn(User.builder().build());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.deleteUser(UUID.randomUUID()));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.deleteUser(UUID.randomUUID()));
 
     //THEN
+    assertEquals("Non existing user",exception.getMessage());
   }
 }

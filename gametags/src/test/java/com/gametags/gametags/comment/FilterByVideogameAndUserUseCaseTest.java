@@ -2,6 +2,7 @@ package com.gametags.gametags.comment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import com.gametags.gametags.application.comment.filter_comments.FilterByVideoGameUseCase;
@@ -22,6 +23,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import static com.mongodb.internal.connection.tlschannel.util.Util.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -53,7 +56,7 @@ public class FilterByVideogameAndUserUseCaseTest {
   public void filterByGameAndUser() {
     //GIVEN
     String videogameName = "videogame";
-    VideoGame videoGame = VideoGame.builder().build();
+    VideoGame videoGame = VideoGame.builder().id(UUID.randomUUID()).build();
     User user = User.builder()
             .id(UUID.randomUUID())
             .username("username2").build();
@@ -61,10 +64,26 @@ public class FilterByVideogameAndUserUseCaseTest {
     when(userService.findOneUserByUsername(any())).thenReturn(user);
     when(videoGameService.findVideoGameByName(videogameName)).thenReturn(videoGame);
     when(service.findAllCommentsByVideoGameAndUploadUser(any(),any())).thenReturn(comments);
+
     //WHEN
     List<Comment> returned = filterByVideoGameUseCase.commentsByVideoGameAndUser(videogameName);
+
     //THEN
     assertTrue(returned.size() > 0);
+  }
+
+  @Test
+  public void cantFilterBecauseUserAndVideoGameDoesntExist() {
+    //GIVEN
+    String videogameName = "videogame";
+    when(userService.findOneUserByUsername(any())).thenReturn(User.builder().build());
+    when(videoGameService.findVideoGameByName(videogameName)).thenReturn(VideoGame.builder().build());
+
+    //WHEN
+    Exception exception = assertThrows(NoSuchElementException.class, () -> filterByVideoGameUseCase.commentsByVideoGameAndUser(videogameName));
+
+    //THEN
+    assertEquals("The user and video game doesn't exist",exception.getMessage());
   }
 
 }

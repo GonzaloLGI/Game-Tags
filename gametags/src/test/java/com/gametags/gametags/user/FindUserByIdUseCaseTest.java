@@ -77,6 +77,9 @@ public class FindUserByIdUseCaseTest {
     when(service.findOneUserById(any())).thenReturn(User.builder().build());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.findOneUser(UUID.randomUUID()));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.findOneUser(UUID.randomUUID()));
+
+    //THEN
+    assertEquals("The user is not registered",exception.getMessage());
   }
 }

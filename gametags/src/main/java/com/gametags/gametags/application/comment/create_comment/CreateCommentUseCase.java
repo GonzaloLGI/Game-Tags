@@ -44,7 +44,7 @@ public class CreateCommentUseCase {
     log.info("[START] Creating comment with data: " + comment.getId() + " " + comment.getCategory() + " " + comment.getSeverity());
     User actualUser = userService.findOneUserByUsername(comment.getUploadUser());
     VideoGame toUpdate = videogameService.findVideoGameByName(comment.getVideogame());
-    if(ObjectUtils.isNotEmpty(actualUser) && ObjectUtils.isNotEmpty(toUpdate)){
+    if(ObjectUtils.isNotEmpty(actualUser.getId()) && ObjectUtils.isNotEmpty(toUpdate.getId())){
       List<Comment> updatedList = new ArrayList<>(toUpdate.getComments());
       Comment createdComment = service.createComment(comment);
       updatedList.add(createdComment);

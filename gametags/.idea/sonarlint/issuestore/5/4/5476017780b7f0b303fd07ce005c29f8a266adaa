@@ -1,6 +1,10 @@
 
-u	java:S116"TRename this field "ROLE_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šê…»ùÿÿÿÿ8°á€¨à1
-C
-java:S1170"!Make this final field static too.(šê…»ùÿÿÿÿ8±á€¨à1
-w
-java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(€µ×ê8ö§•ÒÅ1
+›	java:S116"TRename this field "ROLE_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šê…»ùÿÿÿÿ8°á€¨à1J$016acb4b-5fbc-4bc5-b83d-ac5a5fc2cf22
+i
+java:S1170"!Make this final field static too.(šê…»ùÿÿÿÿ8±á€¨à1J$1b6e6744-c107-4342-b2b5-6f090083c020
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ô˜ƒ‹è1J$a8381f59-98a5-49e6-b0ed-2b9a9a183913
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ô˜ƒ‹è1J$86998ca3-24a0-461e-b1a9-ea56b9ed38b8
+
+java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(€µ×ê8ö§•ÒÅ1J$5ad56e36-9a3c-4fd6-87b8-2782c11b6721

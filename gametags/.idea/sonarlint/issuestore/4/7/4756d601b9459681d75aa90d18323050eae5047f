@@ -1,18 +1,51 @@
 
-X	java:S125:"<This block of commented-out lines of code should be removed.(õ¤Üå8ÜÀÕ€á1
-o
-java:S6204B"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Òë°¾8½Á—©à1
-n
-java:S6204E"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(´ïµ%8í«®©à1
-t
-java:S6204_"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(²ñáµùÿÿÿÿ8×™¯©à1
-o
-java:S6204b"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(÷æÊ›8áÓ¯©à1
-t
-java:S6204o"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Î·ŠÀıÿÿÿÿ8Ïğ¹©à1
-t
-java:S6204r"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(áì‰ şÿÿÿÿ8Æ§º©à1
-t
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(„ÈÙ•şÿÿÿÿ8Ùòº©à1
-p
-java:S6204‚"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª·ˆ¯8ş§»©à1
+…
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8ØÁ×é1J$c59f90ba-d732-4460-9b5d-25739a35c49c
+…
+java:S6813("BRemove this field injection and use constructor injection instead.(êæÄŞ8ØÁ×é1J$c2895e4b-00b7-4dc7-8fd1-c1cb279f5754
+ƒ	java:S125-"<This block of commented-out lines of code should be removed.(¯Ö™ëşÿÿÿÿ8 ­Ç×é1J$b4f0b509-6aad-448e-962e-218941c03a72
+~	java:S125;"<This block of commented-out lines of code should be removed.(õ¤Üå8ÜÀÕ€á1J$7da2e127-4a84-49a7-9f5d-dd83fda48147
+•
+java:S6204C"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Òë°¾8½Á—©à1J$d0fd958b-0101-4b4c-bf3c-66fe8ed59681
+”
+java:S6204F"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(´ïµ%8í«®©à1J$25b3041c-91a5-4312-adc0-ae1b65181d05
+š
+java:S6204`"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(²ñáµùÿÿÿÿ8×™¯©à1J$a88325f6-0c94-4a4b-8060-1f9dbb72ede3
+•
+java:S6204c"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(÷æÊ›8áÓ¯©à1J$615ac3a8-b5f8-46a7-a8e7-56a27dc9894a
+š
+java:S6204p"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Î·ŠÀıÿÿÿÿ8Ïğ¹©à1J$ad3fc32b-5a46-446e-aeb6-febebc2026e3
+š
+java:S6204s"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(áì‰ şÿÿÿÿ8Æ§º©à1J$33c91c44-d538-4e63-a944-b5c47be088c8
+›
+java:S6204€"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(„ÈÙ•şÿÿÿÿ8Ùòº©à1J$2f56b58d-ba50-475c-a864-53034b758d86
+–
+java:S6204ƒ"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª·ˆ¯8ş§»©à1J$1241976b-a96b-41c4-88ef-3cf9f1ca0ae2
+x
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8ÜÇÎ×é1J$4409d43e-47f6-4e75-8c22-009f0d3cfd51
+v
+java:S1128"4Remove this unused import 'java.security.Principal'.(’ÛŞ[8ÜÇÎ×é1J$e5145cc5-3487-464c-afe0-1911e1e5e2dc
+‘
+java:S1128"NRemove this unused import 'com.gametags.gametags.domain.model.Classification'.(—ÖËÀ8İÇÎ×é1J$236cbe11-5e67-44c1-96d0-c6eedf57609d
+Š
+java:S1128"GRemove this unused import 'com.gametags.gametags.domain.model.Comment'.(äñŒ8İÇÎ×é1J$b062ae01-e6fd-419e-8f66-84cefffeb588
+›
+java:S1128"XRemove this unused import 'com.gametags.gametags.infrastructure.daos.ClassificationDAO'.(ïıãÉ8İÇÎ×é1J$3fc65e21-ed65-4fed-bfba-299eecc6552e
+™
+java:S1128"QRemove this unused import 'com.gametags.gametags.infrastructure.daos.CommentDAO'.(ºŠ…ÿÿÿÿÿ8İÇÎ×é1J$de24f3ec-d32b-40d4-854e-bbc7a71b857b
+›
+java:S1128"XRemove this unused import 'com.gametags.gametags.infrastructure.dtos.ClassificationDTO'.(¼„×÷8İÇÎ×é1J$9a627ff2-9ac6-46b2-abc4-c21646eff340
+™
+java:S1128"QRemove this unused import 'com.gametags.gametags.infrastructure.dtos.CommentDTO'.(’Óö¯øÿÿÿÿ8İÇÎ×é1J$9f965e4d-f981-47b1-af93-d1ea5839fabf
+†
+java:S1128"DRemove this unused import 'jakarta.servlet.http.HttpServletRequest'.(õ38ŞÇÎ×é1J$815d6a26-23f3-4c65-bea3-8c98ab3874cb
+
+java:S1128"=Remove this unused import 'jakarta.servlet.http.HttpSession'.(Çê°8ŞÇÎ×é1J$56d6344a-6f8b-458b-b05b-feb1b81ae5e2
+z
+java:S1128"7Remove this unused import 'org.bson.BsonBinarySubType'.(Í…ú¨8ŞÇÎ×é1J$1ca2605a-1d1f-45a0-a0f8-39a7f2aea262
+z
+java:S1128"2Remove this unused import 'org.bson.types.Binary'.(›ñÔÏøÿÿÿÿ8ŞÇÎ×é1J$41a41639-a806-452a-a031-81fa4a185843
+™
+java:S1128"VRemove this unused import 'org.springframework.security.core.userdetails.UserDetails'.(ÊÁ¥8ŞÇÎ×é1J$5f796ae7-23b8-4be8-888a-401fdd5026fd
+”
+java:S1128"LRemove this unused import 'org.springframework.web.multipart.MultipartFile'.(ôŸœÿÿÿÿÿ8ßÇÎ×é1J$5d16be9e-0a0f-43f7-83ce-82e500f63d70

@@ -70,4 +70,24 @@ public class CreateUserUseCaseTest {
     //THEN
     assertEquals(user, returnedUser);
   }
+
+  @Test
+  public void createAlreadyExisingUser() {
+    //GIVEN
+    User user = User.builder()
+            .id(UUID.randomUUID())
+            .username("username")
+            .email("email")
+            .password("password")
+            .country("country")
+            .build();
+    when(service.findOneUserByUsername(any(String.class))).thenReturn(user);
+
+    //WHEN
+    User returnedUser = useCase.createUser(user);
+
+    //THEN
+    assertEquals(user, returnedUser);
+  }
+
 }

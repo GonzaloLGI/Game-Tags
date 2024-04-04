@@ -53,6 +53,9 @@ public class FindCommentByIdUseCaseTest {
     when(service.findOneCommentById(any())).thenReturn(Comment.builder().build());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.findOneComment(UUID.randomUUID()));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.findOneComment(UUID.randomUUID()));
+
+    //THEN
+    assertEquals("The comment is not registered",exception.getMessage());
   }
 }

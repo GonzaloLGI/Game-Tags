@@ -52,9 +52,10 @@ public class DeleteClassificationUseCaseTest {
     when(service.findOneClassification(any())).thenReturn(Classification.builder().build());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.deleteClassification(UUID.randomUUID()));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.deleteClassification(UUID.randomUUID()));
 
     //THEN
+    assertEquals("Non existing classification",exception.getMessage());
 
   }
 }

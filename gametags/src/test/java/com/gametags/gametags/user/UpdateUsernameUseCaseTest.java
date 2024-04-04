@@ -1,6 +1,6 @@
 package com.gametags.gametags.user;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -19,6 +19,7 @@ import com.gametags.gametags.domain.services.VideoGameService;
 import com.gametags.gametags.infrastructure.JWTGenerator;
 import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import org.apache.commons.lang3.ObjectUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,6 +28,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.webjars.NotFoundException;
 
 @ExtendWith(MockitoExtension.class)
 public class UpdateUsernameUseCaseTest {
@@ -55,34 +57,47 @@ public class UpdateUsernameUseCaseTest {
   @Mock
   AuthenticationManager authenticationManager;
 
-  @Test
-  public void updateUsername() {
-    //GIVEN
-    final String existingPassword = "password1";
-    final String newUsername = "username2";
-    User existingUser = User.builder()
-        .password("password1")
-        .id(UUID.randomUUID())
-        .email("email")
-        .roles(List.of())
-        .country("country")
-        .username("username")
-        .build();
+  String existingPassword;
+  String newUsername;
+  User existingUser;
+  Comment oldUserComment;
+  VideoGame oldUserVideogame;
+  Comment newUserComment;
+  VideoGame newUserVideogame;
+  List<VideoGame> userVideogamesList;
+  List<Comment> userCommentList;
 
-    Comment oldUserComment = Comment.builder().uploadUser("username")
+  @BeforeEach
+  public void initialization(){
+    existingPassword = "password1";
+    newUsername = "username2";
+    existingUser = User.builder()
+            .password("password1")
+            .id(UUID.randomUUID())
+            .email("email")
+            .roles(List.of())
+            .country("country")
+            .username("username")
             .build();
-    VideoGame oldUserVideogame = VideoGame.builder()
+
+    oldUserComment = Comment.builder().uploadUser("username")
+            .build();
+    oldUserVideogame = VideoGame.builder()
             .comments(List.of(oldUserComment))
             .build();
-    Comment newUserComment = Comment.builder().uploadUser(newUsername)
+    newUserComment = Comment.builder().uploadUser(newUsername)
             .build();
-    VideoGame newUserVideogame = VideoGame.builder()
+    newUserVideogame = VideoGame.builder()
             .uploadUser(newUsername)
             .comments(List.of(newUserComment))
             .build();
-    List<VideoGame> userVideogamesList = List.of(oldUserVideogame);
-    List<Comment> userCommentList = List.of(oldUserComment);
+    userVideogamesList = List.of(oldUserVideogame);
+    userCommentList = List.of(oldUserComment);
+  }
 
+  @Test
+  public void updateUsername() {
+    //GIVEN
     when(principal.getName()).thenReturn("username");
     when(service.findOneUserByUsername(any())).thenReturn(existingUser);
     when(passwordEncoder.matches(any(),any())).thenReturn(true);
@@ -91,11 +106,28 @@ public class UpdateUsernameUseCaseTest {
     when(commentService.findAllCommentsOfUser(any())).thenReturn(userCommentList);
     when(videoGameService.updateVideoGame(any())).thenReturn(newUserVideogame);
     when(commentService.updateComment(any())).thenReturn(newUserComment);
+
     //WHEN
     AuthResponseDTO returned = updateUsernameUseCase.updateUsername(newUsername,existingPassword,principal);
+
     //THEN
     assertTrue(!ObjectUtils.isEmpty(returned));
     assertTrue(ObjectUtils.isNotEmpty(returned.getAccessToken()));
+
+  }
+
+  @Test
+  public void cantUpdateBecausePasswordDoesntMatch() {
+    //GIVEN
+    when(principal.getName()).thenReturn("username");
+    when(service.findOneUserByUsername(any())).thenReturn(existingUser);
+    when(passwordEncoder.matches(any(),any())).thenReturn(false);
+
+    //WHEN
+    Exception exception = assertThrows(NotFoundException.class,() -> updateUsernameUseCase.updateUsername(newUsername,existingPassword,principal));
+
+    //THEN
+    assertEquals("Password is not correct",exception.getMessage());
 
   }
 

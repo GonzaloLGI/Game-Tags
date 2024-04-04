@@ -54,9 +54,10 @@ class DeleteVideoGameUseCaseTest {
     when(service.findOneVideoGame(any())).thenReturn(VideoGame.builder().build());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.deleteVideoGame(UUID.randomUUID()));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.deleteVideoGame(UUID.randomUUID()));
 
     //THEN
+    assertEquals("The videogame wanted to delete is not registered",exception.getMessage());
 
   }
 }

@@ -1,3 +1,5 @@
 
-
-java:S1128	"]Remove this unused import 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder'.(åÅÚ…ûÿÿÿÿ8‹Ãë§à1
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8üùÜ×é1J$522e9102-ce1d-492f-887e-a11619398648
+¥
+java:S1128	"]Remove this unused import 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder'.(åÅÚ…ûÿÿÿÿ8‹Ãë§à1J$83831ceb-f8d3-4aab-9c86-34e35ff1bc36

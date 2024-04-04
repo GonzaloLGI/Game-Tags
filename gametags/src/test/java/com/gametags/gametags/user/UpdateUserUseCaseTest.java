@@ -1,17 +1,20 @@
 package com.gametags.gametags.user;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import com.gametags.gametags.application.user.UpdateUserUseCase;
+import com.gametags.gametags.domain.model.Classification;
 import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.domain.model.User;
+import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.domain.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -79,4 +82,25 @@ public class UpdateUserUseCaseTest {
     assertEquals(newUser, returnedUser);
 
   }
+
+  @Test
+  public void cantUpdateUserBecauseDoesntExist() {
+    //GIVEN
+    User newUser = User.builder()
+            .id(UUID.randomUUID())
+            .username("newUsername")
+            .email("newEmail")
+            .password("newPassword")
+            .country("newCountry")
+            .build();
+    when(service.findOneUserById(any())).thenReturn(User.builder().build());
+
+    //WHEN
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.updateUser(newUser));
+
+    //THEN
+    assertEquals("The user is not registered", exception.getMessage());
+
+  }
+
 }

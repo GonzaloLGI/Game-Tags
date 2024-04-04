@@ -77,6 +77,9 @@ public class FindUserByUsernameUseCaseTest {
     when(service.findOneUserByUsername(any())).thenReturn(User.builder().build());
 
     //WHEN
-    assertThrows(NoSuchElementException.class, () -> useCase.findOneUser("name"));
+    Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.findOneUser("name"));
+
+    //THEN
+    assertEquals("The user is not registered",exception.getMessage());
   }
 }

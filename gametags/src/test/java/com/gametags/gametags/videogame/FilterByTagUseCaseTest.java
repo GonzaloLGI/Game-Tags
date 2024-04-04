@@ -59,4 +59,17 @@ public class FilterByTagUseCaseTest {
 
   }
 
+  @Test
+  public void invalidTag() {
+    //GIVEN
+    when(service.findAllVideoGamesByTag(Arrays.asList())).thenReturn(List.of());
+
+    //WHEN
+    List<VideoGame> returned = filterByTagUseCase.videoGamesByTag("wefqwe");
+
+    //THEN
+    assertEquals(null, 0, returned.size());
+
+  }
+
 }

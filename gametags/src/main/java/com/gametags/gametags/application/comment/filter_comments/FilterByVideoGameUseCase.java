@@ -35,11 +35,11 @@ public class FilterByVideoGameUseCase {
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userService.findOneUserByUsername(username);
     VideoGame videoGame = videogameService.findVideoGameByName(videogameName);
-    if(ObjectUtils.isNotEmpty(user) && ObjectUtils.isNotEmpty(videoGame)){
+    if(ObjectUtils.isNotEmpty(user.getId()) && ObjectUtils.isNotEmpty(videoGame.getId())){
       log.info("[STOP] filterByVideoGame " + user.getId());
       return service.findAllCommentsByVideoGameAndUploadUser(videoGame.getName(), user.getUsername());
     }else{
-      throw new NoSuchElementException("The user doesn't exist");
+      throw new NoSuchElementException("The user and video game doesn't exist");
     }
   }
 }

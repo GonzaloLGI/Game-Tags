@@ -1,6 +1,6 @@
 package com.gametags.gametags.user;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -27,6 +27,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.webjars.NotFoundException;
 
 @ExtendWith(MockitoExtension.class)
 public class UpdatePasswordUseCaseTest {
@@ -80,6 +81,33 @@ public class UpdatePasswordUseCaseTest {
     //THEN
     assertTrue(!ObjectUtils.isEmpty(returned));
     assertTrue(ObjectUtils.isNotEmpty(returned.getAccessToken()));
+  }
+
+  @Test
+  public void cantUpdatePasswordBecausePasswordDoesntMatch() {
+    //GIVEN
+    UpdatePasswordInput input = UpdatePasswordInput.builder()
+            .existingPassword("password1")
+            .newPassword("password2")
+            .build();
+    User existingUser = User.builder()
+            .password("password1")
+            .id(UUID.randomUUID())
+            .email("email")
+            .roles(List.of())
+            .country("country")
+            .username("username")
+            .build();
+
+    when(service.findOneUserByUsername(any())).thenReturn(existingUser);
+    when(passwordEncoder.encode(any())).thenReturn("encodedpassword2");
+    when(passwordEncoder.matches(any(),any())).thenReturn(false);
+
+    //WHEN
+    Exception exception = assertThrows(NotFoundException.class, () -> updatePasswordUseCase.updatePassword(input));
+
+    //THEN
+    assertEquals("Password is not correct",exception.getMessage());
   }
 
 }

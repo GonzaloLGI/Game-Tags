@@ -2,11 +2,13 @@ package com.gametags.gametags.comment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import com.gametags.gametags.application.comment.filter_comments.FilterByCategoryUseCase;
 import com.gametags.gametags.domain.model.Comment;
 import com.gametags.gametags.domain.model.User;
+import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.domain.services.CommentService;
 import com.gametags.gametags.domain.services.UserService;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
@@ -21,6 +23,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import static com.mongodb.internal.connection.tlschannel.util.Util.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -60,6 +64,19 @@ public class FilterByCategoryAndUserUseCaseTest {
     List<Comment> returned = filterByCategoryUseCase.commentsByCategoryAndUser(category);
     //THEN
     assertTrue(returned.size() > 0);
+  }
+
+  @Test
+  public void cantFilterBecauseUserDoesntExist() {
+    //GIVEN
+    String category = "category";
+    when(userService.findOneUserByUsername(any())).thenReturn(User.builder().build());
+
+    //WHEN
+    Exception exception = assertThrows(NoSuchElementException.class, () -> filterByCategoryUseCase.commentsByCategoryAndUser(category));
+
+    //THEN
+    assertEquals("The user doesn't exist",exception.getMessage());
   }
 
 }

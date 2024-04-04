@@ -40,8 +40,9 @@ public class VideoGameMapper {
   @Autowired
   private CommentMapper commentMapper;
 
+
   public VideoGameDTO fromInputToDto(CreateVideoGameInput input) {
-    log.info(String.valueOf(input.getClassifications().get(0).getId()));
+    //log.info(String.valueOf(input.getClassifications().get(0).getId()));
     return VideoGameDTO.builder()
         .id(UUID.randomUUID())
         .name(input.getName())
