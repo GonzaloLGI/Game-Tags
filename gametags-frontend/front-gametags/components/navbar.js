@@ -1,17 +1,23 @@
 import Link from "next/link";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getRequest } from '../service/backendService';
+import { loadImage } from "../service/miscService"
 
 
 export default function Navbar() {
 
+    const [user, setUser] = useState([]);
+
     useEffect(() => {
+        getUser()
         checkUserLogged()
         loadTitle()
     }, [])
 
     function logOut() {
         window.localStorage.clear()
-        window.location = "http://localhost:3000/home"
+        window.location = "https://localhost:3000/home"
+        activateProfileImage = false
     }
 
     function loadTitle() {
@@ -30,69 +36,139 @@ export default function Navbar() {
         let token = window.localStorage.getItem("token")
         if (token == undefined || token == null) {
             document.getElementById("userProfile").style.display = "none"
+            document.getElementById("userProfileResponsive").style.display = "none"
             document.getElementById("logOut").style.display = "none"
+            document.getElementById("logOutResponsive").style.display = "none"
             document.getElementById("uploadVideogame").style.display = "none"
-            document.getElementById("user").style.display = "none"
+            document.getElementById("uploadVideogameResponsive").style.display = "none"
         } else {
             document.getElementById("userProfile").style.display = "block"
+            document.getElementById("userProfileResponsive").style.display = "block"
             document.getElementById("logOut").style.display = "block"
+            document.getElementById("logOutResponsive").style.display = "block"
             document.getElementById("uploadVideogame").style.display = "block"
-            document.getElementById("user").style.display = "block"
+            document.getElementById("uploadVideogameResponsive").style.display = "block"
         }
-        document.getElementById("welcome").innerHTML = "Welcome, " + window.localStorage.getItem("userName")
+    }
+
+    async function getUser() {
+        const userName = window.localStorage.getItem("userName")
+        if (!userName) {
+            return
+        }
+        let URL = "/user/name/" + userName
+        const user = await getRequest(URL, window.localStorage.getItem("token"));
+        if (user.username != undefined) {
+            window.localStorage.setItem("userName", user.username)
+        }
+        setUser(user)
+    }
+
+    function enableResponsiveOptions() {
+        let token = window.localStorage.getItem("token")
+        var element = token == undefined || token == null ? document.getElementById("responsiveOptionsNotLogged") : document.getElementById("responsiveOptionsLogged");
+        if (element.style.display == "none") {
+            element.style.display = " block";
+        } else {
+            element.style.display = "none";
+        }
     }
 
     return <header className="navbarColors">
-        <nav className="container-fluid">
-            <ul>
+        <nav class="menuBig">
+            <ul class="titleLogo">
                 <div id="title-profile">
-                    <img src="../images/title_nb.png" alt='' width="300px" height="50px" />
+                    <img src="../images/title_nb.png" alt='' />
                 </div>
                 <div id="title">
-                    <img src="./images/title_nb.png" alt='' width="300px" height="50px" />
+                    <img src="./images/title_nb.png" alt='' />
                 </div>
             </ul>
-            <ul id="user">
-                <li id="welcome"></li>
-            </ul>
-            <ul aria-label="breadcrumb">
-                <li>
+            <ul class="navBarElements" style={{ "float": "right" }}>
+                <li class="userIcon">
                     <div>
+                        {loadImage(user, "navbar")}
+                    </div>
+                </li>
+                <li>
+                    <h4>
                         <Link href="/home">Home</Link>
-                    </div>
+                    </h4>
                 </li>
                 <li>
-                    <div id="uploadVideogame">
+                    <h4 id="uploadVideogame">
                         <Link href="/uploadVideogame">Upload Video Game</Link>
-                    </div>
+                    </h4>
                 </li>
                 <li>
-                    <div>
+                    <h4>
                         <Link href="/search">Search</Link>
-                    </div>
+                    </h4>
                 </li>
                 <li>
-                    <div>
+                    <h4>
                         <Link href="/profile/login">Log-In</Link>
-                    </div>
+                    </h4>
                 </li>
                 <li>
-                    <div>
+                    <h4>
                         <Link href="/profile/register">Register</Link>
-                    </div>
+                    </h4>
                 </li>
                 <li>
-                    <div id="userProfile">
+                    <h4 id="userProfile">
                         <Link href="/profile/userProfile">Profile</Link>
-                    </div>
+                    </h4>
                 </li>
                 <li>
-                    <div id="logOut">
+                    <h4 id="logOut">
                         <input type="button" class="contrast outline" value="Log Out" onClick={e => logOut()} />
-                    </div>
+                    </h4>
                 </li>
             </ul>
         </nav>
+        <div class="menuResponsive">
+            <nav>
+                <ul class="titleLogo">
+                    <li>
+                        <div id="title-profile">
+                            <img src="../images/title_nb.png" alt='' />
+                        </div>
+                    </li>
+                    <li class="userIcon">
+                        {loadImage(user, "navbar")}
+                    </li>
+                </ul>
+                <ul>
 
+                    <li>
+                        <img src="../images/menu.png" class="menuIcon" style={{ float: "right" }} onClick={e => enableResponsiveOptions()}></img>
+                    </li>
+                </ul>
+            </nav>
+            <aside>
+                <nav>
+                    <article id="responsiveOptionsNotLogged" style={{ display: "none" }}>
+                        <ul class="dropdownResponsive">
+                            <li><a href="/home">Home</a></li>
+                            <li><a href="/search">Search</a></li>
+                            <li><a href="/profile/login">Log-In</a></li>
+                            <li><a href="/profile/register">Register</a></li>
+                        </ul>
+                    </article>
+                    <article id="responsiveOptionsLogged" style={{ display: "none" }}>
+                        <ul class="dropdownResponsive">
+                            <li><a href="/home">Home</a></li>
+                            <li><a id="uploadVideogameResponsive" href="/uploadVideogame">Upload Video Game</a></li>
+                            <li><a href="/search">Search</a></li>
+                            <li><a href="/profile/login">Log-In</a></li>
+                            <li><a href="/profile/register">Register</a></li>
+                            <li><a id="userProfileResponsive" href="/profile/userProfile">Profile</a></li>
+                            <li><a id="logOutResponsive" onClick={e => logOut()}>Log-Out</a></li>
+                        </ul>
+                    </article>
+                </nav>
+            </aside>
+        </div>
     </header>
 }

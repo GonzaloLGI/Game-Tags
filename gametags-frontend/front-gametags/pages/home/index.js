@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     document.title = "GameTags | Home Page"
     threeLatestAddedVideogames("/videogame/latest");
-    introJs().setOption("dontShowAgain", true).start();
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   async function threeLatestAddedVideogames(URL) {

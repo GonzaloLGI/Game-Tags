@@ -12,7 +12,7 @@ export default function Search() {
 
   useEffect(() => {
     document.title= "GameTags | Search Video Game"
-    introJs().setOption("dontShowAgain", true).start();
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   async function searchVideogame(URL,criteria) {
@@ -116,7 +116,7 @@ export default function Search() {
                 return (
                   <article>
                     <div class="grid">
-                      <div>
+                      <div className='linkText'>
                         <Link href={{
                           pathname: "/selectedVideogame",
                           query: {

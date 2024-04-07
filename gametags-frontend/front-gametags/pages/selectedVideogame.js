@@ -16,7 +16,7 @@ export default function selectedVideogame() {
   useEffect(() => {
     getVideogame(URL);
     checkUserLogged()
-    introJs().setOption("dontShowAgain", true).start();
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   async function getVideogame(URL) {
@@ -46,7 +46,7 @@ export default function selectedVideogame() {
       return videogames.comments.map((comment, key) => {
         if (comment.category == category) {
           return (
-            <li>
+            <div>
               <article>
                 {showRating(comment.severity)}
                 <ul>
@@ -61,7 +61,7 @@ export default function selectedVideogame() {
                   </li>
                 </ul>
               </article>
-            </li>
+            </div>
           )
         }
       })
@@ -87,11 +87,11 @@ export default function selectedVideogame() {
           image = 'data:image/*;base64,' + element.imageData.data;
         }
         return (
-          <div className="imageDisplay">
+          <div className="tagDisplay">
             <Link href={{
               pathname: element.url
             }}>
-              <img decoding='async' id="cover" src={image} width="50px"></img>
+              <img decoding='async' id="cover" src={image} width="75px" height="75px"></img>
             </Link>
           </div>
         )
@@ -123,13 +123,14 @@ export default function selectedVideogame() {
     if (token == undefined || token == null) {
       document.getElementById("newClassification").style.display = "none"
       document.getElementById("newComment").style.display = "none"
+      document.getElementById("userOptions").style.display = "none"
     } else {
       document.getElementById("newClassification").style.display = "block"
       document.getElementById("newComment").style.display = "block"
+      document.getElementById("userOptions").style.display = "block"
     }
   }
 
-  //AÑADIR COUNT DE COMENTARIOS DE CADA TIPO PARA MOSTRARLO JUNTO AL DROPDOWN
   function countComments(theme) {
     if (videogames != undefined && videogames.comments != undefined) {
       let count = videogames.comments.filter(comment => (comment.category == theme)).length
@@ -139,33 +140,24 @@ export default function selectedVideogame() {
 
   return (
     <Layout>
-      <div id='newClassification'>
-        <Link href={{
-          pathname: "/newClassification",
-          query: {
-            id: videogames.id,
-            name: videogames.name
-          }
-        }}>Add new classification</Link>
-      </div>
-      <div id='newComment'>
-        <Link href={{
-          pathname: "/newComment",
-          query: {
-            id: videogames.id,
-            name: videogames.name
-          }
-        }}>Add new comment</Link>
-      </div>
       <article data-title="Video Game Sheet" data-intro="The information of the video game is displayed here, like the platforms where it has been released or when the game was uploaded to the page">
         <div>
-          <h3>{videogames.name}</h3>
+          <h1>{videogames.name}</h1>
         </div>
         <div class="grid">
           <div>
             <div>
-              <h4>{videogames.developer}</h4>
+              <h3>{videogames.developer}</h3>
             </div>
+            <div class="grid">
+              <div class="coverSmall">
+                {loadImage(videogames, "videogame", false)}
+              </div>
+              <div class="tagsSmall">
+                {loadTagImages(videogames.classifications)}
+              </div>
+            </div>
+            <article>
             <div>
               Platforms
               <ul>
@@ -178,6 +170,7 @@ export default function selectedVideogame() {
             <div>
               Upload by: {addProfileLink(videogames.uploadUser)}
             </div>
+            </article>
             <article>
               <div>
                 Violence rating {calculateRating("Violence")}
@@ -197,22 +190,42 @@ export default function selectedVideogame() {
             </article>
           </div>
           <div>
-            <div>
+            <div class="tagsBig">
               {loadTagImages(videogames.classifications)}
             </div>
           </div>
-          <div>
-            {loadImage(videogames, "videogame")}
+          <div class="coverBig">
+            {loadImage(videogames, "videogame", true)}
           </div>
+        </div>
+      </article>
+      <article id='userOptions'>
+        <div id='newClassification'>
+          <Link href={{
+            pathname: "/newClassification",
+            query: {
+              id: videogames.id,
+              name: videogames.name
+            }
+          }}> Add new classification</Link>
+        </div>
+        <div id='newComment'>
+          <Link href={{
+            pathname: "/newComment",
+            query: {
+              id: videogames.id,
+              name: videogames.name
+            }
+          }}> Add new comment</Link>
         </div>
       </article>
       <article data-title="Comments" data-intro="The comments are separated in each thematic matter. The themes are violence, language, sexaulityt, drugs and miscellaneous">
         <div>
           <details className='dropdown'>
             <summary>Violence Comments: {countComments("Violence")}</summary>
-            <ul>
+            <div>
               {showComments(videogames, "Violence")}
-            </ul>
+            </div>
           </details>
         </div>
       </article>
@@ -220,9 +233,9 @@ export default function selectedVideogame() {
         <div>
           <details className='dropdown'>
             <summary>Language Comments: {countComments("Language")}</summary>
-            <ul>
+            <div>
               {showComments(videogames, "Language")}
-            </ul>
+            </div>
           </details>
         </div>
       </article>
@@ -230,9 +243,9 @@ export default function selectedVideogame() {
         <div>
           <details className='dropdown'>
             <summary>Sexuality Comments: {countComments("Sexuality")}</summary>
-            <ul>
+            <div>
               {showComments(videogames, "Sexuality")}
-            </ul>
+            </div>
           </details>
         </div>
       </article>
@@ -240,9 +253,9 @@ export default function selectedVideogame() {
         <div>
           <details className='dropdown'>
             <summary>Drug Comments: {countComments("Drugs")}</summary>
-            <ul>
+            <div>
               {showComments(videogames, "Drugs")}
-            </ul>
+            </div>
           </details>
         </div>
       </article>
@@ -250,9 +263,9 @@ export default function selectedVideogame() {
         <div>
           <details className='dropdown'>
             <summary>Misc Comments: {countComments("Misc")}</summary>
-            <ul>
+            <div>
               {showComments(videogames, "Misc")}
-            </ul>
+            </div>
           </details>
         </div>
       </article>

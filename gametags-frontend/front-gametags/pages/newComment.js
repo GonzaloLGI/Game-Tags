@@ -16,7 +16,7 @@ export default function NewComment() {
     document.title = "GameTags | " + videogameName + " - Create Comment"
     let user = getUserRequest(window.localStorage.getItem("userName"));
     setUser(user)
-    introJs().setOption("dontShowAgain", true).start();
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   async function addComment(URL, comment) {
@@ -25,14 +25,14 @@ export default function NewComment() {
       return
     }
     if (window.localStorage.getItem("token") == null || window.localStorage.getItem("token") == undefined) {
-      window.location = "http://localhost:3000/home"
+      window.location = "https://localhost:3000/home"
       return
     }
     const newComment = { text: comment.text, category: comment.category, severity: comment.severity, videogame: comment.videogame, uploadUser: window.localStorage.getItem("userName") }
     const createdComment = await postRequest(URL, newComment, window.localStorage.getItem("token"));
     setComment(createdComment)
     window.localStorage.setItem("name", videogameName)
-    window.location = "http://localhost:3000/selectedVideogame?name=" + encodeURIComponent(videogameName)
+    window.location = "https://localhost:3000/selectedVideogame?name=" + encodeURIComponent(videogameName)
   }
 
   return (

@@ -13,7 +13,7 @@ export default function ChangePassword() {
     document.title = "GameTags | " + username + " - Change User Password"
     let user = getUserRequest(window.localStorage.getItem("userName"));
     setUser(user)
-    introJs().setOption("dontShowAgain", true).start();
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   async function updatePassword(newPassword, oldPassword, rewrittenPassword) {
@@ -60,7 +60,7 @@ export default function ChangePassword() {
           <footer>
             <input type="button" value="Confirm" onClick={e => {
               unloadModal("modalChangePassword")
-              window.location = "http://localhost:3000/profile/userProfile";
+              window.location = "https://localhost:3000/profile/userProfile";
             }}></input>
           </footer>
         </article>

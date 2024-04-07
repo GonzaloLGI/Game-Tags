@@ -13,7 +13,7 @@ export default function ChangeUsername() {
     document.title = "GameTags | " + username + " - Change User Username"
     let user = getUserRequest(window.localStorage.getItem("userName"));
     setUser(user)
-    introJs().setOption("dontShowAgain", true).start();
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   async function updateUsername(newUsername, oldUsername, password) {
@@ -53,7 +53,7 @@ export default function ChangeUsername() {
           <footer>
             <input type="button" value="Confirm" onClick={e => {
               unloadModal("modalChangeUsername");
-              window.location = "http://localhost:3000/profile/userProfile";
+              window.location = "https://localhost:3000/profile/userProfile";
             }}></input>
           </footer>
         </article>

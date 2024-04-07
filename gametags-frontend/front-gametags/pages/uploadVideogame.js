@@ -12,7 +12,7 @@ export default function UploadVideogame() {
 
   useEffect(() => {
     document.title = "GameTags | Upload New Video Game"
-    introJs().setOption("dontShowAgain", true).start();
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   function createClassification(entity, age, url, country) {
@@ -45,7 +45,7 @@ export default function UploadVideogame() {
       return
     }
     if (window.localStorage.getItem("token") == null || window.localStorage.getItem("token") == undefined) {
-      window.location = "http://localhost:3000/home"
+      window.location = "https://localhost:3000/home"
       return
     }
     if (videogameAlreadyExists(videogame.name) == true) {
@@ -57,7 +57,7 @@ export default function UploadVideogame() {
     await postRequest(URL + createdVideogame.id + "/image", coverImage, window.localStorage.getItem("token"))
     await postRequest("/classification/" + createdVideogame.classifications[0].id + "/image/" + createdVideogame.id, tagImage, window.localStorage.getItem("token"))
     window.localStorage.setItem("name", videogame.name)
-    window.location.href = "http://localhost:3000/selectedVideogame?name=" + encodeURIComponent(videogame.name)
+    window.location.href = "https://localhost:3000/selectedVideogame?name=" + encodeURIComponent(videogame.name)
   }
 
   return (
@@ -74,30 +74,68 @@ export default function UploadVideogame() {
             </div>
             <div>
               <label for="platforms">Select the platforms where the video game is available *:</label>
-              <input type="checkbox" id="platform1" name="platform1" value="PS4" />
-              <label for="platform1"> PS4</label>
-              <input type="checkbox" id="platform2" name="platform2" value="Xbox One" />
-              <label for="platform2"> Xbox One</label>
-              <input type="checkbox" id="platform3" name="platform3" value="Nintendo Switch" />
-              <label for="platform4"> Nintendo Switch</label>
-              <input type="checkbox" id="platform4" name="platform4" value="PS3" />
-              <label for="platform3"> PS3</label>
-              <input type="checkbox" id="platform5" name="platform5" value="Xbox 360" />
-              <label for="platform4"> Xbox 360</label>
-              <input type="checkbox" id="platform6" name="platform6" value="Wii" />
-              <label for="platform4"> Wii</label>
-              <input type="checkbox" id="platform7" name="platform7" value="PS2" />
-              <label for="platform4"> PS2</label>
-              <input type="checkbox" id="platform8" name="platform8" value="Xbox" />
-              <label for="platform4"> Xbox</label>
-              <input type="checkbox" id="platform9" name="platform9" value="Nintendo Gamecube" />
-              <label for="platform4"> Nintendo Gamecube</label>
-              <input type="checkbox" id="platform10" name="platform10" value="PSP" />
-              <label for="platform4"> PSP</label>
-              <input type="checkbox" id="platform11" name="platform11" value="Nintendo DS" />
-              <label for="platform4"> Nintendo DS</label>
-              <input type="checkbox" id="platform12" name="platform12" value="PC" />
-              <label for="platform4"> PC</label>
+              <div className='grid'>
+                <div>
+                  <div>
+                    <input type="checkbox" id="platform1" name="platform1" value="PS5" />
+                    <label for="platform1">PS5</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform2" name="platform2" value="Xbox Series X/S" />
+                    <label for="platform2">Xbox Series X/S</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform3" name="platform3" value="PS4" />
+                    <label for="platform3">PS4</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform4" name="platform4" value="Xbox One" />
+                    <label for="platform4">Xbox One</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform5" name="platform5" value="Nintendo Switch" />
+                    <label for="platform5">Nintendo Switch</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform6" name="platform6" value="PS3" />
+                    <label for="platform6">PS3</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform14" name="platform14" value="PC" />
+                    <label for="platform14">PC</label>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <input type="checkbox" id="platform7" name="platform7" value="Xbox 360" />
+                    <label for="platform7">Xbox 360</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform8" name="platform8" value="Wii" />
+                    <label for="platform8">Wii</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform9" name="platform9" value="PS2" />
+                    <label for="platform9">PS2</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform10" name="platform10" value="Xbox" />
+                    <label for="platform10">Xbox</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform11" name="platform11" value="Nintendo Gamecube" />
+                    <label for="platform11">Nintendo Gamecube</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform12" name="platform12" value="PSP" />
+                    <label for="platform12">PSP</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="platform13" name="platform13" value="Nintendo DS" />
+                    <label for="platform13">Nintendo DS</label>
+                  </div>
+                </div>
+              </div>
             </div>
           </form>
           <form>
@@ -139,32 +177,32 @@ export default function UploadVideogame() {
         We support multiple systems and they will be shown here">
           <article className='linkCard'>
             <h5>Supported systems</h5>
-            <h6><Link href={{
+            <div style={{"margin-bottom": "10px"}}><Link href={{
               pathname: "https://pegi.info/es"
             }}
             >
               <img src="./systems/pegi.jfif" alt='' width="100px" height="50px" />
-            </Link></h6>
-            <h6><Link href={{
+            </Link></div>
+            <div style={{"margin-bottom": "10px"}}><Link href={{
               pathname: "https://www.esrb.org/"
             }}
             ><img src="./systems/ESRB1.png" alt='' width="100px" height="50px" />
-            </Link></h6>
-            <h6><Link href={{
+            </Link></div>
+            <div style={{"margin-bottom": "10px"}}><Link href={{
               pathname: "https://www.classification.gov.au/"
             }}
             ><img src="./systems/acb2.png" alt='' width="100px" height="50px" />
-            </Link></h6>
-            <h6><Link href={{
+            </Link></div>
+            <div style={{"margin-bottom": "10px"}}><Link href={{
               pathname: "https://usk.de/"
             }}
             ><img src="./systems/usk2.png" alt='' width="100px" height="50px" />
-            </Link></h6>
-            <h6><Link href={{
+            </Link></div>
+            <div style={{"margin-bottom": "10px"}}><Link href={{
               pathname: "https://www.bbfc.co.uk/"
             }}
             ><img src="./systems/bbfc1.png" alt='' width="100px" height="50px" />
-            </Link></h6>
+            </Link></div>
           </article>
         </div>
       </div>

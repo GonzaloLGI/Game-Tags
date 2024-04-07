@@ -11,11 +11,11 @@ export default function Profile() {
 
   useEffect(() => {
     if (window.localStorage.getItem("token") == null || window.localStorage.getItem("token") == undefined) {
-      window.location = "http://localhost:3000/home"
+      window.location = "https://localhost:3000/home"
       return
     }
     getUser();
-    introJs().setOption("dontShowAgain", true).start();
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   async function getUser() {
@@ -24,6 +24,9 @@ export default function Profile() {
     const user = await getRequest(URL, window.localStorage.getItem("token"));
     if (user.username != undefined) {
       window.localStorage.setItem("userName", user.username)
+      if(user.profileImageData != undefined || user.profileImageData != null){
+        window.localStorage.setItem("userImage", user.profileImageData.data)
+      }
       document.title = "GameTags | " + user.username + " - Profile"
     }
     setUser(user)
@@ -39,7 +42,7 @@ export default function Profile() {
           role = "Admin"
         }
         return (
-          <ul>
+          <ul className='userData'>
             <li>{role}</li>
           </ul>
         )
@@ -62,52 +65,64 @@ export default function Profile() {
       return
     }
     await postRequest(URL + user.id + "/image", image, window.localStorage.getItem("token"))
-    window.location = "http://localhost:3000/profile/userProfile"
+    window.location = "https://localhost:3000/profile/userProfile"
   }
 
   return (
     <Layout>
       <article data-title="User Profile" data-intro="When you have succesfully registered a user and logged in, the information about you is shown here. From here you have multiple options
       like changing you username or your password, uploading a profile picture or searching your comments">
-        <div className='imageDisplay'>
+        <div className='profileImageDisplay'>
           {loadImage(user, "profile")}
         </div>
-        <div>
-          {user.username}
-        </div>
-        <div>
-          Country origin: {user.country}
-        </div>
-        <div>
-          Email: {user.email}
-        </div>
-        <div>
-          Roles:
-          <div>
-            {
-              showRoles(user)
-            }
+        <article>
+          <h1>
+            {user.username}
+          </h1>
+          <div className='userData'>
+            Country: {user.country}
           </div>
-        </div>
+          <div className='userData'>
+            Email: {user.email}
+          </div>
+          <div className='userData'>
+            Roles:
+            <div>
+              {
+                showRoles(user)
+              }
+            </div>
+          </div>
+        </article>
       </article>
       <div>
-        <div>Upload user profile picture</div>
-        <div>
-          <input type="file" id="profileImage" name="image" accept="image/*" />
-          <input type="button" value="Submit profile picture" onClick={e => uploadProfileImage("/user/", document.getElementById("profileImage").files[0])} />
-        </div>
-        <div>
-          <Link href="/profile/changeUsername">Change user's username</Link>
-        </div>
-        <div>
-          <Link href="/profile/changePassword">Change user's password</Link>
-        </div>
-        <div>
-          <Link href="/profile/searchUserComments">Search for user comments</Link>
-        </div>
-        <div>
-          <input type='button' value="Delete user" onClick={e => deleteUser(user)} />
-        </div>
+        <article>
+          <div>Upload user profile picture</div>
+          <div>
+            <input type="file" id="profileImage" name="image" accept="image/*" />
+            <input type="button" value="Submit profile picture" onClick={e => uploadProfileImage("/user/", document.getElementById("profileImage").files[0])} />
+          </div>
+        </article>
+        <article>
+          <div className='userOptions'>
+            <Link href="/profile/changeUsername">
+              <input type='button' value="Change user's username"/>
+            </Link>
+          </div>
+          <div className='userOptions'>
+            <Link href="/profile/changePassword">
+              <input type='button' value="Change user's password"/>
+            </Link>
+          </div>
+          <div className='userOptions'>
+            <Link href="/profile/searchUserComments">
+              <input type='button' value="Search for user comments"/>
+            </Link>
+          </div>
+          <div>
+            <input type='button' value="Delete user" onClick={e => deleteUser(user)} />
+          </div>
+        </article>
       </div>
       <dialog id="modalNotImage">
         <article>
@@ -130,7 +145,7 @@ export default function Profile() {
             <input type="button" value="Confirm" onClick={e => {
               unloadModal("modalUserDeleted");
               window.localStorage.clear();
-              window.location = "http://localhost:3000/home";
+              window.location = "https://localhost:3000/home";
             }}></input>
           </footer>
         </article>

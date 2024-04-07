@@ -15,7 +15,7 @@ export default function NewClassification() {
 
   useEffect(() => {
     document.title = "GameTags | " + videogameName + " - Add Classification"
-    introJs().setOption("dontShowAgain", true).start();
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   async function addClassification(URL, classification, tagImage) {
@@ -24,14 +24,14 @@ export default function NewClassification() {
       return
     }
     if (window.localStorage.getItem("token") == null || window.localStorage.getItem("token") == undefined) {
-      window.location = "http://localhost:3000/home"
+      window.location = "https://localhost:3000/home"
       return
     }
     const createdClassification = await postRequest(URL, classification, window.localStorage.getItem("token"));
     setClassification(createdClassification)
     await postRequest("/classification/" + createdClassification.classifications.at(-1).id + "/image/" + videogameId, tagImage, window.localStorage.getItem("token"))
     window.localStorage.setItem("name", videogameName)
-    window.location = "http://localhost:3000/selectedVideogame?name=" + encodeURIComponent(videogameName)
+    window.location = "https://localhost:3000/selectedVideogame?name=" + encodeURIComponent(videogameName)
   }
 
   return (

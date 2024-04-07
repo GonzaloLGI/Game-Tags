@@ -13,18 +13,18 @@ export function showRating(severity) {
   }
 }
 
-export function loadModal(name){
+export function loadModal(name) {
   document.getElementById(name).setAttribute("open", true)
 }
 
-export function unloadModal(name){
+export function unloadModal(name) {
   document.getElementById(name).setAttribute("open", false)
 }
 
-export function isCompleteInformation(info){
+export function isCompleteInformation(info) {
   let complete = true;
   info.forEach(element => {
-    if(!element || element == null || element.length <= 0){
+    if (!element || element == null || element.length <= 0) {
       complete = false
     }
   });
@@ -37,31 +37,53 @@ export function fixDate(dateTime) {
   }
 }
 
-export async function getUserRequest(username){
+export async function getUserRequest(username) {
   let URL = "/user/name/" + username
   const user = await getRequest(URL, window.localStorage.getItem("token"));
   return user
 }
 
-export function loadImage(element,page) {
+export function loadImage(element, page, big) {
   var image = ""
-  switch (page){
+  switch (page) {
     case "profile":
       if (element.profileImageData) {
         image = 'data:image/*;base64,' + element.profileImageData.data;
         return (
-          <img decoding='async' id="cover" src={image}></img>
+          <img className="profileImageStyle" decoding='async' id="cover" src={image}></img>
+        )
+      } else {
+        return (
+          <img src="../images/unknown-user.png"></img>
         )
       }
       break;
     case "videogame":
       if (element.imageData) {
-        image = 'data:image/*;base64,' + element.imageData.data;
-        return (
-          <img decoding='async' id="cover" src={image} height="400px"></img>
-        )
+        if (big == true){
+          image = 'data:image/*;base64,' + element.imageData.data;
+          return (
+            <img className="coverBigImage" decoding='async' id="cover" src={image}></img>
+          )
+        } else{
+          image = 'data:image/*;base64,' + element.imageData.data;
+          return (
+            <img className='coverSmallImage' decoding='async' id="cover" src={image}></img>
+          )
+        }
       }
       break;
-  } 
-  
+    case "navbar":
+      if (element.profileImageData) {
+        image = 'data:image/*;base64,' + element.profileImageData.data;
+        return (
+          <img decoding='async' id="cover" src={image}></img>
+        )
+      } else {
+        return (
+          <img src="../images/unknown-user.png"></img>
+        )
+      }
+  }
+
 }

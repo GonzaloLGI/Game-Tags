@@ -3,6 +3,8 @@ import { postRequest } from '../../service/backendService';
 import { loadModal, unloadModal, showRating, fixDate } from '../../service/miscService';
 import { useEffect, useState } from 'react';
 import Link from 'next/link'
+import introJs from 'intro.js/intro.js';
+import 'intro.js/introjs.css';
 
 export default function SearchUserComments() {
   const username = window.localStorage.getItem('userName');
@@ -10,6 +12,7 @@ export default function SearchUserComments() {
 
   useEffect(() => {
     document.title= "GameTags | " + username + " - Search User Comments"
+    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
   }, [])
 
   async function searchBy(theme,filter){
@@ -59,8 +62,10 @@ export default function SearchUserComments() {
 
   return (
     <Layout>
-      <div>
-        <form>
+      <div data-title='Search Your Comments' data-intro="In case you want to track all your comments and opinions, here is your place. 
+      You can not only look for all your comments, you can filter them.">
+        <form data-title='The Filters' data-intro="You can filters by different things, such as the severity you gave the theme for the game,
+        a specific category like violence or drugs or, if you have written several for a specific game, you can search them by the video game's name">
           <label for="severity">Filter by severity:</label>
           <select name="severity" id="severity">
             <option value="Mild">Mild</option>
@@ -84,7 +89,7 @@ export default function SearchUserComments() {
 
         </form>
       </div>
-      <div>
+      <div data-title='The Results' data-intro="Once you have selected a filter, the comments fullfilling that filter will be shown here.">
         {
           showComments(comments)
         }
