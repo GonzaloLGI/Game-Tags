@@ -1,12 +1,11 @@
 package com.gametags.gametags.infrastructure.mappers;
 
-import com.gametags.gametags.application.authentication.LoginDTO;
-import com.gametags.gametags.application.authentication.RegisterDTO;
+import com.gametags.gametags.infrastructure.dtos.LoginDTO;
+import com.gametags.gametags.infrastructure.dtos.RegisterDTO;
 import com.gametags.gametags.domain.model.LoginInput;
 import com.gametags.gametags.domain.model.RegisterInput;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 

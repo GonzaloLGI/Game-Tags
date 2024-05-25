@@ -1,22 +1,16 @@
 package com.gametags.gametags.authentication;
 
-import com.gametags.gametags.application.authentication.LoginDTO;
-import com.gametags.gametags.application.authentication.RegisterDTO;
-import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
-import com.gametags.gametags.application.user.update_password.UpdatePasswordUseCase;
+import com.gametags.gametags.infrastructure.dtos.LoginDTO;
+import com.gametags.gametags.infrastructure.dtos.RegisterDTO;
 import com.gametags.gametags.domain.model.LoginInput;
 import com.gametags.gametags.domain.model.RegisterInput;
-import com.gametags.gametags.infrastructure.dtos.ClassificationDTO;
 import com.gametags.gametags.infrastructure.mappers.AuthenticationMapper;
-import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.UUID;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;

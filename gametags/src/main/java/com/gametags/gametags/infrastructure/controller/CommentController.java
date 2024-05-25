@@ -3,7 +3,6 @@ package com.gametags.gametags.infrastructure.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import com.gametags.gametags.application.comment.create_comment.CreateCommentInput;
 import com.gametags.gametags.application.comment.create_comment.CreateCommentUseCase;
@@ -14,9 +13,8 @@ import com.gametags.gametags.application.comment.UpdateCommentUseCase;
 import com.gametags.gametags.application.comment.filter_comments.FilterByCategoryUseCase;
 import com.gametags.gametags.application.comment.filter_comments.FilterBySeverityUseCase;
 import com.gametags.gametags.application.comment.filter_comments.FilterByVideoGameUseCase;
-import com.gametags.gametags.application.comment.filter_comments.FilterByVideogameInput;
+import com.gametags.gametags.application.comment.filter_comments.FilterByVideoGameInput;
 import com.gametags.gametags.domain.model.Comment;
-import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import com.gametags.gametags.infrastructure.dtos.CommentDTO;
 import com.gametags.gametags.infrastructure.mappers.CommentMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -129,7 +127,7 @@ public class CommentController {
 
   @PostMapping("/videogame/user")
   @ResponseStatus(HttpStatus.FOUND)
-  public ResponseEntity<List<CommentDTO>> filterByVideoGameAndUser(@RequestBody FilterByVideogameInput videogame){
+  public ResponseEntity<List<CommentDTO>> filterByVideoGameAndUser(@RequestBody FilterByVideoGameInput videogame){
     return new ResponseEntity<>(filterByVideoGameUseCase.commentsByVideoGameAndUser(mapper.fromFilterVideogameInputToString(videogame)).stream().map(comment -> mapper.toDto(comment)).toList(), HttpStatus.FOUND);
   }
 

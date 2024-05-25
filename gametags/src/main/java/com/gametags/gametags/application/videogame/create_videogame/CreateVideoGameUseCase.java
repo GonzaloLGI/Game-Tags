@@ -40,13 +40,6 @@ public class CreateVideoGameUseCase {
     List<Classification> updatedClassifications = videoGame.getClassifications().stream().map(this::checkAndAddNewClassifications).toList();
     videoGame.getClassifications().removeAll(videoGame.getClassifications());
     videoGame.getClassifications().addAll(updatedClassifications);
-    //ESTO SE PODRIA ELIMINAR
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    if(!ObjectUtils.isEmpty(auth)){
-      String id = auth.getName();
-      log.info("Created videogame by: "+id);
-    }
-    //
     log.info("[STOP] createVideoGame");
     return service.createVideoGame(videoGame);
   }

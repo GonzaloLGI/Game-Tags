@@ -4,51 +4,39 @@ import introJs from 'intro.js/intro.js';
 import 'intro.js/introjs.css';
 import { useEffect, useState } from 'react';
 import { getRequest, postRequest } from '../service/backendService';
-import { loadModal, unloadModal } from '../service/miscService';
+import { loadModal, unloadModal, loadTagImages } from '../service/miscService';
 
 export default function Search() {
 
   const [videogames, setVideogame] = useState([]);
 
   useEffect(() => {
-    document.title= "GameTags | Search Video Game"
-    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
+    document.title = "GameTags | Search Video Game"
+    introJs().setOptions({ dontShowAgain: true, tooltipClass: 'customTooltip' }).start();
   }, [])
 
-  async function searchVideogame(URL,criteria) {
-    if(!criteria){
+  async function searchVideogame(URL, criteria) {
+    if (!criteria) {
       loadModal("modalNotFound")
       return
     }
     URL = URL + criteria
     const videogame = await getRequest(URL, window.localStorage.getItem("token"));
-    if (videogame.constructor == Array) {
-      if(videogame.length == 0 || !videogame[0].id){
-        console.log("jqnwujiedh")
-        loadModal("modalNotFound")
-        return
-      }
-      setVideogame(videogame)
-    } else {
-      if(!videogame.id){
-        console.log("jqnwujiedh")
-        loadModal("modalNotFound")
-        return
-      }
-      setVideogame([videogame])
+    if (videogame.length == 0 || !videogame[0].id) {
+      loadModal("modalNotFound")
+      return
     }
+    setVideogame(videogame)
+    
   }
 
   async function searchVideogameByPlatforms(URL, platforms) {
     const videogame = await postRequest(URL, platforms, window.localStorage.getItem("token"));
-    if (videogame.constructor == Array) {
-      setVideogame(videogame)
-    } else {
-      setVideogame([videogame])
-    }
-    if(videogame.length == 0){
+    if (videogame.length == 0) {
       loadModal("modalNotFound")
+      return
     }
+    setVideogame(videogame)
   }
 
   return (
@@ -56,7 +44,7 @@ export default function Search() {
       <form data-title="Search Filters" data-intro="You have multiple options to search a specific game or a list of them">
         <div data-title="Filter By Name" data-intro="You can look for a specific video game by its name or search a group of them that contains the same word">
           <input type="search" id='name' placeholder='Write video game name' />
-          <input type="button" value="Search by name" onClick={e => searchVideogame("/videogame/name/",document.getElementById("name").value)} />
+          <input type="button" value="Search by name" onClick={e => searchVideogame("/videogame/name/", document.getElementById("name").value)} />
         </div>
         <div data-title="Filter By Age" data-intro="You can also search by the age tag that the game has">
           <label for="age">Select an age to filter:</label>
@@ -67,11 +55,13 @@ export default function Search() {
             <option value="16">16</option>
             <option value="18">18</option>
           </select>
-          <input type="button" value="Search by age" onClick={e => searchVideogame("/videogame/tag/",document.getElementById("age").value)} />
+          <input type="button" value="Search by age" onClick={e => searchVideogame("/videogame/tag/", document.getElementById("age").value)} />
         </div>
         <div data-title="Filter By Platform" data-intro="Or you can search the games by the platforms they have been officially released">
           <label for="platform">Select a platform to filter:</label>
           <select name="platform" id="platform">
+            <option value="PS5">PS5</option>
+            <option value="Xbox Series X/S">Xbox Series X/S</option>
             <option value="Xbox 360">Xbox 360</option>
             <option value="PS3">PS3</option>
             <option value="Wii">Wii</option>
@@ -94,12 +84,13 @@ export default function Search() {
             <option value="ESRB">ESRB</option>
             <option value="BBFC">BBFC</option>
             <option value="USK">USK</option>
+            <option value="ACB">ACB</option>
           </select>
-          <input type="button" value="Search by system" onClick={e => searchVideogame("/videogame/system/",document.getElementById("system").value)} />
+          <input type="button" value="Search by system" onClick={e => searchVideogame("/videogame/system/", document.getElementById("system").value)} />
         </div>
         <div data-title="Search By Developer" data-intro="Or search the games of a specific developer">
           <input type="search" id='developer' placeholder='Write developer name' />
-          <input type="button" value="Search by developer" onClick={e => searchVideogame("/videogame/developer/",document.getElementById("developer").value)} />
+          <input type="button" value="Search by developer" onClick={e => searchVideogame("/videogame/developer/", document.getElementById("developer").value)} />
         </div>
       </form>
       <ul data-title="Found Video Games" data-intro="The result of your search will be displayed here">
@@ -110,23 +101,30 @@ export default function Search() {
               videogames.map((videogame, key) => {
                 const name = videogame.name;
                 let image = ""
-                if(videogame.imageData != undefined || videogame.imageData != null){
-                   image = 'data:image/*;base64,' + videogame.imageData.data;
+                if (videogame.imageData != undefined || videogame.imageData != null) {
+                  image = 'data:image/*;base64,' + videogame.imageData.data;
                 }
                 return (
                   <article>
                     <div class="grid">
                       <div className='linkText'>
-                        <Link href={{
+                        <h1><Link href={{
                           pathname: "/selectedVideogame",
                           query: {
                             name: name
                           }
                         }}
-                        >{videogame.name}</Link>
+                        >{videogame.name}</Link></h1>
+                        <h2 class="tagsBig">{videogame.developer}</h2>
+
                       </div>
                       <div class="imageDisplay">
+                        <div class="tagsBigSearch">
+                          {loadTagImages(videogame.classifications)}
+                        </div>
+                        <div>
                           <img decoding='async' id="image" src={image} width="300px" text-align="right"></img>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -140,7 +138,7 @@ export default function Search() {
         <article>
           <h2>Not found any game fullfilling the filter</h2>
           <p>
-              Please, search using other filter
+            Please, search using other filter
           </p>
           <footer>
             <input type="button" value="Confirm" onClick={e => unloadModal("modalNotFound")}></input>

@@ -2,12 +2,11 @@ package com.gametags.gametags.videogame;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gametags.gametags.application.videogame.LatestVideogamesUseCase;
+import com.gametags.gametags.application.videogame.LatestVideoGamesUseCase;
 import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.domain.services.VideoGameService;
 import org.apache.commons.lang3.ObjectUtils;
@@ -24,7 +23,7 @@ public class GetThreeLatestAddedVideogamesUseCaseTest {
   VideoGameService service;
 
   @InjectMocks
-  LatestVideogamesUseCase latestVideogamesUseCase;
+  LatestVideoGamesUseCase latestVideogamesUseCase;
 
   @Test
   public void getThreeLatestAddedGames() {

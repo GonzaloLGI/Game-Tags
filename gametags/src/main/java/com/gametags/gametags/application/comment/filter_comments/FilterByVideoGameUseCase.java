@@ -39,7 +39,7 @@ public class FilterByVideoGameUseCase {
       log.info("[STOP] filterByVideoGame " + user.getId());
       return service.findAllCommentsByVideoGameAndUploadUser(videoGame.getName(), user.getUsername());
     }else{
-      throw new NoSuchElementException("The user and video game doesn't exist");
+      throw new NoSuchElementException("The user or video game doesn't exist");
     }
   }
 }

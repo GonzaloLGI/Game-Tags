@@ -34,7 +34,7 @@ export default function Register() {
   return (
     <LayoutAuthentication>
       <div className='authentication' data-theme="dark" data-title='Registering A New User' data-intro="If you want to do things such as adding
-    new video games to the page, write comments or add new tags to existing games; you must first have an user.">
+    new video games, write comments or add new tags to existing games; you must first have an user.">
         <form>
           <div data-title='Required Information' data-intro="If you haven't yet, here you can register a new user. 
         To do this you have to give some information, like the name you would like to have or an email for contact">

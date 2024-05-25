@@ -11,25 +11,30 @@ export default function SearchUserComments() {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    document.title= "GameTags | " + username + " - Search User Comments"
-    introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
+    document.title = "GameTags | Search User Comments"
+    introJs().setOptions({ dontShowAgain: true, tooltipClass: 'customTooltip' }).start();
   }, [])
 
-  async function searchBy(theme,filter){
+  async function searchBy(theme, filter) {
     let comments;
-    if(theme != "videogame"){
-      comments = await postRequest("/comment/"+theme+"/user", filter, window.localStorage.getItem("token"));
-    }else{
-      comments = await postRequest("/comment/"+theme+"/user", {videogame: filter}, window.localStorage.getItem("token"));
+    if (theme != "videogame") {
+      comments = await postRequest("/comment/" + theme + "/user", filter, window.localStorage.getItem("token"));
+    } else {
+      if (filter) {
+        comments = await postRequest("/comment/" + theme + "/user", { videogame: filter }, window.localStorage.getItem("token"));
+      } else{
+        loadModal("modalNotFound")
+        return
+      }
     }
     setComments(comments)
-    if(comments.length == 0){
+    if (comments.length == 0) {
       loadModal("modalNotFound")
     }
   }
 
   function showComments(comments) {
-    if (comments != undefined) {
+    if (comments != undefined || comments != null) {
       return comments.map((comment, key) => {
         return (
           <article>
@@ -64,7 +69,7 @@ export default function SearchUserComments() {
     <Layout>
       <div data-title='Search Your Comments' data-intro="In case you want to track all your comments and opinions, here is your place. 
       You can not only look for all your comments, you can filter them.">
-        <form data-title='The Filters' data-intro="You can filters by different things, such as the severity you gave the theme for the game,
+        <form data-title='The Filters' data-intro="You can filter by different things, such as the severity you gave,
         a specific category like violence or drugs or, if you have written several for a specific game, you can search them by the video game's name">
           <label for="severity">Filter by severity:</label>
           <select name="severity" id="severity">
@@ -72,7 +77,7 @@ export default function SearchUserComments() {
             <option value="Moderate">Moderate</option>
             <option value="Severe">Severe</option>
           </select>
-          <input type='button' value="Search" onClick={e => searchBy("severity",document.getElementById("severity").value)} />
+          <input type='button' value="Search" onClick={e => searchBy("severity", document.getElementById("severity").value)} />
 
           <label for="category">Filter by category:</label>
           <select name="category" id="category">
@@ -82,10 +87,10 @@ export default function SearchUserComments() {
             <option value="Sexuality">Sexuality</option>
             <option value="Misc">Misc</option>
           </select>
-          <input type='button' value="Search" onClick={e => searchBy("category",document.getElementById("category").value)} />
+          <input type='button' value="Search" onClick={e => searchBy("category", document.getElementById("category").value)} />
 
           <input type='search' id='videogame' placeholder='Write video game you want to look your comments off' />
-          <input type='button' value="Search" onClick={e => searchBy("videogame",document.getElementById("videogame").value)} />
+          <input type='button' value="Search" onClick={e => searchBy("videogame", document.getElementById("videogame").value)} />
 
         </form>
       </div>
@@ -98,7 +103,7 @@ export default function SearchUserComments() {
         <article>
           <h2>Not found any comment fullfilling the filter</h2>
           <p>
-              Please, search using other filter
+            Please, search using other filter
           </p>
           <footer>
             <input type="button" value="Confirm" onClick={e => unloadModal("modalNotFound")}></input>

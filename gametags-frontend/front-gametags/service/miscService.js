@@ -1,4 +1,6 @@
 import { getRequest } from './backendService';
+import Link from 'next/link'
+
 
 
 export function showRating(severity) {
@@ -34,6 +36,26 @@ export function isCompleteInformation(info) {
 export function fixDate(dateTime) {
   if (dateTime) {
     return dateTime[2] + "/" + dateTime[1] + "/" + dateTime[0]
+  }
+}
+
+export function loadTagImages(classifications) {
+  var image = ""
+  if (classifications != undefined) {
+    return classifications.map((element, key) => {
+      if (element.imageData != undefined || element.imageData != null) {
+        image = 'data:image/*;base64,' + element.imageData.data;
+      }
+      return (
+        <div className="tagDisplay">
+          <Link href={{
+            pathname: element.url
+          }}>
+            <img decoding='async' id="cover" src={image} width="75px" height="75px"></img>
+          </Link>
+        </div>
+      )
+    })
   }
 }
 

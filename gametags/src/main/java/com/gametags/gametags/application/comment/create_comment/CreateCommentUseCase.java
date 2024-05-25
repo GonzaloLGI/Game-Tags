@@ -56,7 +56,7 @@ public class CreateCommentUseCase {
       log.info("[STOP] Creating comment with data: " + createdComment.getId() + " " + createdComment.getCategory() + " " + createdComment.getSeverity());
       return createdComment;
     }else{
-      throw new NoSuchElementException("User doesn't exist");
+      throw new NoSuchElementException("User or videogame doesn't exist");
     }
   }
 

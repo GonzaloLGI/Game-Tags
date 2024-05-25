@@ -48,7 +48,7 @@ export default function UploadVideogame() {
       window.location = "https://localhost:3000/home"
       return
     }
-    if (videogameAlreadyExists(videogame.name) == true) {
+    if (await videogameAlreadyExists(videogame.name) == true) {
       loadModal("modalAlreadyExist")
       return
     }
@@ -148,7 +148,9 @@ export default function UploadVideogame() {
             <div>
               <input type="text" id='entity' placeholder='Write the name of the classification entity *' />
             </div>
-            <div>
+            <div data-title="Age Label Of tag" data-intro="In this field you must introduce the short form of the tag age name. If the name combines words with numbers, you should write the
+          first letter of the word followed by a '+' and the number. For example, in case you want to add Mature from ESRB, you should write M+17. 
+          In case the tag name is only a number or a letter, you should write only the number or letter">
               <input type="text" id='age' placeholder='Write the age of the label *' />
             </div>
             <div>
@@ -166,7 +168,7 @@ export default function UploadVideogame() {
             <input type="button" value="Submit new game" onClick={e => addVideogame("/videogame/",
               {
                 name: document.getElementById("name").value, developer: document.getElementById("developer").value,
-                platforms: addPlatforms(["platform1", "platform2", "platform3", "platform4", "platform5", "platform6", "platform7", "platform8", "platform9", "platform10", "platform11", "platform12"]),
+                platforms: addPlatforms(["platform1", "platform2", "platform3", "platform4", "platform5", "platform6", "platform7", "platform8", "platform9", "platform10", "platform11", "platform12","platform13"]),
                 classifications: [
                   createClassification(document.getElementById("entity").value, document.getElementById("age").value, document.getElementById("url").value, document.getElementById("country").value)]
                 , uploadUser: window.localStorage.getItem("userName")
@@ -181,27 +183,27 @@ export default function UploadVideogame() {
               pathname: "https://pegi.info/es"
             }}
             >
-              <img src="./systems/pegi.jfif" alt='' width="100px" height="50px" />
+              <img src="./systems/pegi.jfif" alt='' width="30%" height="50px" />
             </Link></div>
             <div style={{"margin-bottom": "10px"}}><Link href={{
               pathname: "https://www.esrb.org/"
             }}
-            ><img src="./systems/ESRB1.png" alt='' width="100px" height="50px" />
+            ><img src="./systems/ESRB1.png" alt='' width="35%" height="50px" />
             </Link></div>
             <div style={{"margin-bottom": "10px"}}><Link href={{
               pathname: "https://www.classification.gov.au/"
             }}
-            ><img src="./systems/acb2.png" alt='' width="100px" height="50px" />
+            ><img src="./systems/acb2.png" alt='' width="75%" height="50px" />
             </Link></div>
             <div style={{"margin-bottom": "10px"}}><Link href={{
               pathname: "https://usk.de/"
             }}
-            ><img src="./systems/usk2.png" alt='' width="100px" height="50px" />
+            ><img src="./systems/usk2.png" alt='' width="75%" height="50px" />
             </Link></div>
             <div style={{"margin-bottom": "10px"}}><Link href={{
               pathname: "https://www.bbfc.co.uk/"
             }}
-            ><img src="./systems/bbfc1.png" alt='' width="100px" height="50px" />
+            ><img src="./systems/bbfc1.png" alt='' width="50%" height="50px" />
             </Link></div>
           </article>
         </div>
@@ -220,7 +222,7 @@ export default function UploadVideogame() {
       </dialog>
       <dialog id="modalAlreadyExist">
         <article>
-          <h2>Video game already exist in the data base</h2>
+          <h2>Video Game already exist in the data base</h2>
           <p>
             Please, upload a different video game
           </p>

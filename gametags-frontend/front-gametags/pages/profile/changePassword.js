@@ -10,7 +10,7 @@ export default function ChangePassword() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    document.title = "GameTags | " + username + " - Change User Password"
+    document.title = "GameTags | Change User Password"
     let user = getUserRequest(window.localStorage.getItem("userName"));
     setUser(user)
     introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
@@ -43,7 +43,7 @@ export default function ChangePassword() {
   return (
     <Layout>
       <div data-title="Change Your Password" data-intro="If, by any reason, you want to change your password, you can do it here">
-        <div data-title="Information Needed To Change A Password" data-intro="To change your password you must specify you old password you want to change, the new password you want 
+        <div data-title="Information Needed To Change A Password" data-intro="To change your password you must specify your old password you want to change, the new password you want 
         to change to and reintroduce that same new password, to avoid any misspelling">
           <form>
             <input type="text" id='old' placeholder='Write your old password *' />
@@ -80,7 +80,7 @@ export default function ChangePassword() {
         <article>
           <h2>Incorrect password</h2>
           <p>
-            Please, enter you correct password
+            Please, enter your correct password
           </p>
           <footer>
             <input type="button" value="Confirm" onClick={e => unloadModal("modalIncorrectPassword")}></input>

@@ -1,17 +1,5 @@
 
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8Ï©áÎê1J$31180cd2-2bf4-4008-ba5b-d4fc54f95876
-…
-java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄÞ8Ï©áÎê1J$8b152d59-0b3c-4ce2-8235-a7b992b1d2df
-…
-java:S6813$"BRemove this field injection and use constructor injection instead.(êæÄÞ8Ð©áÎê1J$edc1038d-c554-4f69-af46-d8bf79c7d818
-…
-java:S6813'"BRemove this field injection and use constructor injection instead.(êæÄÞ8Ð©áÎê1J$eaf82489-d2a7-4fd0-a261-ebe2580ffb8a
-…
-java:S6813*"BRemove this field injection and use constructor injection instead.(êæÄÞ8Ð©áÎê1J$696eb7c4-e73f-4a0d-895a-40d1a6ba6457
-…
-java:S6813-"BRemove this field injection and use constructor injection instead.(êæÄÞ8Ñ©áÎê1J$ffd21c24-212c-42d2-9bab-0830e8e7fdba
-•
-java:S6204V"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ÿ°¾Å8³Ø¿Õà1J$5d747101-2f9a-4c57-a2d2-777c792d0e70
-d
-java:S3864V"!Remove this use of "Stream.peek".(Ÿ°¾Å8´Ø¿Õà1J$ef40ba79-ea06-47a5-b720-84e3a9f99e8c
+o
+java:S6204V"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ÿ°¾Å8³Ø¿Õà1
+>
+java:S3864V"!Remove this use of "Stream.peek".(Ÿ°¾Å8´Ø¿Õà1

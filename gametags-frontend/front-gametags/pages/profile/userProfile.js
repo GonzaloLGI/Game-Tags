@@ -27,7 +27,7 @@ export default function Profile() {
       if(user.profileImageData != undefined || user.profileImageData != null){
         window.localStorage.setItem("userImage", user.profileImageData.data)
       }
-      document.title = "GameTags | " + user.username + " - Profile"
+      document.title = "GameTags | Profile"
     }
     setUser(user)
   }
@@ -71,7 +71,7 @@ export default function Profile() {
   return (
     <Layout>
       <article data-title="User Profile" data-intro="When you have succesfully registered a user and logged in, the information about you is shown here. From here you have multiple options
-      like changing you username or your password, uploading a profile picture or searching your comments">
+      like changing your username or your password, uploading a profile picture or searching your comments">
         <div className='profileImageDisplay'>
           {loadImage(user, "profile")}
         </div>

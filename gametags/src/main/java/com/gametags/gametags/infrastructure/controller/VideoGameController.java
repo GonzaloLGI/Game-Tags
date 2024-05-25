@@ -1,9 +1,7 @@
 package com.gametags.gametags.infrastructure.controller;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.util.*;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.gametags.gametags.application.classification.create_classification.CreateClassificationInput;
@@ -19,19 +17,12 @@ import com.gametags.gametags.domain.model.VideoGame;
 import com.gametags.gametags.infrastructure.dtos.VideoGameDTO;
 import com.gametags.gametags.infrastructure.mappers.ClassificationMapper;
 import com.gametags.gametags.infrastructure.mappers.VideoGameMapper;
-import jakarta.servlet.MultipartConfigElement;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartResolver;
 
 @RestController
 @RequestMapping("/videogame/")
@@ -75,7 +66,7 @@ public class VideoGameController {
   private FilterBySystemUseCase filterBySystemUseCase;
 
   @Autowired
-  private LatestVideogamesUseCase latestVideogamesUseCase;
+  private LatestVideoGamesUseCase latestVideogamesUseCase;
 
   @Autowired
   private AddNewClassificationUseCase addNewClassificationUseCase;

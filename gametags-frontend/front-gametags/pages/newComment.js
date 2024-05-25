@@ -13,7 +13,7 @@ export default function NewComment() {
   const videogameName = useSearchParams().get("name")
 
   useEffect(() => {
-    document.title = "GameTags | " + videogameName + " - Create Comment"
+    document.title = "GameTags | Create Comment"
     let user = getUserRequest(window.localStorage.getItem("userName"));
     setUser(user)
     introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();

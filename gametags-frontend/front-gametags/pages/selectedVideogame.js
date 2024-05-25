@@ -5,7 +5,7 @@ import introJs from 'intro.js/intro.js';
 import 'intro.js/introjs.css';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { showRating, fixDate, loadImage } from '../service/miscService'
+import { showRating, fixDate, loadImage, loadTagImages } from '../service/miscService'
 
 export default function selectedVideogame() {
   const URL = "/videogame/name/" + useSearchParams().get('name');
@@ -79,25 +79,7 @@ export default function selectedVideogame() {
     }
   }
 
-  function loadTagImages(classifications) {
-    var image = ""
-    if (classifications != undefined) {
-      return classifications.map((element, key) => {
-        if (element.imageData != undefined || element.imageData != null) {
-          image = 'data:image/*;base64,' + element.imageData.data;
-        }
-        return (
-          <div className="tagDisplay">
-            <Link href={{
-              pathname: element.url
-            }}>
-              <img decoding='async' id="cover" src={image} width="75px" height="75px"></img>
-            </Link>
-          </div>
-        )
-      })
-    }
-  }
+  
 
   function calculateRating(category) {
     if (videogames != undefined && videogames.comments != undefined) {
@@ -219,7 +201,7 @@ export default function selectedVideogame() {
           }}> Add new comment</Link>
         </div>
       </article>
-      <article data-title="Comments" data-intro="The comments are separated in each thematic matter. The themes are violence, language, sexaulityt, drugs and miscellaneous">
+      <article data-title="Comments" data-intro="The comments are separated in each thematic matter. The themes are violence, language, sexuality, drugs and miscellaneous">
         <div>
           <details className='dropdown'>
             <summary>Violence Comments: {countComments("Violence")}</summary>
@@ -229,7 +211,7 @@ export default function selectedVideogame() {
           </details>
         </div>
       </article>
-      <article data-title="Comment's Information" data-intro="Each comment indicates the severity judge by the user, the comment itself about their opinion and who uploaded the comment">
+      <article data-title="Comment's Information" data-intro="Each comment indicates the severity judged by the user, the text itself about their opinion and who uploaded the comment">
         <div>
           <details className='dropdown'>
             <summary>Language Comments: {countComments("Language")}</summary>

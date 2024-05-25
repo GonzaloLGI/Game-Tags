@@ -1,23 +1,17 @@
 package com.gametags.gametags.authentication;
 
-import com.gametags.gametags.application.authentication.RegisterDTO;
 import com.gametags.gametags.application.authentication.RegisterUserUseCase;
-import com.gametags.gametags.application.classification.DeleteClassificationUseCase;
 import com.gametags.gametags.domain.model.RegisterInput;
 import com.gametags.gametags.domain.model.User;
-import com.gametags.gametags.domain.services.ClassificationService;
 import com.gametags.gametags.domain.services.UserService;
 import com.nimbusds.oauth2.sdk.util.singleuse.AlreadyUsedException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.context.ApplicationContextException;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import static org.junit.Assert.assertNotEquals;

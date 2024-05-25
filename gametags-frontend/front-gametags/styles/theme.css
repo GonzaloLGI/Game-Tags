@@ -460,7 +460,7 @@ kbd {
 
 [data-theme=dark] {
   --background-color: #ffffff;
-  --color: hsl(220, 13%, 95%);
+  --color: hsl(0deg 0% 52.94%);
   --h1-color: hsl(205, 20%, 94%);
   --h2-color: #e1e6eb;
   --h3-color: hsl(205, 18%, 86%);
@@ -628,7 +628,7 @@ progress,
 
 .linkCard {
   text-align: center;
-  background: hsl(311, 30%, 53%);
+  background: #ccc;
 }
 
 .titleLogo {
@@ -695,6 +695,12 @@ progress,
 
 .tagsBig {
   display: block;
+}
+
+.tagsBigSearch {
+  display: block;
+  position:absolute;
+  margin-left: 100px;
 }
 
 .tagsSmall {
@@ -774,6 +780,12 @@ progress,
   }
 }
 
+@media (max-width: 1200px){
+  .tagsBigSearch {
+    margin-left: 0px;
+  }
+}
+
 @media (max-width: 992px) {
   .imageDisplay {
     text-align: center;
@@ -794,6 +806,10 @@ progress,
   }
 
   .tagsBig {
+    display: none;
+  }
+
+  .tagsBigSearch{
     display: none;
   }
 

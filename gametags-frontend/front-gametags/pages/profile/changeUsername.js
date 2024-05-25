@@ -10,7 +10,7 @@ export default function ChangeUsername() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    document.title = "GameTags | " + username + " - Change User Username"
+    document.title = "GameTags | Change User Username"
     let user = getUserRequest(window.localStorage.getItem("userName"));
     setUser(user)
     introJs().setOptions({dontShowAgain: true,tooltipClass: 'customTooltip'}).start();
@@ -36,7 +36,7 @@ export default function ChangeUsername() {
 
   return (
     <Layout>
-      <div data-title="Change You Username" data-intro="If you are bored about your username, you can change it! Don't worry, this new username will be also shown in the comments
+      <div data-title="Change You Username" data-intro="If you are bored of your username, you can change it! Don't worry, this new username will also be shown in the comments
       you created with the old username, as well as in the data sheet of the video games you added to the webpage">
         <form data-title="Information For Changing The Username" data-intro="You must specify your old username you want to get rid off, the new username you want to use and your password
         to confirm this change">

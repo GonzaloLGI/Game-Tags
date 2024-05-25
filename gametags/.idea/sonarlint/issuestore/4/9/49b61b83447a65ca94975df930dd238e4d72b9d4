@@ -1,43 +1,13 @@
 
-_
-java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ8×ô©ê1
-_
-java:S6813,"BRemove this field injection and use constructor injection instead.(êæÄŞ8‘×ô©ê1
-_
-java:S6813/"BRemove this field injection and use constructor injection instead.(êæÄŞ8‘×ô©ê1
-_
-java:S68132"BRemove this field injection and use constructor injection instead.(êæÄŞ8‘×ô©ê1
-_
-java:S68135"BRemove this field injection and use constructor injection instead.(êæÄŞ8’×ô©ê1
-_
-java:S68138"BRemove this field injection and use constructor injection instead.(êæÄŞ8’×ô©ê1
-_
-java:S6813;"BRemove this field injection and use constructor injection instead.(êæÄŞ8’×ô©ê1
-_
-java:S6813>"BRemove this field injection and use constructor injection instead.(êæÄŞ8’×ô©ê1
-_
-java:S6813A"BRemove this field injection and use constructor injection instead.(êæÄŞ8’×ô©ê1
-_
-java:S6813D"BRemove this field injection and use constructor injection instead.(êæÄŞ8’×ô©ê1
-_
-java:S6813G"BRemove this field injection and use constructor injection instead.(êæÄŞ8“×ô©ê1
-_
-java:S6813J"BRemove this field injection and use constructor injection instead.(êæÄŞ8“×ô©ê1
-_
-java:S6813M"BRemove this field injection and use constructor injection instead.(êæÄŞ8“×ô©ê1
-_
-java:S6813P"BRemove this field injection and use constructor injection instead.(êæÄŞ8“×ô©ê1
-_
-java:S6813S"BRemove this field injection and use constructor injection instead.(êæÄŞ8“×ô©ê1
 o
-java:S6204u"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8õªº€á1
+java:S6204l"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£¦Ü‚8¥½õÍğ1
 p
-java:S6204•"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(é”Åø8õõûšá1
+java:S6204Œ"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(é”Åø8±½õÍğ1
 p
-java:S6204 "RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(‹İøÀ8ùªº€á1
+java:S6204—"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(‹İøÀ8¶½õÍğ1
 p
-java:S6204¦"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Æü¾‘8úªº€á1
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Æü¾‘8¹½õÍğ1
 p
-java:S6204¬"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¤’á™8úªº€á1
+java:S6204£"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¤’á™8»½õÍğ1
 u
-java:S6204²"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ü¼™©ûÿÿÿÿ8ûªº€á1
+java:S6204©"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ü¼™©ûÿÿÿÿ8½½õÍğ1

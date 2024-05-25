@@ -58,7 +58,6 @@ public class AddTagImageUseCase {
     private Classification addTagImage(Classification classification, UUID tagId, Binary tagImage) {
         if(classification.getId().equals(tagId)){
             classification.setImageData(tagImage);
-            service.updateClassification(classification);
         }
         return classification;
     }

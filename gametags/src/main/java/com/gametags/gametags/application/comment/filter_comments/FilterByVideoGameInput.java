@@ -5,12 +5,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class FilterByVideogameInput {
+public class FilterByVideoGameInput {
     private String videogame;
 }

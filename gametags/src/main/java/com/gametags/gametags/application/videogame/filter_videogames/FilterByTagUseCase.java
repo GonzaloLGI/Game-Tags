@@ -34,7 +34,7 @@ public class FilterByTagUseCase {
         tagsToFind.addAll(Arrays.asList("16","T","MA+15","15","D"));
         break;
       case "18":
-        tagsToFind.addAll(Arrays.asList("18","M","R+18","Z"));
+        tagsToFind.addAll(Arrays.asList("18","M+17","R+18","Z"));
         break;
       default:
         log.info("Invalid age tag");

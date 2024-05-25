@@ -1,8 +1,8 @@
 package com.gametags.gametags.infrastructure.controller;
 
-import com.gametags.gametags.application.authentication.LoginDTO;
+import com.gametags.gametags.infrastructure.dtos.LoginDTO;
 import com.gametags.gametags.application.authentication.LoginUserUseCase;
-import com.gametags.gametags.application.authentication.RegisterDTO;
+import com.gametags.gametags.infrastructure.dtos.RegisterDTO;
 import com.gametags.gametags.application.authentication.RegisterUserUseCase;
 import com.gametags.gametags.infrastructure.dtos.AuthResponseDTO;
 import com.gametags.gametags.infrastructure.mappers.AuthenticationMapper;
@@ -10,7 +10,6 @@ import com.gametags.gametags.infrastructure.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
