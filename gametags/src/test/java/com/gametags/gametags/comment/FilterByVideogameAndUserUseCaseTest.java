@@ -83,7 +83,7 @@ public class FilterByVideogameAndUserUseCaseTest {
     Exception exception = assertThrows(NoSuchElementException.class, () -> filterByVideoGameUseCase.commentsByVideoGameAndUser(videogameName));
 
     //THEN
-    assertEquals("The user and video game doesn't exist",exception.getMessage());
+    assertEquals("The user or video game doesn't exist",exception.getMessage());
   }
 
 }

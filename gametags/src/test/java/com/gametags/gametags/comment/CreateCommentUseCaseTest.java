@@ -80,7 +80,7 @@ public class CreateCommentUseCaseTest {
     Exception exception = assertThrows(NoSuchElementException.class, () -> useCase.createComment(comment));
 
     //THEN
-    Assert.assertEquals("User doesn't exist",exception.getMessage());
+    Assert.assertEquals("User or videogame doesn't exist",exception.getMessage());
   }
 
 }
